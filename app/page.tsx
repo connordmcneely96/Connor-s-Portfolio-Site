@@ -3,50 +3,50 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import {
-  Target,
-  Users,
+  Settings,
+  Factory,
   TrendingUp,
-  Briefcase,
+  Cog,
   ArrowRight,
   Sparkles,
   Zap,
   Award,
-  Star
+  Code
 } from 'lucide-react';
 
 export default function Home() {
   const features = [
     {
-      icon: Target,
-      title: 'Personalized Coaching',
-      description: 'One-on-one guidance tailored to your unique leadership journey and goals',
+      icon: Settings,
+      title: 'Mechanical Design Excellence',
+      description: 'Full-cycle pump design from conception to manufacturing using SolidWorks, FEA/CFD analysis, and DFMA principles',
       gradient: 'from-brand-cyan to-brand-cyan-dark',
     },
     {
-      icon: Users,
-      title: 'Mentorship Community',
-      description: 'Connect with like-minded leaders in a supportive, growth-focused environment',
+      icon: Zap,
+      title: 'Automation & Controls',
+      description: 'PLC programming, SCADA systems, machine vision, and IoT integration for process optimization',
       gradient: 'from-brand-blue-electric to-brand-cyan',
     },
     {
-      icon: TrendingUp,
-      title: 'Proven Results',
-      description: 'Evidence-based strategies that drive real transformation and measurable outcomes',
+      icon: Factory,
+      title: 'Process Optimization',
+      description: 'Lean Six Sigma methodologies delivering quantifiable improvements in efficiency, cost, and quality',
       gradient: 'from-success to-brand-cyan',
     },
     {
-      icon: Briefcase,
-      title: 'Professional Services',
-      description: 'Comprehensive leadership development programs for individuals and organizations',
+      icon: Code,
+      title: 'AI/ML Integration',
+      description: 'Python, TensorFlow, and data-driven decision making to solve complex engineering challenges',
       gradient: 'from-warning to-brand-blue-electric',
     },
   ];
 
   const stats = [
-    { value: '150+', label: 'Leaders Coached', icon: Users },
-    { value: '95%', label: 'Satisfaction Rate', icon: Star },
-    { value: '10+', label: 'Years Experience', icon: Award },
-    { value: '40+', label: 'Organizations', icon: Briefcase },
+    { value: '75%', label: 'Downtime Reduction', icon: TrendingUp },
+    { value: '50%', label: 'Efficiency Gains', icon: Zap },
+    { value: '20%', label: 'Cost Savings', icon: Award },
+    { value: '759M', label: 'Units Produced', icon: Factory },
   ];
 
   return (
@@ -86,39 +86,39 @@ export default function Home() {
             >
               <Sparkles className="w-4 h-4 text-brand-cyan animate-pulse" />
               <span className="text-sm font-medium text-brand-cyan">
-                Empowering Leadership Excellence
+                Multi-Disciplinary Engineering Excellence
               </span>
             </motion.div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              Transform Your
+              Connor McNeely
               <span className="block mt-2 bg-gradient-to-r from-brand-cyan via-glow-cyan to-brand-blue-electric bg-clip-text text-transparent">
-                Leadership Journey
+                Engineering Leader
               </span>
             </h1>
 
             <p className="text-xl md:text-2xl text-circuit-silver max-w-3xl mx-auto mb-12">
-              Empowering leaders to build lasting legacies through coaching, mentorship, and community
+              Mechanical Design • Automation • Process Optimization • AI/ML Integration
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/coaching">
+              <Link href="/portfolio">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-blue-electric text-white font-semibold shadow-glow-cyan-lg hover:shadow-glow-cyan-lg transition-all duration-300 flex items-center gap-2 group"
                 >
-                  Explore Coaching
+                  View Portfolio
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </motion.button>
               </Link>
-              <Link href="/community">
+              <Link href="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 rounded-xl border-2 border-brand-cyan/30 text-brand-cyan font-semibold hover:bg-brand-cyan/10 hover:border-brand-cyan transition-all duration-300"
                 >
-                  Join Community
+                  Get in Touch
                 </motion.button>
               </Link>
             </div>
@@ -159,10 +159,10 @@ export default function Home() {
         >
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Why Choose Connor Mcneely?
+              Core Capabilities
             </h2>
             <p className="text-xl text-circuit-silver">
-              Experience leadership transformation through proven methods
+              Delivering engineering excellence across multiple disciplines
             </p>
           </div>
 
@@ -211,11 +211,11 @@ export default function Home() {
 
           <div className="relative">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <Zap className="w-8 h-8 text-white animate-pulse" />
-              <h2 className="text-4xl font-bold text-white">Ready to Start Your Journey?</h2>
+              <Cog className="w-8 h-8 text-white animate-pulse" />
+              <h2 className="text-4xl font-bold text-white">Let's Build Something Amazing</h2>
             </div>
             <p className="text-white/80 text-xl mb-8">
-              Take the first step toward transformational leadership
+              Ready to bring engineering excellence to your team
             </p>
             <Link href="/contact">
               <motion.button
@@ -223,7 +223,7 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 rounded-xl bg-white text-brand-cyan font-bold shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-2"
               >
-                Get Started Today
+                Get in Touch
                 <ArrowRight className="w-5 h-5" />
               </motion.button>
             </Link>

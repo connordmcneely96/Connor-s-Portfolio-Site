@@ -15,88 +15,92 @@ import {
   Shield,
   Sparkles,
   ArrowRight,
+  Cog,
+  Settings,
+  Factory,
+  Code,
 } from 'lucide-react';
 
 export default function About() {
   const timeline = [
     {
       year: '2020',
-      title: 'Founded Leadership Practice',
-      description: 'Began coaching journey with focus on executive leadership',
+      title: 'Machine Design Engineer',
+      description: 'Designed complete centrifugal pump system at Louisiana Tech',
     },
     {
       year: '2021',
-      title: 'Expanded Services',
-      description: 'Launched group mentorship and corporate programs',
+      title: 'Joined Pfizer',
+      description: 'Contributed to 759M vaccine doses production',
     },
     {
       year: '2022',
-      title: 'Community Growth',
-      description: 'Built thriving network of 100+ leaders',
+      title: 'Process Excellence',
+      description: 'Enhanced efficiency to #1 PatientView ranking',
     },
     {
       year: '2023',
-      title: 'Global Impact',
-      description: 'Expanded reach to international clients',
+      title: 'Automation Leadership',
+      description: 'Led automation initiatives at John Deere Turf Care',
     },
     {
-      year: '2024',
-      title: 'Innovation & Scale',
-      description: 'Launched AI-powered leadership tools and analytics',
+      year: '2023',
+      title: 'Lead Design Engineer',
+      description: 'Sole engineer for high-efficiency pump systems',
     },
   ];
 
   const values = [
     {
       icon: Shield,
-      title: 'Integrity',
-      description: 'Integrity in all interactions',
+      title: 'Excellence',
+      description: 'Engineering excellence in every project',
     },
     {
       icon: TrendingUp,
-      title: 'Growth',
-      description: 'Commitment to growth',
+      title: 'Innovation',
+      description: 'Continuous innovation and optimization',
     },
     {
       icon: Star,
-      title: 'Excellence',
-      description: 'Excellence in service',
+      title: 'Precision',
+      description: 'Precision in design and execution',
     },
     {
       icon: Heart,
-      title: 'Authenticity',
-      description: 'Authentic leadership',
+      title: 'Collaboration',
+      description: 'Cross-functional team collaboration',
     },
     {
       icon: Users,
-      title: 'Community',
-      description: 'Community empowerment',
+      title: 'Impact',
+      description: 'Creating measurable positive impact',
     },
   ];
 
   const expertise = [
-    { icon: Target, label: 'Executive Leadership', gradient: 'from-brand-cyan to-brand-cyan-dark' },
-    { icon: Users, label: 'Team Development', gradient: 'from-brand-blue-electric to-brand-cyan' },
-    { icon: Zap, label: 'Strategic Planning', gradient: 'from-success to-brand-cyan' },
-    { icon: Heart, label: 'Personal Growth', gradient: 'from-warning to-brand-blue-electric' },
-    { icon: Trophy, label: 'Legacy Building', gradient: 'from-error to-brand-cyan' },
+    { icon: Settings, label: 'Mechanical Design', gradient: 'from-brand-cyan to-brand-cyan-dark' },
+    { icon: Zap, label: 'Automation & Controls', gradient: 'from-brand-blue-electric to-brand-cyan' },
+    { icon: Factory, label: 'Process Optimization', gradient: 'from-success to-brand-cyan' },
+    { icon: Code, label: 'AI/ML & Programming', gradient: 'from-warning to-brand-blue-electric' },
+    { icon: Trophy, label: 'Project Leadership', gradient: 'from-error to-brand-cyan' },
   ];
 
   const credentials = [
     {
       icon: GraduationCap,
       title: 'Education',
-      description: 'Advanced certifications in leadership development and coaching methodologies',
+      description: 'B.S. Mechanical Engineering from Louisiana Tech University with strong foundation in design, analysis, and systems thinking',
     },
     {
       icon: Star,
       title: 'Experience',
-      description: 'Years of hands-on experience coaching leaders across diverse industries',
+      description: 'Multi-disciplinary engineering across pump manufacturing, automation, pharmaceuticals, and agricultural equipment',
     },
     {
       icon: Trophy,
-      title: 'Results',
-      description: 'Proven track record of helping clients achieve breakthrough results',
+      title: 'Certifications',
+      description: 'SolidWorks Professional, Lean Six Sigma, PLC Programming, Machine Learning, ISO Standards expertise',
     },
   ];
 
@@ -138,15 +142,15 @@ export default function About() {
             >
               <Sparkles className="w-4 h-4 text-brand-cyan" />
               <span className="text-sm font-medium text-brand-cyan">
-                Building Leaders Who Create Lasting Impact
+                Multi-Disciplinary Engineering Leader & Lifetime Learner
               </span>
             </motion.div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              About Connor Mcneely
+              About Connor McNeely
             </h1>
             <p className="text-xl md:text-2xl text-circuit-silver max-w-3xl mx-auto">
-              Dedicated leadership coach and mentor committed to empowering individuals to reach their full potential
+              Mechanical engineer passionate about design, automation, and leveraging AI/ML to solve complex engineering challenges
             </p>
           </motion.div>
         </div>
@@ -165,17 +169,17 @@ export default function About() {
             <div className="bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-8 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300">
               <h2 className="text-3xl font-bold text-white mb-4">My Story</h2>
               <p className="text-circuit-silver leading-relaxed mb-4">
-                Connor Mcneely is a dedicated leadership coach and mentor committed to empowering individuals to reach their full potential. With a passion for developing leaders who create lasting legacies, Connor brings a unique blend of experience, insight, and practical wisdom to every coaching engagement.
+                I'm a multi-disciplinary mechanical engineer with expertise spanning mechanical design, automation, process optimization, and AI/ML integration. My career has been driven by a passion for solving complex engineering problems and delivering measurable impact across diverse industries—from pharmaceutical manufacturing to precision pump design.
               </p>
 
-              <h3 className="text-2xl font-bold text-white mt-8 mb-3">Philosophy</h3>
+              <h3 className="text-2xl font-bold text-white mt-8 mb-3">Engineering Philosophy</h3>
               <p className="text-circuit-silver leading-relaxed mb-4">
-                True leadership isn't about authority—it's about influence, impact, and legacy. I believe that every individual has the capacity to lead in their own unique way, and my mission is to help you discover and develop that leadership potential.
+                Great engineering is about more than technical proficiency—it's about understanding systems holistically, optimizing for manufacturability, and creating solutions that deliver real-world value. I believe in combining rigorous analysis with practical innovation, always keeping the end goal in sight: designs that work efficiently, reliably, and cost-effectively.
               </p>
 
               <h3 className="text-2xl font-bold text-white mt-8 mb-3">Approach</h3>
               <p className="text-circuit-silver leading-relaxed">
-                My coaching approach is personalized, practical, and results-oriented. I combine proven leadership principles with innovative strategies to help you overcome challenges, maximize your strengths, and achieve your goals.
+                My approach integrates mechanical design expertise with automation, data-driven decision making, and continuous improvement methodologies. From SolidWorks and FEA/CFD analysis to PLC programming and machine learning, I leverage the full spectrum of modern engineering tools to deliver innovative solutions. Whether leading full-cycle pump design or optimizing production processes, I focus on quantifiable results and cross-functional collaboration.
               </p>
             </div>
           </div>
@@ -228,7 +232,7 @@ export default function About() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mb-16"
         >
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">Journey Timeline</h2>
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">Professional Journey</h2>
           <div className="relative">
             {/* Timeline line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-brand-cyan via-brand-blue-electric to-brand-cyan opacity-30" />
@@ -314,9 +318,9 @@ export default function About() {
           </div>
 
           <div className="relative">
-            <h2 className="text-4xl font-bold text-white mb-4">Let's Work Together</h2>
+            <h2 className="text-4xl font-bold text-white mb-4">Let's Build Something Amazing</h2>
             <p className="text-white/80 text-xl mb-8">
-              Ready to take your leadership to the next level?
+              Ready to bring engineering excellence to your team
             </p>
             <Link href="/contact">
               <motion.button
@@ -324,7 +328,7 @@ export default function About() {
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 rounded-xl bg-white text-brand-cyan font-bold shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-2"
               >
-                Schedule a Consultation
+                Get in Touch
                 <ArrowRight className="w-5 h-5" />
               </motion.button>
             </Link>
