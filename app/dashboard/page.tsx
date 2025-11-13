@@ -1,103 +1,114 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Script from 'next/script';
 
 export default function Dashboard() {
   const viewerRef = useRef<HTMLDivElement>(null);
   const [threeLoaded, setThreeLoaded] = useState(false);
   const [viewerInitialized, setViewerInitialized] = useState(false);
+  const sceneRef = useRef<any>(null);
 
-  // Three.js initialization
-  useEffect(() => {
-    if (threeLoaded && viewerRef.current && !viewerInitialized) {
-      initThreeJS();
-      setViewerInitialized(true);
-    }
-  }, [threeLoaded, viewerInitialized]);
-
-  const initThreeJS = () => {
-    if (typeof window === 'undefined' || !(window as any).THREE) return;
+  // Three.js initialization function
+  const initThreeJS = useCallback(() => {
+    if (typeof window === 'undefined' || !(window as any).THREE || !viewerRef.current) return;
 
     const THREE = (window as any).THREE;
     const container = viewerRef.current;
-    if (!container) return;
 
-    // Create scene
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0f3460);
+    try {
+      // Create scene
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0f3460);
 
-    // Create camera
-    const width = container.clientWidth;
-    const height = 500;
-    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    camera.position.z = 5;
+      // Create camera
+      const width = container.clientWidth;
+      const height = 500;
+      const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+      camera.position.z = 5;
 
-    // Create renderer
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(width, height);
-    container.innerHTML = '';
-    container.appendChild(renderer.domElement);
+      // Create renderer
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(width, height);
+      container.innerHTML = '';
+      container.appendChild(renderer.domElement);
 
-    // Add lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-    scene.add(ambientLight);
+      // Add lights
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+      scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionalLight.position.set(5, 5, 5);
-    scene.add(directionalLight);
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+      directionalLight.position.set(5, 5, 5);
+      scene.add(directionalLight);
 
-    // Add grid
-    const gridHelper = new THREE.GridHelper(10, 10, 0x3498db, 0x2c3e50);
-    scene.add(gridHelper);
+      // Add grid
+      const gridHelper = new THREE.GridHelper(10, 10, 0x3498db, 0x2c3e50);
+      scene.add(gridHelper);
 
-    // Add axes
-    const axesHelper = new THREE.AxesHelper(5);
-    scene.add(axesHelper);
+      // Add axes
+      const axesHelper = new THREE.AxesHelper(5);
+      scene.add(axesHelper);
 
-    // Animation loop
-    function animate() {
-      requestAnimationFrame(animate);
-      renderer.render(scene, camera);
+      // Animation loop
+      const animate = () => {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+      };
+      animate();
+
+      // Store in ref for access from buttons
+      sceneRef.current = { scene, camera, renderer };
+    } catch (error) {
+      console.error('Error initializing Three.js:', error);
     }
-    animate();
+  }, []);
 
-    // Store in window for access from buttons
-    (window as any).threeScene = { scene, camera, renderer };
-  };
+  // Initialize Three.js when loaded
+  useEffect(() => {
+    if (threeLoaded && !viewerInitialized) {
+      initThreeJS();
+      setViewerInitialized(true);
+    }
+  }, [threeLoaded, viewerInitialized, initThreeJS]);
 
   const loadSampleModel = () => {
-    if (!(window as any).THREE || !(window as any).threeScene) {
-      showNotification('Three.js not loaded yet', 'error');
+    if (!(window as any).THREE || !sceneRef.current) {
+      showNotification('3D viewer not ready yet', 'error');
       return;
     }
 
-    const THREE = (window as any).THREE;
-    const { scene } = (window as any).threeScene;
+    try {
+      const THREE = (window as any).THREE;
+      const { scene } = sceneRef.current;
 
-    // Create sample model
-    const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
-    const material = new THREE.MeshStandardMaterial({
-      color: 0x3498db,
-      metalness: 0.5,
-      roughness: 0.5
-    });
-    const model = new THREE.Mesh(geometry, material);
-    scene.add(model);
+      // Create sample model
+      const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
+      const material = new THREE.MeshStandardMaterial({
+        color: 0x3498db,
+        metalness: 0.5,
+        roughness: 0.5
+      });
+      const model = new THREE.Mesh(geometry, material);
+      scene.add(model);
 
-    // Animate rotation
-    function animate() {
-      requestAnimationFrame(animate);
-      model.rotation.x += 0.005;
-      model.rotation.y += 0.01;
+      // Animate rotation
+      const animate = () => {
+        requestAnimationFrame(animate);
+        model.rotation.x += 0.005;
+        model.rotation.y += 0.01;
+      };
+      animate();
+
+      showNotification('Sample model loaded successfully!', 'success');
+    } catch (error) {
+      console.error('Error loading model:', error);
+      showNotification('Error loading model', 'error');
     }
-    animate();
-
-    showNotification('Sample model loaded successfully!', 'success');
   };
 
   const showNotification = (message: string, type: 'info' | 'success' | 'error' = 'info') => {
-    // Simple notification implementation
+    if (typeof window === 'undefined') return;
+
     const colors = {
       info: '#3498db',
       success: '#2ecc71',
@@ -131,6 +142,7 @@ export default function Dashboard() {
       <Script
         src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
         onLoad={() => setThreeLoaded(true)}
+        strategy="afterInteractive"
       />
 
       <div className="min-h-screen bg-[#1a1a2e] text-[#eaeaea]">
@@ -211,7 +223,7 @@ export default function Dashboard() {
 
           {/* CAD Workspace */}
           <section className="mb-12">
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
               <h2 className="text-3xl font-bold">CAD Engineering Workspace</h2>
               <div className="flex gap-2">
                 <button onClick={() => showNotification('Creating new project...', 'info')} className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded font-semibold">+ New Project</button>
@@ -242,7 +254,7 @@ export default function Dashboard() {
               {/* 3D Viewer */}
               <div ref={viewerRef} className="w-full h-[500px] bg-gradient-to-br from-blue-900 to-indigo-900 flex items-center justify-center">
                 {!viewerInitialized && (
-                  <div className="text-center">
+                  <div className="text-center p-4">
                     <div className="text-6xl mb-4">📐</div>
                     <h3 className="text-2xl font-bold mb-2">3D CAD Viewer</h3>
                     <p className="text-gray-300 mb-4">Load a CAD model to begin</p>
@@ -258,8 +270,8 @@ export default function Dashboard() {
 
               {/* Viewer Info */}
               <div className="bg-[#0f3460] p-3 flex justify-between text-sm border-t border-[#0f3460]">
-                <span>Status: Ready</span>
-                <span>{viewerInitialized ? 'Viewer initialized' : 'No model loaded'}</span>
+                <span>Status: {viewerInitialized ? 'Ready' : 'Initializing...'}</span>
+                <span>{viewerInitialized ? 'Viewer initialized' : 'Loading Three.js...'}</span>
               </div>
             </div>
 
@@ -412,7 +424,7 @@ export default function Dashboard() {
           {/* CTA Section */}
           <section className="text-center bg-gradient-to-r from-purple-600 to-indigo-700 p-12 rounded-lg">
             <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Business?</h2>
-            <p className="text-xl mb-6 opacity-90">Let's discuss how our AI/ML and CAD engineering services can accelerate your growth</p>
+            <p className="text-xl mb-6 opacity-90">Let&apos;s discuss how our AI/ML and CAD engineering services can accelerate your growth</p>
             <div className="flex gap-4 justify-center flex-wrap">
               <a href="/contact" className="bg-white text-indigo-700 hover:bg-gray-100 px-8 py-3 rounded-lg font-bold transition">
                 Schedule Consultation
