@@ -1,0 +1,61 @@
+# FastAPI & Web Framework
+fastapi==0.109.2
+uvicorn[standard]==0.27.1
+python-multipart==0.0.9
+pydantic==2.6.1
+pydantic-settings==2.1.0
+
+# LLM & RAG
+langchain==0.1.6
+langchain-openai==0.0.5
+langchain-community==0.0.20
+openai==1.12.0
+anthropic==0.18.1
+
+# Vector Database
+pinecone-client==3.0.3
+chromadb==0.4.22
+
+# Document Processing
+pypdf==4.0.1
+python-docx==1.1.0
+beautifulsoup4==4.12.3
+markdown==3.5.2
+unstructured==0.12.4
+
+# Machine Learning
+scikit-learn==1.4.0
+xgboost==2.0.3
+lightgbm==4.3.0
+torch==2.2.0
+transformers==4.37.2
+
+# Computer Vision
+ultralytics==8.1.18
+opencv-python==4.9.0.80
+Pillow==10.2.0
+
+# Data Processing
+pandas==2.2.0
+numpy==1.26.4
+scipy==1.12.0
+
+# Database
+prisma==0.11.0
+sqlalchemy==2.0.27
+asyncpg==0.29.0
+
+# Monitoring & Observability
+langsmith==0.0.87
+wandb==0.16.3
+
+# Utilities
+python-dotenv==1.0.1
+httpx==0.26.0
+aiofiles==23.2.1
+pyyaml==6.0.1
+
+# Development
+pytest==8.0.0
+black==24.1.1
+ruff==0.2.1

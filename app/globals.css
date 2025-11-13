@@ -1283,7 +1283,7 @@ footer {
         flex-direction: column;
         width: 100%;
         text-align: center;
-        transition: var(--transition-speed);
+        transition: 0.3s;
         padding: 2rem 0;
     }
     

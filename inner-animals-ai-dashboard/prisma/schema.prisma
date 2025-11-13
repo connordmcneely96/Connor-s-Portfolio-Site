@@ -1,0 +1,240 @@
+// Prisma Schema for Inner Animals AI Platform
+// Database: PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User Management
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  passwordHash  String
+  role          UserRole  @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  projects      Project[]
+  apiKeys       ApiKey[]
+
+  @@map("users")
+}
+
+enum UserRole {
+  ADMIN
+  USER
+  VIEWER
+}
+
+// Projects (Workspaces)
+model Project {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  documents   Document[]
+  models      MLModel[]
+
+  @@map("projects")
+}
+
+// RAG System - Documents
+model Document {
+  id          String   @id @default(cuid())
+  projectId   String
+  filename    String
+  filesize    Int
+  mimeType    String
+  storageUrl  String
+  status      DocumentStatus @default(PROCESSING)
+  totalChunks Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  chunks      DocumentChunk[]
+
+  @@map("documents")
+}
+
+enum DocumentStatus {
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+// RAG System - Document Chunks (for vector storage)
+model DocumentChunk {
+  id           String   @id @default(cuid())
+  documentId   String
+  content      String   @db.Text
+  chunkIndex   Int
+  vectorId     String?  // Pinecone vector ID
+  metadata     Json?
+  createdAt    DateTime @default(now())
+
+  // Relations
+  document     Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@unique([documentId, chunkIndex])
+  @@map("document_chunks")
+}
+
+// RAG System - Query History
+model QueryHistory {
+  id          String   @id @default(cuid())
+  query       String   @db.Text
+  answer      String   @db.Text
+  sources     Json
+  model       String
+  tokensUsed  Int?
+  responseTime Int     // milliseconds
+  createdAt   DateTime @default(now())
+
+  @@map("query_history")
+}
+
+// ML Models
+model MLModel {
+  id            String      @id @default(cuid())
+  projectId     String
+  name          String
+  modelType     ModelType
+  status        ModelStatus @default(TRAINING)
+  version       String      @default("1.0.0")
+
+  // Training metadata
+  datasetUrl    String?
+  hyperparameters Json?
+  metrics       Json?
+
+  // Storage
+  modelUrl      String?
+
+  // Tracking
+  trainedAt     DateTime?
+  deployedAt    DateTime?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  // Relations
+  project       Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  predictions   Prediction[]
+
+  @@map("ml_models")
+}
+
+enum ModelType {
+  CLASSIFICATION
+  REGRESSION
+  TIME_SERIES
+  CLUSTERING
+  OBJECT_DETECTION
+  IMAGE_CLASSIFICATION
+  NLP
+}
+
+enum ModelStatus {
+  TRAINING
+  COMPLETED
+  DEPLOYED
+  FAILED
+  ARCHIVED
+}
+
+// Predictions/Inference History
+model Prediction {
+  id            String   @id @default(cuid())
+  modelId       String
+  input         Json
+  output        Json
+  confidence    Float?
+  inferenceTime Int      // milliseconds
+  createdAt     DateTime @default(now())
+
+  // Relations
+  model         MLModel  @relation(fields: [modelId], references: [id], onDelete: Cascade)
+
+  @@map("predictions")
+}
+
+// API Keys for authentication
+model ApiKey {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String
+  key         String   @unique
+  lastUsedAt  DateTime?
+  expiresAt   DateTime?
+  createdAt   DateTime @default(now())
+
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("api_keys")
+}
+
+// Usage Tracking & Analytics
+model UsageMetrics {
+  id            String   @id @default(cuid())
+  date          DateTime @default(now())
+
+  // RAG Metrics
+  totalQueries  Int      @default(0)
+  totalDocuments Int     @default(0)
+  totalChunks   Int      @default(0)
+
+  // ML Metrics
+  totalModels   Int      @default(0)
+  totalPredictions Int   @default(0)
+
+  // API Metrics
+  apiCalls      Int      @default(0)
+  avgResponseTime Int    @default(0)
+  errorRate     Float    @default(0)
+
+  @@unique([date])
+  @@map("usage_metrics")
+}
+
+// System Monitoring & Alerts
+model SystemAlert {
+  id          String      @id @default(cuid())
+  type        AlertType
+  severity    AlertSeverity
+  message     String
+  metadata    Json?
+  resolved    Boolean     @default(false)
+  resolvedAt  DateTime?
+  createdAt   DateTime    @default(now())
+
+  @@map("system_alerts")
+}
+
+enum AlertType {
+  PERFORMANCE
+  ERROR
+  SECURITY
+  COST
+  UPTIME
+}
+
+enum AlertSeverity {
+  INFO
+  WARNING
+  ERROR
+  CRITICAL
+}
