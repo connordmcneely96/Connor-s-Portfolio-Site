@@ -1,0 +1,48 @@
+# Wrangler configuration for Leadership Legacy Worker
+# Documentation: https://developers.cloudflare.com/workers/wrangler/configuration/
+
+name = "leadership-legacy-worker"
+main = "worker.js"
+compatibility_date = "2024-11-14"
+compatibility_flags = ["nodejs_compat"]
+
+# Account ID
+account_id = "ede6590ac0d2fb7daf155b35653457b2"
+
+# Worker configuration
+workers_dev = true
+# Uncomment and configure custom route when domain is ready:
+# route = { pattern = "api.leadershiplegacy.com/*", zone_id = "0bab48636c1bea4be4ea61c0c7787c3e" }
+
+# D1 Database binding
+# Update database_id after creating: wrangler d1 create leadership-legacy-db
+[[d1_databases]]
+binding = "LEADERSHIP_DB"
+database_name = "leadership-legacy-db"
+database_id = "UPDATE_AFTER_CREATION"
+
+# R2 Bucket binding
+# Create with: wrangler r2 bucket create leadership-legacy-assets
+[[r2_buckets]]
+binding = "LEADERSHIP_ASSETS"
+bucket_name = "leadership-legacy-assets"
+
+# KV Namespace binding
+# Update id after creating: wrangler kv:namespace create "LEADERSHIP_CONFIG"
+[[kv_namespaces]]
+binding = "LEADERSHIP_CONFIG"
+id = "UPDATE_AFTER_CREATION"
+
+# Environment variables (non-sensitive)
+[vars]
+ENVIRONMENT = "production"
+API_VERSION = "1.0.0"
+
+# Build configuration
+[build]
+command = ""
+watch_dirs = ["worker.js"]
+
+# Observability
+[observability]
+enabled = true
