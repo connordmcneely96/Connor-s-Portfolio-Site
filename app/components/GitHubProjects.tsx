@@ -33,7 +33,41 @@ const projects: Project[] = [
     liveUrl: 'https://leadership-legacy.vercel.app',
     featured: true,
   },
-  // Add more projects here as needed
+  {
+    title: 'Southern Pets Animal Rescue',
+    description: 'Full-stack animal rescue platform connecting shelters with potential adopters. Features pet listings, adoption applications, and shelter management tools.',
+    tags: ['React', 'Node.js', 'MongoDB', 'Express', 'Vercel'],
+    githubUrl: '#',
+    liveUrl: 'https://southern-pets-animal-rescue-client.vercel.app/',
+  },
+  {
+    title: 'AI-Powered Health & Fitness Coach',
+    description: 'Intelligent fitness coaching application leveraging AI to provide personalized workout plans, nutrition guidance, and health tracking insights.',
+    tags: ['React', 'OpenAI API', 'Python', 'FastAPI', 'Vercel'],
+    githubUrl: '#',
+    liveUrl: 'https://ai-powered-health-fitness-coach.vercel.app/',
+  },
+  {
+    title: 'RAG Q&A for Mechanical Engineers',
+    description: 'Retrieval-Augmented Generation system designed for mechanical engineers, providing AI-powered answers from technical documentation and engineering standards.',
+    tags: ['Python', 'LangChain', 'OpenAI', 'Vector DB', 'Next.js', 'Vercel'],
+    githubUrl: '#',
+    liveUrl: 'https://rag-q-a-for-mechanical-engineers.vercel.app/',
+  },
+  {
+    title: 'iAutodidact',
+    description: 'Self-directed learning platform built with Rust for high performance. Enables users to create, track, and optimize their personalized learning journeys.',
+    tags: ['Rust', 'WebAssembly', 'React', 'PostgreSQL', 'Vercel'],
+    githubUrl: '#',
+    liveUrl: 'https://i-autodidact-rust.vercel.app/',
+  },
+  {
+    title: 'Inner Animal Media',
+    description: 'Creative media platform for content creation and distribution. Features multimedia galleries, artist portfolios, and community engagement tools.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Cloudinary', 'Vercel'],
+    githubUrl: '#',
+    liveUrl: 'https://inner-animal-media-psi.vercel.app/',
+  },
 ];
 
 export default function GitHubProjects() {
