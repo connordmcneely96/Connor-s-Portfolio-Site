@@ -11,7 +11,6 @@ export default function Navigation() {
   const links = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
-    { href: '/coaching', label: 'Coaching' },
     { href: '/portfolio', label: 'Portfolio' },
     { href: '/community', label: 'Community' },
     { href: '/dashboard', label: 'Dashboard' },

@@ -18,6 +18,12 @@ import {
   Grid3x3,
   RotateCw,
   ZoomIn,
+  FileText,
+  Download,
+  Github,
+  Code2,
+  Rocket,
+  Award
 } from 'lucide-react';
 
 export default function Dashboard() {
@@ -143,62 +149,62 @@ export default function Dashboard() {
 
   const metrics = [
     {
-      label: 'Active Projects',
-      value: '12',
-      change: '+3 this week',
-      icon: TrendingUp,
-      sparkline: [40, 45, 42, 48, 50, 49, 52],
+      label: 'GitHub Projects',
+      value: '7',
+      change: 'Production-ready apps',
+      icon: Github,
+      sparkline: [3, 4, 4, 5, 6, 7, 7],
     },
     {
-      label: 'API Calls',
-      value: '45.2K',
-      change: '+12% vs last week',
-      icon: Zap,
-      sparkline: [30, 35, 32, 38, 42, 45, 45.2],
+      label: 'Tech Stack',
+      value: '20+',
+      change: 'Technologies mastered',
+      icon: Code2,
+      sparkline: [10, 12, 14, 16, 18, 19, 20],
     },
     {
-      label: 'Models Deployed',
-      value: '8',
-      change: '+2 this month',
+      label: 'AI/ML Projects',
+      value: '4',
+      change: 'RAG & ML systems',
       icon: Brain,
-      sparkline: [4, 5, 5, 6, 7, 7, 8],
+      sparkline: [1, 2, 2, 3, 3, 4, 4],
     },
     {
-      label: 'Active Users',
-      value: '156',
-      change: '+8% growth',
-      icon: Users,
-      sparkline: [120, 130, 135, 140, 145, 150, 156],
+      label: 'Live Deployments',
+      value: '7',
+      change: 'Vercel production',
+      icon: Rocket,
+      sparkline: [3, 4, 5, 5, 6, 7, 7],
     },
   ];
 
-  const aiFeatures = [
+  const skillCategories = [
     {
-      title: 'RAG Builder',
-      description: 'Advanced document processing and retrieval',
-      icon: Database,
-      status: 'active',
+      title: 'Frontend Development',
+      description: 'React, Next.js, TypeScript, Tailwind CSS',
+      icon: Code2,
+      level: 90,
       gradient: 'from-brand-cyan to-brand-cyan-dark',
     },
     {
-      title: 'ML Studio',
-      description: 'Train custom machine learning models',
-      icon: Brain,
-      status: 'beta',
+      title: 'Backend & APIs',
+      description: 'Node.js, FastAPI, Python, REST/GraphQL',
+      icon: Database,
+      level: 85,
       gradient: 'from-brand-blue-electric to-brand-cyan',
     },
     {
-      title: 'Vision Lab',
-      description: 'Computer vision and object detection',
-      icon: Eye,
-      status: 'coming-soon',
+      title: 'AI/ML Engineering',
+      description: 'PyTorch, LangChain, RAG, Vector DBs',
+      icon: Brain,
+      level: 80,
       gradient: 'from-success to-brand-cyan',
     },
     {
-      title: 'NLP Analytics',
-      description: 'Natural language processing suite',
-      icon: MessageSquare,
-      status: 'coming-soon',
+      title: 'CAD & Engineering',
+      description: 'SolidWorks, FEA/CFD, PLC, Automation',
+      icon: Activity,
+      level: 95,
       gradient: 'from-warning to-brand-blue-electric',
     },
   ];
@@ -254,10 +260,40 @@ export default function Dashboard() {
             </motion.div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-              Engineering & AI Dashboard
+              Professional Dashboard
             </h1>
-            <p className="text-xl md:text-2xl text-circuit-silver max-w-3xl mx-auto">
-              Build, deploy, and monitor intelligent systems with world-class CAD workspace
+            <p className="text-xl md:text-2xl text-circuit-silver max-w-3xl mx-auto mb-8">
+              Technical skills, project metrics, and professional resources
+            </p>
+
+            {/* Resume Download Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <motion.a
+                href="/resumes/connor-mcneely-engineering-resume.pdf"
+                download
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-blue-electric text-white font-semibold shadow-glow-cyan hover:shadow-glow-cyan-lg transition-all duration-300"
+              >
+                <FileText className="w-5 h-5" />
+                <span>ME/Automation Resume</span>
+                <Download className="w-4 h-4" />
+              </motion.a>
+              <motion.a
+                href="/resumes/connor-mcneely-developer-resume.pdf"
+                download
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-brand-cyan/30 text-brand-cyan font-semibold hover:bg-brand-cyan/10 hover:border-brand-cyan transition-all duration-300"
+              >
+                <Code2 className="w-5 h-5" />
+                <span>Developer/AI Resume</span>
+                <Download className="w-4 h-4" />
+              </motion.a>
+            </div>
+
+            <p className="text-sm text-circuit-silver/70 mt-4">
+              Resumes will be available soon
             </p>
           </motion.div>
         </div>
@@ -320,7 +356,7 @@ export default function Dashboard() {
           ))}
         </motion.div>
 
-        {/* AI Capabilities */}
+        {/* Skill Proficiency */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -329,61 +365,52 @@ export default function Dashboard() {
         >
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-3xl font-bold text-white mb-2">AI/ML Services</h2>
+              <h2 className="text-3xl font-bold text-white mb-2">Skill Proficiency</h2>
               <p className="text-circuit-silver">
-                Powerful tools to build and deploy intelligent systems
+                Technical expertise across engineering and software development
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {aiFeatures.map((feature, index) => (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {skillCategories.map((skill, index) => (
               <motion.div
-                key={feature.title}
+                key={skill.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
                 whileHover={{ y: -8 }}
-                className="group relative h-full bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300 overflow-hidden cursor-pointer"
+                className="group relative bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
               >
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                  className={`absolute inset-0 bg-gradient-to-br ${skill.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl`}
                 />
 
                 <div className="relative">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-start justify-between mb-4">
                     <div
-                      className={`p-3 rounded-xl bg-gradient-to-br ${feature.gradient} shadow-glow-cyan`}
+                      className={`p-3 rounded-xl bg-gradient-to-br ${skill.gradient} shadow-glow-cyan`}
                     >
-                      <feature.icon className="h-6 w-6 text-white" />
+                      <skill.icon className="h-6 w-6 text-white" />
                     </div>
-                    <span
-                      className={`px-2 py-1 text-xs font-bold rounded-full ${
-                        feature.status === 'active'
-                          ? 'bg-success/20 text-success border border-success/30'
-                          : feature.status === 'beta'
-                          ? 'bg-warning/20 text-warning border border-warning/30'
-                          : 'bg-circuit-silver/20 text-circuit-silver border border-circuit-silver/30'
-                      }`}
-                    >
-                      {feature.status === 'active'
-                        ? 'ACTIVE'
-                        : feature.status === 'beta'
-                        ? 'BETA'
-                        : 'SOON'}
-                    </span>
+                    <span className="text-2xl font-bold text-white">{skill.level}%</span>
                   </div>
 
                   <h3 className="text-xl font-bold text-white mb-2 group-hover:text-brand-cyan transition-colors">
-                    {feature.title}
+                    {skill.title}
                   </h3>
-                  <p className="text-circuit-silver text-sm leading-relaxed">
-                    {feature.description}
+                  <p className="text-circuit-silver text-sm leading-relaxed mb-4">
+                    {skill.description}
                   </p>
 
-                  <div className="flex items-center gap-2 text-brand-cyan font-semibold group-hover:gap-3 transition-all mt-4">
-                    <span>Explore</span>
-                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  {/* Progress Bar */}
+                  <div className="w-full bg-neural-gray/50 rounded-full h-2.5">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${skill.level}%` }}
+                      transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
+                      className={`h-2.5 rounded-full bg-gradient-to-r ${skill.gradient}`}
+                    />
                   </div>
                 </div>
               </motion.div>
@@ -485,7 +512,7 @@ export default function Dashboard() {
           </div>
         </motion.div>
 
-        {/* Platform Status */}
+        {/* Quick Stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -504,25 +531,25 @@ export default function Dashboard() {
 
           <div className="relative">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-3 h-3 bg-success rounded-full animate-pulse shadow-glow-cyan" />
-              <h2 className="text-3xl font-bold text-white">Platform Status</h2>
+              <Award className="w-8 h-8 text-white" />
+              <h2 className="text-3xl font-bold text-white">Engineering Impact</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div>
-                <div className="text-5xl font-bold text-white mb-2">99.8%</div>
-                <div className="text-white/80 font-medium">System Uptime</div>
-                <p className="text-white/60 text-sm mt-1">Last 30 days</p>
+                <div className="text-5xl font-bold text-white mb-2">759M</div>
+                <div className="text-white/80 font-medium">Vaccine Doses</div>
+                <p className="text-white/60 text-sm mt-1">Contributed at Pfizer</p>
               </div>
               <div>
-                <div className="text-5xl font-bold text-white mb-2">&lt;2s</div>
-                <div className="text-white/80 font-medium">Response Time</div>
-                <p className="text-white/60 text-sm mt-1">Average API latency</p>
+                <div className="text-5xl font-bold text-white mb-2">75%</div>
+                <div className="text-white/80 font-medium">Downtime Reduced</div>
+                <p className="text-white/60 text-sm mt-1">Through automation</p>
               </div>
               <div>
-                <div className="text-5xl font-bold text-white mb-2">94%</div>
-                <div className="text-white/80 font-medium">Model Accuracy</div>
-                <p className="text-white/60 text-sm mt-1">Across all deployments</p>
+                <div className="text-5xl font-bold text-white mb-2">20%</div>
+                <div className="text-white/80 font-medium">Efficiency Gains</div>
+                <p className="text-white/60 text-sm mt-1">Design optimization</p>
               </div>
             </div>
           </div>
