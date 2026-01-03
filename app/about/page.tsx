@@ -48,6 +48,11 @@ export default function About() {
       title: 'Lead Design Engineer',
       description: 'Sole engineer for high-efficiency pump systems',
     },
+    {
+      year: '2024',
+      title: 'Full-Stack Development',
+      description: 'Building AI-powered applications and intelligent systems',
+    },
   ];
 
   const values = [
@@ -95,12 +100,12 @@ export default function About() {
     {
       icon: Star,
       title: 'Experience',
-      description: 'Multi-disciplinary engineering across pump manufacturing, automation, pharmaceuticals, and agricultural equipment',
+      description: 'Multi-disciplinary engineering and full-stack development across mechanical design, AI/ML systems, and modern web applications',
     },
     {
       icon: Trophy,
-      title: 'Certifications',
-      description: 'SolidWorks Professional, Lean Six Sigma, PLC Programming, Machine Learning, ISO Standards expertise',
+      title: 'Skills & Tech',
+      description: 'Full-stack development (React, Next.js, TypeScript), AI/ML (PyTorch, LangChain, RAG), SolidWorks, Lean Six Sigma, PLC Programming',
     },
   ];
 
@@ -169,7 +174,7 @@ export default function About() {
             <div className="bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-8 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300">
               <h2 className="text-3xl font-bold text-white mb-4">My Story</h2>
               <p className="text-circuit-silver leading-relaxed mb-4">
-                I'm a multi-disciplinary mechanical engineer with expertise spanning mechanical design, automation, process optimization, and AI/ML integration. My career has been driven by a passion for solving complex engineering problems and delivering measurable impact across diverse industries—from pharmaceutical manufacturing to precision pump design.
+                I'm a multi-disciplinary engineer and full-stack developer with expertise spanning mechanical design, automation, AI/ML development, and modern web technologies. My career bridges the physical and digital worlds—combining mechanical engineering fundamentals with software development to build intelligent, data-driven solutions. From designing high-efficiency pumps to developing RAG-powered AI systems, I thrive at the intersection of engineering and technology.
               </p>
 
               <h3 className="text-2xl font-bold text-white mt-8 mb-3">Engineering Philosophy</h3>
@@ -179,7 +184,7 @@ export default function About() {
 
               <h3 className="text-2xl font-bold text-white mt-8 mb-3">Approach</h3>
               <p className="text-circuit-silver leading-relaxed">
-                My approach integrates mechanical design expertise with automation, data-driven decision making, and continuous improvement methodologies. From SolidWorks and FEA/CFD analysis to PLC programming and machine learning, I leverage the full spectrum of modern engineering tools to deliver innovative solutions. Whether leading full-cycle pump design or optimizing production processes, I focus on quantifiable results and cross-functional collaboration.
+                My approach integrates mechanical design expertise with modern software development, AI/ML engineering, and automation. From SolidWorks and FEA/CFD analysis to React, Next.js, and PyTorch, I leverage both traditional engineering tools and cutting-edge web technologies to deliver innovative solutions. Whether designing precision machinery, building intelligent web applications, or deploying machine learning models, I focus on scalable, maintainable solutions that deliver measurable impact.
               </p>
             </div>
           </div>

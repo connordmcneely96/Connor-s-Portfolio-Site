@@ -3,8 +3,8 @@ import Navigation from './components/Navigation'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Connor Mcneely - Leadership & Legacy',
-  description: 'Empowering leaders to build lasting legacies through coaching, mentorship, and community',
+  title: 'Connor McNeely - Full-Stack Developer | AI Engineer',
+  description: 'Mechanical Engineer, Full-Stack Developer, and AI/ML Engineer specializing in Next.js, Python, FastAPI, and intelligent systems. Building innovative solutions at the intersection of engineering and software.',
 }
 
 export default function RootLayout({
@@ -23,14 +23,14 @@ export default function RootLayout({
           <div className="footer-container">
             <div className="footer-content">
               <div className="footer-column">
-                <h4>Connor Mcneely</h4>
-                <p>Leadership & Legacy</p>
+                <h4>Connor McNeely</h4>
+                <p>Engineering Excellence</p>
               </div>
               <div className="footer-column">
                 <h4>Quick Links</h4>
                 <ul>
                   <li><a href="/about">About</a></li>
-                  <li><a href="/coaching">Coaching</a></li>
+                  <li><a href="/portfolio">Portfolio</a></li>
                   <li><a href="/community">Community</a></li>
                 </ul>
               </div>

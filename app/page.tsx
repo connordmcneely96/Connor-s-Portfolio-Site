@@ -11,7 +11,13 @@ import {
   Sparkles,
   Zap,
   Award,
-  Code
+  Code,
+  Layers,
+  Database,
+  Cloud,
+  Terminal,
+  Cpu,
+  Brain
 } from 'lucide-react';
 
 export default function Home() {
@@ -97,7 +103,11 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-circuit-silver max-w-3xl mx-auto mb-12">
+            <p className="text-xl md:text-2xl text-white font-semibold max-w-3xl mx-auto mb-4">
+              Full-Stack Developer | AI Developer | ML Engineer
+            </p>
+
+            <p className="text-lg md:text-xl text-circuit-silver max-w-3xl mx-auto mb-12">
               Mechanical Design • Automation • Process Optimization • AI/ML Integration
             </p>
 
@@ -194,11 +204,168 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* CTA Section */}
+        {/* Technical Skills Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.4 }}
+          className="mb-20"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Technical Stack
+            </h2>
+            <p className="text-xl text-circuit-silver">
+              Modern technologies powering engineering and software solutions
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Frontend */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.5 }}
+              whileHover={{ y: -8 }}
+              className="group bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
+            >
+              <div className="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-brand-cyan to-brand-cyan-dark flex items-center justify-center shadow-glow-cyan">
+                <Layers className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors">
+                Frontend Development
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'].map((tech) => (
+                  <span key={tech} className="px-3 py-1 text-xs font-medium rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Backend */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.6 }}
+              whileHover={{ y: -8 }}
+              className="group bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
+            >
+              <div className="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-brand-blue-electric to-brand-cyan flex items-center justify-center shadow-glow-cyan">
+                <Terminal className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors">
+                Backend & APIs
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {['Node.js', 'Express', 'FastAPI', 'Python', 'Rust'].map((tech) => (
+                  <span key={tech} className="px-3 py-1 text-xs font-medium rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* AI/ML */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.7 }}
+              whileHover={{ y: -8 }}
+              className="group bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
+            >
+              <div className="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-success to-brand-cyan flex items-center justify-center shadow-glow-cyan">
+                <Brain className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors">
+                AI & Machine Learning
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {['TensorFlow', 'PyTorch', 'LangChain', 'OpenAI API', 'RAG', 'Vector DBs'].map((tech) => (
+                  <span key={tech} className="px-3 py-1 text-xs font-medium rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Databases */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.8 }}
+              whileHover={{ y: -8 }}
+              className="group bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
+            >
+              <div className="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-warning to-brand-blue-electric flex items-center justify-center shadow-glow-cyan">
+                <Database className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors">
+                Databases & Storage
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {['MongoDB', 'PostgreSQL', 'Pinecone', 'Redis', 'SQL'].map((tech) => (
+                  <span key={tech} className="px-3 py-1 text-xs font-medium rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Cloud & DevOps */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.9 }}
+              whileHover={{ y: -8 }}
+              className="group bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
+            >
+              <div className="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-brand-cyan to-brand-blue-electric flex items-center justify-center shadow-glow-cyan">
+                <Cloud className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors">
+                Cloud & DevOps
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {['AWS', 'Vercel', 'Docker', 'Git', 'CI/CD'].map((tech) => (
+                  <span key={tech} className="px-3 py-1 text-xs font-medium rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Engineering Tools */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 2.0 }}
+              whileHover={{ y: -8 }}
+              className="group bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
+            >
+              <div className="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-error to-brand-cyan flex items-center justify-center shadow-glow-cyan">
+                <Cpu className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors">
+                Engineering Tools
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {['SolidWorks', 'FEA/CFD', 'PLC', 'SCADA', 'AutoCAD'].map((tech) => (
+                  <span key={tech} className="px-3 py-1 text-xs font-medium rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 2.1 }}
           className="relative bg-gradient-to-br from-brand-cyan to-brand-blue-electric rounded-2xl p-12 overflow-hidden text-center mb-20"
         >
           {/* Background Pattern */}
