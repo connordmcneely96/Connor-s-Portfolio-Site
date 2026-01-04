@@ -1,0 +1,55 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 2355 >>
+stream
+BT /F1 12 Tf 72 760 Td (Mechanical Drafter | Modeler | Automation) Tj ET
+BT /F1 12 Tf 72 744 Td () Tj ET
+BT /F1 12 Tf 72 728 Td (Connor McNeely | Youngsville, LA | \(337\) 581-7113 | connordmcneely@gmail.com) Tj ET
+BT /F1 12 Tf 72 712 Td (linkedin.com/in/connor-mcneely-b322b9176) Tj ET
+BT /F1 12 Tf 72 696 Td (Summary: Mechanical Design Engineer \(5+ yrs\) in CAD/CAE, automation, CI.) Tj ET
+BT /F1 12 Tf 72 680 Td (CAD/CAE: SolidWorks \(FEA/CFD\), AutoCAD, Inventor, CATIA, MATLAB.) Tj ET
+BT /F1 12 Tf 72 664 Td (Analysis: FEA, CFD, GD&T \(ASME Y14.5\), DFMA, FMEA, stress/thermal.) Tj ET
+BT /F1 12 Tf 72 648 Td (Automation: PLCs \(Allen-Bradley/Siemens\), SCADA/HMI, Cognex vision, Fanuc.) Tj ET
+BT /F1 12 Tf 72 632 Td (Manufacturing: CNC machining, 3D printing, injection molding, BOMs.) Tj ET
+BT /F1 12 Tf 72 616 Td (Standards: ISO 9001/1219/5199, ASME B73.1, ASTM, ANSI, GMP, FDA, NEC.) Tj ET
+BT /F1 12 Tf 72 600 Td (Process: Lean Six Sigma, DMAIC, 5S, Kaizen, DOE, root-cause analysis.) Tj ET
+BT /F1 12 Tf 72 584 Td (Programming: Python \(TensorFlow, scikit-learn, pandas\), SQL, Visual Basic.) Tj ET
+BT /F1 12 Tf 72 568 Td (Experience:) Tj ET
+BT /F1 12 Tf 72 552 Td ( - Lead Mechanical Design Engineer \(Dec 2023–Present\):) Tj ET
+BT /F1 12 Tf 72 536 Td (   Disc pump design, FEA/CFD, DFMA; +20% efficiency, -15% cost.) Tj ET
+BT /F1 12 Tf 72 520 Td ( - Automation/Mechatronics Engineer, John Deere Turf Care \(Jan–Jul 2023\):) Tj ET
+BT /F1 12 Tf 72 504 Td (   PLC/HMI/SCADA, sensors, ergonomics +30%, takt time -20%.) Tj ET
+BT /F1 12 Tf 72 488 Td ( - Automation/Process Engineer, SOS \(Sep–Dec 2022\):) Tj ET
+BT /F1 12 Tf 72 472 Td (   Mold design with FEA/CFD; cost -20%, scrap -15%; VFD throughput +25%.) Tj ET
+BT /F1 12 Tf 72 456 Td ( - Inspection/Automation/Mechanical Engineer, Pfizer \(Sep 2021–Sep 2022\):) Tj ET
+BT /F1 12 Tf 72 440 Td (   CAD/FEA components, FMEA, Cognex vision; GMP/FDA compliance.) Tj ET
+BT /F1 12 Tf 72 424 Td ( - Mechanical Design Engineer \(Capstone\), Galaxy Products \(2018–2019\):) Tj ET
+BT /F1 12 Tf 72 408 Td (   CNC pneumatic gang drill; downtime -75%, efficiency +50%; P&ID, FEA/CFD.) Tj ET
+BT /F1 12 Tf 72 392 Td (Education: B.S. Mechanical Engineering, Louisiana Tech University.) Tj ET
+BT /F1 12 Tf 72 376 Td (Certs: CSWP, Lean Six Sigma training, PLC Programming \(Allen-Bradley/Siemens\).) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000002648 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+2718
+%%EOF

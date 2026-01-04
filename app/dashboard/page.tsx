@@ -270,31 +270,31 @@ export default function Dashboard() {
             {/* Resume Download Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <motion.a
-                href="/resumes/connor-mcneely-engineering-resume.pdf"
-                download
+                href="/resumes/Mechanical_DrafterModeler_Automation%20Resume.docx.pdf"
+                download="Mechanical_DrafterModeler_Automation Resume"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-blue-electric text-white font-semibold shadow-glow-cyan hover:shadow-glow-cyan-lg transition-all duration-300"
               >
                 <FileText className="w-5 h-5" />
-                <span>ME/Automation Resume</span>
+                <span>Mechanical Drafter/Automation Resume</span>
                 <Download className="w-4 h-4" />
               </motion.a>
               <motion.a
-                href="/resumes/connor-mcneely-developer-resume.pdf"
-                download
+                href="/resumes/AI%20Developer_Fullstack%20Developer_AIML_Engineer%20Resume.docx.pdf"
+                download="AI Developer_Fullstack Developer_AIML_Engineer Resume"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-brand-cyan/30 text-brand-cyan font-semibold hover:bg-brand-cyan/10 hover:border-brand-cyan transition-all duration-300"
               >
                 <Code2 className="w-5 h-5" />
-                <span>Developer/AI Resume</span>
+                <span>AI Developer / Fullstack Resume</span>
                 <Download className="w-4 h-4" />
               </motion.a>
             </div>
 
             <p className="text-sm text-circuit-silver/70 mt-4">
-              Resumes will be available soon
+              Latest resumes updated and ready to download
             </p>
           </motion.div>
         </div>
