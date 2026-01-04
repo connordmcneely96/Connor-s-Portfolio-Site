@@ -5,6 +5,7 @@ name = "leadership-legacy-worker"
 main = "worker.js"
 compatibility_date = "2024-11-14"
 compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "out"
 
 # Account ID
 account_id = "ede6590ac0d2fb7daf155b35653457b2"
@@ -27,11 +28,7 @@ database_id = "UPDATE_AFTER_CREATION"
 binding = "LEADERSHIP_ASSETS"
 bucket_name = "leadership-legacy-assets"
 
-# KV Namespace binding
-# Update id after creating: wrangler kv:namespace create "LEADERSHIP_CONFIG"
-[[kv_namespaces]]
-binding = "LEADERSHIP_CONFIG"
-id = "UPDATE_AFTER_CREATION"
+
 
 # Environment variables (non-sensitive)
 [vars]

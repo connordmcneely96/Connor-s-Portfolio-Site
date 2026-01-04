@@ -36,19 +36,19 @@ export default function Navigation() {
           ))}
           <li className="resume-buttons">
             <a
-              href="/Connor_McNeely_ME_Resume.pdf"
-              download
+              href="/resumes/Mechanical_DrafterModeler_Automation%20Resume.docx.pdf"
+              download="Mechanical_DrafterModeler_Automation Resume"
               className="resume-btn resume-btn-me"
-              title="Download Mechanical Engineering Resume"
+              title="Download Mechanical / Automation Resume"
             >
               <Download className="w-4 h-4" />
               <span>ME Resume</span>
             </a>
             <a
-              href="/Connor_McNeely_AI_Dev_Resume.pdf"
-              download
+              href="/resumes/AI%20Developer_Fullstack%20Developer_AIML_Engineer%20Resume.docx.pdf"
+              download="AI Developer_Fullstack Developer_AIML_Engineer Resume"
               className="resume-btn resume-btn-ai"
-              title="Download AI/Developer Resume"
+              title="Download AI / Developer Resume"
             >
               <Download className="w-4 h-4" />
               <span>AI/Dev Resume</span>
