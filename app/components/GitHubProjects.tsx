@@ -26,6 +26,14 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: 'Inner Animals AI Dashboard',
+    description: 'Enterprise-grade AI platform featuring RAG document processing, ML model training, NLP analytics, and computer vision capabilities. Built with Next.js, FastAPI, and PyTorch for scalable AI/ML workflows.',
+    tags: ['Next.js', 'FastAPI', 'PyTorch', 'LangChain', 'Pinecone', 'TensorFlow', 'RAG'],
+    githubUrl: 'https://github.com/connordmcneely96/inner-animals-ai-dashboard',
+    liveUrl: '/dashboard',
+    featured: true,
+  },
+  {
     title: 'Leadership Legacy',
     description: 'Modern portfolio website built with Next.js 15 App Router, TypeScript, and Tailwind CSS. Features server-side rendering, advanced animations with Framer Motion, Three.js 3D CAD viewer integration, and responsive design. Optimized for performance with Vercel edge functions.',
     tags: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Three.js', 'SSR'],

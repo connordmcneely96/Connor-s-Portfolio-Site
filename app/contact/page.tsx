@@ -11,7 +11,8 @@ import {
   Clock,
   UserCheck,
   MessageCircle,
-  Sparkles
+  Sparkles,
+  Github
 } from 'lucide-react';
 
 export default function Contact() {
@@ -45,19 +46,22 @@ export default function Contact() {
     {
       icon: Mail,
       title: 'Email',
-      description: 'connor@leadershiplegacy.com',
+      description: 'connordmcneely@gmail.com',
+      link: 'mailto:connordmcneely@gmail.com',
       gradient: 'from-brand-cyan to-brand-cyan-dark',
-    },
-    {
-      icon: Phone,
-      title: 'Phone',
-      description: 'Available by appointment',
-      gradient: 'from-brand-blue-electric to-brand-cyan',
     },
     {
       icon: Linkedin,
       title: 'LinkedIn',
-      description: 'Connect professionally',
+      description: 'linkedin.com/in/connordmcneely',
+      link: 'https://linkedin.com/in/connordmcneely',
+      gradient: 'from-brand-blue-electric to-brand-cyan',
+    },
+    {
+      icon: Github,
+      title: 'GitHub',
+      description: 'github.com/connordmcneely96',
+      link: 'https://github.com/connordmcneely96',
       gradient: 'from-success to-brand-cyan',
     },
   ];
@@ -68,16 +72,16 @@ export default function Contact() {
       text: 'Response within 24-48 hours',
     },
     {
-      icon: Phone,
-      text: 'Free initial consultation call',
+      icon: MessageCircle,
+      text: 'Available for freelance projects',
     },
     {
       icon: UserCheck,
-      text: 'Personalized recommendations',
+      text: 'Open to full-time opportunities',
     },
     {
-      icon: MessageCircle,
-      text: 'No pressure, just conversation',
+      icon: CheckCircle2,
+      text: 'Collaborative & professional',
     },
   ];
 
@@ -104,8 +108,8 @@ export default function Contact() {
               <Sparkles className="w-4 h-4 text-brand-cyan" />
               <span className="text-sm font-medium text-brand-cyan">Let's Connect</span>
             </motion.div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">Get Started Today</h1>
-            <p className="text-xl md:text-2xl text-circuit-silver max-w-3xl mx-auto">Let's begin your leadership transformation journey</p>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">Let's Work Together</h1>
+            <p className="text-xl md:text-2xl text-circuit-silver max-w-3xl mx-auto">Building innovative solutions with AI/ML and full-stack development</p>
           </motion.div>
         </div>
       </motion.div>
@@ -122,7 +126,7 @@ export default function Contact() {
             <div className="bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-8 mb-8">
               <h2 className="text-3xl font-bold text-white mb-4">Let's Connect</h2>
               <p className="text-circuit-silver text-lg mb-8">
-                Whether you're interested in coaching, joining the community, or exploring how we can work together, I'd love to hear from you.
+                Based in Lafayette, LA. Available for freelance projects, full-time opportunities, and technical consulting.
               </p>
 
               <div className="space-y-4">
@@ -135,13 +139,20 @@ export default function Contact() {
                     whileHover={{ x: 8 }}
                     className="group flex items-start gap-4 p-4 rounded-xl bg-neural-dark/40 border border-circuit-silver/10 hover:border-brand-cyan/50 hover:bg-neural-dark/60 transition-all duration-300"
                   >
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${method.gradient} flex items-center justify-center shadow-glow-cyan flex-shrink-0`}>
-                      <method.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-white font-semibold mb-1">{method.title}</h3>
-                      <p className="text-circuit-silver text-sm">{method.description}</p>
-                    </div>
+                    <a
+                      href={method.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-start gap-4 w-full"
+                    >
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${method.gradient} flex items-center justify-center shadow-glow-cyan flex-shrink-0`}>
+                        <method.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-white font-semibold mb-1">{method.title}</h3>
+                        <p className="text-circuit-silver text-sm">{method.description}</p>
+                      </div>
+                    </a>
                   </motion.div>
                 ))}
               </div>
@@ -248,10 +259,11 @@ export default function Contact() {
                   className="w-full px-4 py-3 rounded-xl bg-neural-dark border border-circuit-silver/20 text-white focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 transition-all"
                 >
                   <option value="">Select an option</option>
-                  <option value="1-on-1 Coaching">1-on-1 Coaching</option>
-                  <option value="Group Mentorship">Group Mentorship</option>
-                  <option value="Corporate Programs">Corporate Programs</option>
-                  <option value="Community Membership">Community Membership</option>
+                  <option value="Freelance Project">Freelance Project</option>
+                  <option value="Full-Time Position">Full-Time Position</option>
+                  <option value="Technical Consulting">Technical Consulting</option>
+                  <option value="AI/ML Development">AI/ML Development</option>
+                  <option value="Collaboration">Collaboration</option>
                   <option value="General Inquiry">General Inquiry</option>
                 </select>
               </div>
@@ -268,7 +280,7 @@ export default function Contact() {
                   value={formData.message}
                   onChange={(e) => setFormData({...formData, message: e.target.value})}
                   className="w-full px-4 py-3 rounded-xl bg-neural-dark border border-circuit-silver/20 text-white placeholder-circuit-silver/50 focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 transition-all resize-none"
-                  placeholder="Tell me about your leadership goals..."
+                  placeholder="Tell me about your project or opportunity..."
                 ></textarea>
               </div>
 

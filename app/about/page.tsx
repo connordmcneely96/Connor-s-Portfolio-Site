@@ -57,55 +57,57 @@ export default function About() {
 
   const values = [
     {
-      icon: Shield,
-      title: 'Excellence',
-      description: 'Engineering excellence in every project',
+      icon: Code,
+      title: 'Clean Code',
+      description: 'Maintainable, scalable solutions',
     },
     {
       icon: TrendingUp,
       title: 'Innovation',
-      description: 'Continuous innovation and optimization',
+      description: 'Cutting-edge AI/ML integration',
     },
     {
       icon: Star,
-      title: 'Precision',
-      description: 'Precision in design and execution',
+      title: 'Performance',
+      description: 'Optimized for speed and efficiency',
     },
     {
       icon: Heart,
-      title: 'Collaboration',
-      description: 'Cross-functional team collaboration',
+      title: 'User-Focused',
+      description: 'Building intuitive experiences',
     },
     {
       icon: Users,
       title: 'Impact',
-      description: 'Creating measurable positive impact',
+      description: 'Solving real-world problems',
     },
   ];
 
   const expertise = [
-    { icon: Settings, label: 'Mechanical Design', gradient: 'from-brand-cyan to-brand-cyan-dark' },
-    { icon: Zap, label: 'Automation & Controls', gradient: 'from-brand-blue-electric to-brand-cyan' },
-    { icon: Factory, label: 'Process Optimization', gradient: 'from-success to-brand-cyan' },
-    { icon: Code, label: 'AI/ML & Programming', gradient: 'from-warning to-brand-blue-electric' },
-    { icon: Trophy, label: 'Project Leadership', gradient: 'from-error to-brand-cyan' },
+    { icon: Code, label: 'Full-Stack Development', gradient: 'from-brand-cyan to-brand-cyan-dark' },
+    { icon: Sparkles, label: 'AI/ML Engineering', gradient: 'from-brand-blue-electric to-brand-cyan' },
+    { icon: Settings, label: 'Mechanical Design', gradient: 'from-success to-brand-cyan' },
+    { icon: Zap, label: 'Automation & IoT', gradient: 'from-warning to-brand-blue-electric' },
+    { icon: Trophy, label: 'System Architecture', gradient: 'from-error to-brand-cyan' },
   ];
 
   const credentials = [
     {
       icon: GraduationCap,
       title: 'Education',
-      description: 'B.S. Mechanical Engineering from Louisiana Tech University with strong foundation in design, analysis, and systems thinking',
+      description: 'B.S. Mechanical Engineering from Louisiana Tech University. Self-taught full-stack developer with extensive AI/ML training.',
     },
     {
       icon: Star,
       title: 'Experience',
-      description: 'Multi-disciplinary engineering and full-stack development across mechanical design, AI/ML systems, and modern web applications',
+      description:
+        'Multi-disciplinary engineering and full-stack development across mechanical design, AI/ML systems, and modern web applications',
     },
     {
       icon: Trophy,
       title: 'Skills & Tech',
-      description: 'Full-stack development (React, Next.js, TypeScript), AI/ML (PyTorch, LangChain, RAG), SolidWorks, Lean Six Sigma, PLC Programming',
+      description:
+        'Full-stack development (React, Next.js, TypeScript), AI/ML (PyTorch, LangChain, RAG), SolidWorks, Lean Six Sigma, PLC Programming',
     },
   ];
 
@@ -147,7 +149,7 @@ export default function About() {
             >
               <Sparkles className="w-4 h-4 text-brand-cyan" />
               <span className="text-sm font-medium text-brand-cyan">
-                Multi-Disciplinary Engineering Leader & Lifetime Learner
+                Full-Stack Developer | AI Developer | Mechanical Engineer
               </span>
             </motion.div>
 
@@ -155,7 +157,7 @@ export default function About() {
               About Connor McNeely
             </h1>
             <p className="text-xl md:text-2xl text-circuit-silver max-w-3xl mx-auto">
-              Mechanical engineer passionate about design, automation, and leveraging AI/ML to solve complex engineering challenges
+              Building intelligent systems with modern web technologies, AI/ML, and mechanical engineering expertise
             </p>
           </motion.div>
         </div>
@@ -176,13 +178,17 @@ export default function About() {
               <p className="text-circuit-silver leading-relaxed mb-4">
                 I'm a multi-disciplinary engineer and full-stack developer with expertise spanning mechanical design, automation, AI/ML development, and modern web technologies. My career bridges the physical and digital worlds—combining mechanical engineering fundamentals with software development to build intelligent, data-driven solutions. From designing high-efficiency pumps to developing RAG-powered AI systems, I thrive at the intersection of engineering and technology.
               </p>
-
-              <h3 className="text-2xl font-bold text-white mt-8 mb-3">Engineering Philosophy</h3>
+              
               <p className="text-circuit-silver leading-relaxed mb-4">
-                Great engineering is about more than technical proficiency—it's about understanding systems holistically, optimizing for manufacturability, and creating solutions that deliver real-world value. I believe in combining rigorous analysis with practical innovation, always keeping the end goal in sight: designs that work efficiently, reliably, and cost-effectively.
+                Based in Lafayette, LA, I specialize in creating AI-powered applications, RAG systems, and full-stack solutions. My mechanical engineering background gives me a unique perspective on building robust, optimized systems that solve real-world problems.
               </p>
 
-              <h3 className="text-2xl font-bold text-white mt-8 mb-3">Approach</h3>
+              <h3 className="text-2xl font-bold text-white mt-8 mb-3">Development Philosophy</h3>
+              <p className="text-circuit-silver leading-relaxed mb-4">
+                Great engineering—whether software or mechanical—is about understanding systems holistically and creating solutions that deliver real-world value. I combine rigorous analysis with practical innovation, building applications that are performant, maintainable, and user-focused. From AI-powered document processing to CAD automation, I focus on creating tools that solve meaningful problems.
+              </p>
+
+              <h3 className="text-2xl font-bold text-white mt-8 mb-3">Technical Approach</h3>
               <p className="text-circuit-silver leading-relaxed">
                 My approach integrates mechanical design expertise with modern software development, AI/ML engineering, and automation. From SolidWorks and FEA/CFD analysis to React, Next.js, and PyTorch, I leverage both traditional engineering tools and cutting-edge web technologies to deliver innovative solutions. Whether designing precision machinery, building intelligent web applications, or deploying machine learning models, I focus on scalable, maintainable solutions that deliver measurable impact.
               </p>

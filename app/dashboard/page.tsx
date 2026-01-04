@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import Script from 'next/script';
+import GitHubActivitySection from '../components/GitHubActivitySection';
 import {
   Brain,
   Database,
@@ -301,6 +302,8 @@ export default function Dashboard() {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10 pb-20">
+        <GitHubActivitySection />
+
         {/* Metrics Grid */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -512,11 +515,101 @@ export default function Dashboard() {
           </div>
         </motion.div>
 
-        {/* Quick Stats */}
+        {/* Recent Projects */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
+          className="mb-12"
+        >
+          <h2 className="text-3xl font-bold text-white mb-8">Recent Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: 'Inner Animals AI',
+                description: 'Enterprise AI dashboard with RAG & ML training',
+                status: 'active',
+                link: '/dashboard',
+                gradient: 'from-brand-cyan to-brand-cyan-dark',
+              },
+              {
+                title: 'RAG Q&A System',
+                description: 'Engineering documentation assistant',
+                status: 'deployed',
+                link: 'https://rag-q-a-for-mechanical-engineers.vercel.app/',
+                gradient: 'from-brand-blue-electric to-brand-cyan',
+              },
+              {
+                title: 'CAD Automation',
+                description: 'AI-powered design optimization',
+                status: 'deployed',
+                link: 'https://cad-autonomous-engine-backend.vercel.app/',
+                gradient: 'from-success to-brand-cyan',
+              },
+              {
+                title: 'AI Fitness Coach',
+                description: 'Personalized training & nutrition',
+                status: 'deployed',
+                link: 'https://ai-powered-health-fitness-coach.vercel.app/',
+                gradient: 'from-warning to-brand-blue-electric',
+              },
+              {
+                title: 'Animal Rescue Platform',
+                description: 'Full-stack adoption management',
+                status: 'deployed',
+                link: 'https://southern-pets-animal-rescue-client.vercel.app/',
+                gradient: 'from-brand-cyan-dark to-brand-cyan',
+              },
+              {
+                title: 'iAutodidact',
+                description: 'Rust-powered learning platform',
+                status: 'deployed',
+                link: 'https://i-autodidact-rust.vercel.app/',
+                gradient: 'from-error to-brand-cyan',
+              },
+            ].map((project, index) => (
+              <motion.a
+                key={project.title}
+                href={project.link}
+                target={project.link.startsWith('http') ? '_blank' : '_self'}
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="group relative bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300 cursor-pointer"
+              >
+                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-all duration-300`} />
+                
+                <div className="relative">
+                  <div className="flex items-start justify-between mb-4">
+                    <h3 className="text-xl font-bold text-white group-hover:text-brand-cyan transition-colors">
+                      {project.title}
+                    </h3>
+                    <span className={`px-2 py-1 text-xs font-bold rounded-full ${
+                      project.status === 'active' 
+                        ? 'bg-success/20 text-success border border-success/30'
+                        : 'bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/30'
+                    }`}>
+                      {project.status.toUpperCase()}
+                    </span>
+                  </div>
+                  <p className="text-circuit-silver text-sm mb-4">{project.description}</p>
+                  <div className="flex items-center gap-2 text-brand-cyan font-semibold text-sm">
+                    <span>Open Project</span>
+                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </div>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Platform Status */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.2 }}
           className="relative bg-gradient-to-br from-brand-cyan to-brand-blue-electric rounded-2xl p-12 overflow-hidden"
         >
           <div className="absolute inset-0 opacity-10">

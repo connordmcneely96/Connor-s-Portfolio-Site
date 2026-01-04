@@ -32,19 +32,20 @@ export default function RootLayout({
                   <li><a href="/about">About</a></li>
                   <li><a href="/portfolio">Portfolio</a></li>
                   <li><a href="/community">Community</a></li>
+                  <li><a href="/dashboard">Dashboard</a></li>
                 </ul>
               </div>
               <div className="footer-column">
                 <h4>Connect</h4>
                 <ul>
                   <li><a href="/contact">Contact</a></li>
-                  <li><a href="/portfolio">Portfolio</a></li>
-                  <li><a href="/dashboard">Dashboard</a></li>
+                  <li><a href="https://github.com/connordmcneely96" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                  <li><a href="https://linkedin.com/in/connordmcneely" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
                 </ul>
               </div>
             </div>
             <div className="footer-bottom">
-              <p>&copy; 2025 Connor Mcneely. All rights reserved.</p>
+              <p>&copy; 2025 Connor McNeely. All rights reserved.</p>
             </div>
           </div>
         </footer>

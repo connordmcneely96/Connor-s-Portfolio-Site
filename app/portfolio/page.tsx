@@ -133,10 +133,10 @@ export default function Portfolio() {
           <motion.div initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.2 }} className="text-center">
             <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.5, delay: 0.4 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 mb-6">
               <Sparkles className="w-4 h-4 text-brand-cyan" />
-              <span className="text-sm font-medium text-brand-cyan">Engineering Excellence</span>
+              <span className="text-sm font-medium text-brand-cyan">Full-Stack & AI Development</span>
             </motion.div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">Portfolio & Engineering Impact</h1>
-            <p className="text-xl md:text-2xl text-circuit-silver max-w-3xl mx-auto">Quantifiable achievements demonstrating multi-disciplinary engineering expertise</p>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">Portfolio & Projects</h1>
+            <p className="text-xl md:text-2xl text-circuit-silver max-w-3xl mx-auto">AI-powered applications, full-stack solutions, and mechanical engineering expertise</p>
           </motion.div>
         </div>
       </motion.div>
@@ -166,14 +166,17 @@ export default function Portfolio() {
         </div>
 
         {/* Intro */}
+        {/* GitHub Projects Section - Featured First */}
+        <GitHubProjects />
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Professional Journey</h2>
-          <p className="text-xl text-circuit-silver max-w-3xl mx-auto">Building engineering excellence across mechanical design, automation, and process optimization</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Professional Experience</h2>
+          <p className="text-xl text-circuit-silver max-w-3xl mx-auto">Mechanical engineering, automation, and process optimization expertise</p>
         </motion.div>
 
         {/* Professional Experience */}
@@ -243,9 +246,6 @@ export default function Portfolio() {
             ))}
           </div>
         </div>
-
-        {/* GitHub Projects Section */}
-        <GitHubProjects />
 
         {/* Certifications */}
         <motion.div

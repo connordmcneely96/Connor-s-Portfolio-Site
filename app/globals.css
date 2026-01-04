@@ -159,6 +159,69 @@ body {
     background-color: var(--dark-text);
 }
 
+/* Resume Buttons */
+.resume-buttons {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.resume-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.resume-btn-me {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.resume-btn-me:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+}
+
+.resume-btn-ai {
+    background: linear-gradient(135deg, #00B8E6 0%, #0EA5E9 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 184, 230, 0.3);
+}
+
+.resume-btn-ai:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 184, 230, 0.5);
+}
+
+.resume-btn svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    .resume-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+    
+    .resume-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 /* ========================================
    Layout Containers
    ======================================== */
