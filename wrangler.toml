@@ -5,7 +5,6 @@ name = "leadership-legacy-worker"
 main = "worker.js"
 compatibility_date = "2024-11-14"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = "out"
 
 # Account ID
 account_id = "ede6590ac0d2fb7daf155b35653457b2"
