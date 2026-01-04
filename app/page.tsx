@@ -19,7 +19,7 @@ import {
   Cpu,
   Server,
   Github,
-  ExternalLink
+  ExternalLink,
   Brain
 } from 'lucide-react';
 
