@@ -28,16 +28,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build static Leadership Legacy site for Pages
-        run: |
-          rm -rf out
-          mkdir -p out
-          cp -R apps/leadership-legacy/* out/
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint --if-present || echo "No lint script found"
+
+      - name: Build Next.js for Cloudflare Pages
+        env:
+          CF_PAGES: 1
+          NEXT_PUBLIC_SITE_URL: https://leadership-legacy.pages.dev
+        run: npm run build:cloudflare
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: pages-static-site
+          name: nextjs-build
           path: out/
           retention-days: 1
 
@@ -80,7 +92,7 @@ jobs:
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
-          name: pages-static-site
+          name: nextjs-build
           path: out/
 
       - name: Deploy to Cloudflare Pages

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 #
-# Deploy Cloudflare Pages only (static frontend).
+# Deploy Cloudflare Pages only (Next.js static export).
 #
-# This deploys the static site located in: apps/leadership-legacy/
-# It builds a deployable directory at: out/
+# This builds the Next.js app for Cloudflare Pages (static export in `out/`)
+# and deploys it.
 #
 # Requirements:
 # - wrangler authenticated (either `wrangler login` or `CLOUDFLARE_API_TOKEN` set)
@@ -14,7 +14,6 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "${ROOT_DIR}"
 
 PROJECT_NAME="${CF_PAGES_PROJECT:-leadership-legacy}"
-SITE_DIR="${CF_PAGES_SITE_DIR:-apps/leadership-legacy}"
 OUT_DIR="${CF_PAGES_OUTPUT:-out}"
 
 if [ -z "${CLOUDFLARE_API_TOKEN:-}" ]; then
@@ -30,15 +29,14 @@ if ! command -v wrangler >/dev/null 2>&1; then
   npm install -g wrangler
 fi
 
-if [ ! -d "${SITE_DIR}" ]; then
-  echo "❌ Static site directory not found: ${SITE_DIR}"
-  exit 1
+if [ ! -d node_modules ]; then
+  echo "📦 Installing dependencies..."
+  npm ci || npm install
 fi
 
-echo "🏗️  Building Pages output (${OUT_DIR}) from ${SITE_DIR}..."
-rm -rf "${OUT_DIR}"
-mkdir -p "${OUT_DIR}"
-cp -R "${SITE_DIR}/"* "${OUT_DIR}/"
+echo "🏗️  Building Next.js static export for Pages..."
+export CF_PAGES=1
+npm run build:cloudflare
 
 if [ ! -f "${OUT_DIR}/index.html" ]; then
   echo "❌ Build output missing ${OUT_DIR}/index.html"
