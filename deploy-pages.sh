@@ -17,16 +17,17 @@ PROJECT_NAME="${CF_PAGES_PROJECT:-leadership-legacy}"
 SITE_DIR="${CF_PAGES_SITE_DIR:-apps/leadership-legacy}"
 OUT_DIR="${CF_PAGES_OUTPUT:-out}"
 
+if [ -z "${CLOUDFLARE_API_TOKEN:-}" ]; then
+  echo "❌ CLOUDFLARE_API_TOKEN is not set."
+  echo ""
+  echo "In GitHub Codespaces, Wrangler's OAuth browser login usually fails."
+  echo "Set CLOUDFLARE_API_TOKEN (Codespaces secret or export it) and retry."
+  exit 1
+fi
+
 if ! command -v wrangler >/dev/null 2>&1; then
   echo "wrangler not found; installing globally..."
   npm install -g wrangler
-fi
-
-if ! wrangler whoami >/dev/null 2>&1; then
-  echo "❌ Cloudflare auth missing."
-  echo "Run: wrangler login"
-  echo "Or set: CLOUDFLARE_API_TOKEN"
-  exit 1
 fi
 
 if [ ! -d "${SITE_DIR}" ]; then
