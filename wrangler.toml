@@ -27,17 +27,16 @@ database_id = "UPDATE_AFTER_CREATION"
 binding = "LEADERSHIP_ASSETS"
 bucket_name = "leadership-legacy-assets"
 
+[[kv_namespaces]]
+binding = "LEADERSHIP_CONFIG"
+id = "UPDATE_AFTER_CREATION"
+
 
 
 # Environment variables (non-sensitive)
 [vars]
 ENVIRONMENT = "production"
 API_VERSION = "1.0.0"
-
-# Build configuration
-[build]
-command = ""
-watch_dirs = ["worker.js"]
 
 # Observability
 [observability]

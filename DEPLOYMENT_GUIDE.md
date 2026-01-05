@@ -144,39 +144,29 @@ wrangler secret put API_KEY
 
 **Full deployment:**
 ```bash
-# Run the deployment script
-chmod +x deploy-cloudflare.sh
-./deploy-cloudflare.sh
+chmod +x deploy-worker.sh deploy-pages.sh
+./deploy-worker.sh
+./deploy-pages.sh
 ```
 
 **Deploy only Pages:**
 ```bash
-# Build for Cloudflare
-npm run build:cloudflare
-
-# Deploy to Pages
-wrangler pages deploy out --project-name=leadership-legacy
+./deploy-pages.sh
 ```
 
 **Deploy only Worker:**
 ```bash
-wrangler deploy
+./deploy-worker.sh
 ```
 
 ### Method 3: Using NPM Scripts
 
 ```bash
-# Build for Cloudflare Pages
-npm run build:cloudflare
-
 # Deploy worker
 npm run deploy:worker
 
 # Deploy pages
 npm run deploy:pages
-
-# Full deployment
-npm run deploy:cloudflare
 ```
 
 ---
@@ -190,13 +180,11 @@ npm run deploy:cloudflare
    npm ci
    ```
 
-2. **Build Next.js for Cloudflare**
+2. **Build static site for Cloudflare Pages**
    ```bash
-   CF_PAGES=1 npm run build
+   npm run build:pages
    ```
-   - Sets Cloudflare Pages environment variable
-   - Generates static export in `/out` directory
-   - Optimizes for edge runtime
+   - Copies `apps/leadership-legacy/` into `/out` directory
 
 3. **Deploy Worker**
    - Uses `worker.js` as entry point
@@ -434,14 +422,11 @@ wrangler kv:key get --namespace-id=YOUR_ID "key"
 
 ### Deployment
 ```bash
-# Full deployment
-npm run deploy:cloudflare
-
 # Deploy worker only
-wrangler deploy
+npm run deploy:worker
 
 # Deploy pages only
-wrangler pages deploy out --project-name=leadership-legacy
+npm run deploy:pages
 ```
 
 ### Monitoring
