@@ -195,10 +195,10 @@ Expected response:
 
 ---
 
-### Step 4: Build Next.js Application
+### Step 4: Build Pages Static Site
 
 ```bash
-npm run build:cloudflare
+npm run build:pages
 ```
 
 This creates an `out/` directory with static files.
@@ -308,13 +308,14 @@ After deployment, document these:
 
 ## 🎯 Quick Deploy Script
 
-Or run the automated script:
+Or run the deploy scripts:
 
 ```bash
-./deploy-cloudflare.sh
+./deploy-worker.sh
+./deploy-pages.sh
 ```
 
-This will walk you through all steps automatically.
+This will deploy the Worker and the Pages site.
 
 ---
 

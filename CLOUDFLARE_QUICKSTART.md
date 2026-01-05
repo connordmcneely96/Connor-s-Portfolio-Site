@@ -7,10 +7,11 @@
 If you already have Wrangler authenticated and `wrangler.toml` configured:
 
 ```bash
-./deploy-cloudflare.sh
+./deploy-worker.sh
+./deploy-pages.sh
 ```
 
-That's it! 🎉
+That's it.
 
 ---
 
@@ -66,18 +67,13 @@ account_id = "your-account-id-here"
 ### Step 5: Run Deployment Script
 
 ```bash
-./deploy-cloudflare.sh
+./deploy-worker.sh
+./deploy-pages.sh
 ```
 
-The script will:
-1. ✅ Create D1 database
-2. ✅ Create R2 bucket
-3. ✅ Create KV namespace
-4. ✅ Run database migrations
-5. ✅ Configure KV values
-6. ✅ Deploy Worker
-7. ✅ Build Next.js app
-8. ✅ Deploy to Cloudflare Pages
+The scripts will:
+1. ✅ Deploy Worker
+2. ✅ Build and deploy the static site to Cloudflare Pages
 
 ---
 
@@ -125,7 +121,6 @@ npm run deploy:worker
 ### 5. Build & Deploy Pages
 
 ```bash
-npm run build:cloudflare
 npm run deploy:pages
 ```
 
@@ -135,10 +130,9 @@ npm run deploy:pages
 
 ```bash
 # Cloudflare-specific scripts
-npm run build:cloudflare      # Build for Cloudflare Pages
+npm run build:pages           # Build Pages static site into /out
 npm run deploy:worker          # Deploy Worker only
 npm run deploy:pages           # Deploy to Pages only
-npm run deploy:cloudflare      # Full deployment (script)
 
 # Database operations
 npm run cf:d1:migrate          # Run D1 migrations

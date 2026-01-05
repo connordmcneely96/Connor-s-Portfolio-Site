@@ -23,7 +23,8 @@ All infrastructure code is written, tested, and committed to the repository. Her
 | `worker.js` | Cloudflare Worker with API proxy, caching, asset delivery | ✅ Ready |
 | `wrangler.toml` | Configuration with Account ID set | ✅ Configured |
 | `cloudflare-schema.sql` | D1 database schema | ✅ Ready |
-| `deploy-cloudflare.sh` | Automated deployment script | ✅ Executable |
+| `deploy-worker.sh` | Deploy Worker | ✅ Ready |
+| `deploy-pages.sh` | Build & deploy Pages static site | ✅ Ready |
 | `.github/workflows/deploy-cloudflare.yml` | CI/CD automation | ✅ Ready |
 | `CLOUDFLARE_DEPLOYMENT.md` | Complete documentation | ✅ Ready |
 | `CLOUDFLARE_QUICKSTART.md` | Quick start guide | ✅ Ready |
@@ -54,8 +55,9 @@ This gives full permissions automatically without configuring tokens:
 # 1. Authenticate
 wrangler login
 
-# 2. Run the automated deployment
-./deploy-cloudflare.sh
+# 2. Deploy Worker + Pages
+./deploy-worker.sh
+./deploy-pages.sh
 ```
 
 The script will:
@@ -291,7 +293,8 @@ Cloudflare will be an **additional deployment**, giving you:
 **Option A: Quick Deploy (5 minutes)**
 ```bash
 wrangler login
-./deploy-cloudflare.sh
+./deploy-worker.sh
+./deploy-pages.sh
 ```
 
 **Option B: Manual Deploy**
@@ -337,7 +340,8 @@ Overall Readiness:      🟢 85% (just needs `wrangler login`)
 **Everything is built and ready.** You just need to:
 
 1. Run `wrangler login` in your terminal
-2. Run `./deploy-cloudflare.sh`
+2. Run `./deploy-worker.sh`
+3. Run `./deploy-pages.sh`
 3. Get your URLs in ~5 minutes
 
 **OR** if you prefer GitHub to handle it:

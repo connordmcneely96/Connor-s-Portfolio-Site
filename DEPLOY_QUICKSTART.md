@@ -43,24 +43,9 @@ wrangler pages project create leadership-legacy
 
 ### Deploy:
 ```bash
-# Build & deploy everything
-npm run build:cloudflare
-npm run deploy:pages
+# Deploy everything
 npm run deploy:worker
-```
-
----
-
-## Option 3: Automated Script
-
-```bash
-# Run setup script (first time only)
-chmod +x scripts/setup-cloudflare.sh
-./scripts/setup-cloudflare.sh
-
-# Deploy using script
-chmod +x deploy-cloudflare.sh
-./deploy-cloudflare.sh
+npm run deploy:pages
 ```
 
 ---

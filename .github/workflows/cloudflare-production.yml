@@ -37,7 +37,7 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: nextjs-build
+          name: pages-static-site
           path: out/
           retention-days: 1
 
@@ -80,7 +80,7 @@ jobs:
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
-          name: nextjs-build
+          name: pages-static-site
           path: out/
 
       - name: Deploy to Cloudflare Pages
