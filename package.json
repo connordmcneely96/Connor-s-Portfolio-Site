@@ -9,7 +9,7 @@
     "lint": "next lint",
     "vercel-build": "next build",
     "build:cloudflare": "CF_PAGES=1 next build",
-    "build:pages": "rm -rf out && mkdir -p out && cp *.html out/ && cp styles.css dashboard-styles.css script.js dashboard.js out/ && cp -R public out/ 2>/dev/null || true",
+    "build:pages": "CF_PAGES=1 next build",
     "deploy:worker": "./deploy-worker.sh",
     "deploy:pages": "./deploy-pages.sh",
     "cf:d1:migrate": "wrangler d1 execute leadership-legacy-db --file=./cloudflare-schema.sql",
