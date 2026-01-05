@@ -99,11 +99,12 @@ wrangler deploy
 echo "✅ Worker deployed"
 echo ""
 
-# Step 6: Build Next.js for Cloudflare Pages
-echo "📦 Step 6: Building Next.js application..."
-export CF_PAGES=1
-npm run build
-echo "✅ Next.js build complete"
+# Step 6: Build static site for Cloudflare Pages
+echo "📦 Step 6: Building static Leadership Legacy site..."
+rm -rf out
+mkdir -p out
+cp -R apps/leadership-legacy/* out/
+echo "✅ Static build complete"
 echo ""
 
 # Step 7: Deploy to Cloudflare Pages
