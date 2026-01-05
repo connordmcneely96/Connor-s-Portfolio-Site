@@ -29,9 +29,10 @@ if [ ! -d node_modules ]; then
   npm ci || npm install
 fi
 
-echo "🏗️  Building static export for Pages..."
-export CF_PAGES=1
-npm run build
+echo "🏗️  Building static Leadership Legacy site for Pages..."
+rm -rf "${BUILD_DIR}"
+mkdir -p "${BUILD_DIR}"
+cp -R apps/leadership-legacy/* "${BUILD_DIR}/"
 
 echo "🚀 Deploying Worker..."
 wrangler deploy
