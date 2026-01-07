@@ -243,6 +243,34 @@ export default function About() {
           </div>
         </motion.div>
 
+        {/* Testimonial */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="mb-16"
+        >
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-gradient-to-br from-brand-cyan/5 to-brand-blue-electric/5 border-l-4 border-brand-cyan rounded-xl p-8">
+              <p className="text-circuit-silver text-lg italic leading-relaxed mb-4">
+                "Connor's ability to bridge mechanical engineering and software development is exceptional.
+                His automation solutions delivered measurable improvements in efficiency while maintaining
+                the highest quality standards. He brings a unique perspective that combines rigorous engineering
+                discipline with innovative problem-solving."
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-cyan to-brand-blue-electric flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">JD</span>
+                </div>
+                <div>
+                  <p className="text-white font-semibold">Engineering Manager</p>
+                  <p className="text-circuit-silver/60 text-sm">John Deere Turf Care</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Timeline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
