@@ -20,7 +20,8 @@ import {
   Server,
   Github,
   ExternalLink,
-  Brain
+  Brain,
+  Download
 } from 'lucide-react';
 
 export default function Home() {
@@ -164,23 +165,23 @@ export default function Home() {
             >
               <Sparkles className="w-4 h-4 text-brand-cyan animate-pulse" />
               <span className="text-sm font-medium text-brand-cyan">
-                Multi-Disciplinary Engineering Excellence
+                Mechanical Engineering × AI/ML × Full-Stack Development
               </span>
             </motion.div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
               Connor McNeely
               <span className="block mt-2 bg-gradient-to-r from-brand-cyan via-glow-cyan to-brand-blue-electric bg-clip-text text-transparent">
-                Full-Stack Developer | AI Developer | ML Engineer
+                Mechanical Engineer → AI/ML Developer
               </span>
             </h1>
 
             <p className="text-xl md:text-2xl text-white font-semibold max-w-3xl mx-auto mb-4">
-              Full-Stack Developer | AI Developer | ML Engineer
+              Full-Stack Development | AI/ML Engineering | Mechanical Design
             </p>
 
             <p className="text-lg md:text-xl text-circuit-silver max-w-3xl mx-auto mb-12">
-              Mechanical Design • Automation • Process Optimization • AI/ML Integration
+              Bridging physical and digital engineering • 5+ years at Pfizer, John Deere, and leading manufacturers
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -203,6 +204,26 @@ export default function Home() {
                   Get in Touch
                 </motion.button>
               </Link>
+            </div>
+
+            <div className="flex items-center justify-center gap-4 mt-6 text-sm">
+              <a
+                href="/resumes/Mechanical_DrafterModeler_Automation%20Resume.docx.pdf"
+                download="Mechanical_DrafterModeler_Automation Resume"
+                className="text-circuit-silver hover:text-warning transition-colors flex items-center gap-1.5"
+              >
+                <Download className="w-4 h-4" />
+                ME Resume
+              </a>
+              <span className="text-circuit-silver/30">|</span>
+              <a
+                href="/resumes/AI%20Developer_Fullstack%20Developer_AIML_Engineer%20Resume.docx.pdf"
+                download="AI Developer_Fullstack Developer_AIML_Engineer Resume"
+                className="text-circuit-silver hover:text-brand-cyan transition-colors flex items-center gap-1.5"
+              >
+                <Download className="w-4 h-4" />
+                AI/Dev Resume
+              </a>
             </div>
           </motion.div>
         </div>

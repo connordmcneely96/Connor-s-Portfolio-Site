@@ -149,7 +149,7 @@ export default function About() {
             >
               <Sparkles className="w-4 h-4 text-brand-cyan" />
               <span className="text-sm font-medium text-brand-cyan">
-                Full-Stack Developer | AI Developer | Mechanical Engineer
+                Mechanical Engineering × AI/ML × Full-Stack Development
               </span>
             </motion.div>
 
@@ -176,9 +176,16 @@ export default function About() {
             <div className="bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-8 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300">
               <h2 className="text-3xl font-bold text-white mb-4">My Story</h2>
               <p className="text-circuit-silver leading-relaxed mb-4">
-                I'm a multi-disciplinary engineer and full-stack developer with expertise spanning mechanical design, automation, AI/ML development, and modern web technologies. My career bridges the physical and digital worlds—combining mechanical engineering fundamentals with software development to build intelligent, data-driven solutions. From designing high-efficiency pumps to developing RAG-powered AI systems, I thrive at the intersection of engineering and technology.
+                I'm a mechanical engineer who evolved into AI/ML and full-stack development—bridging physical and digital engineering. From designing high-efficiency pumps at Pfizer and John Deere to building RAG-powered AI systems and production web applications, I solve complex problems across domains that rarely intersect.
               </p>
-              
+
+              <div className="my-6 p-4 rounded-xl bg-brand-cyan/5 border border-brand-cyan/20">
+                <p className="text-sm text-circuit-silver">
+                  <strong className="text-brand-cyan">Impact:</strong> Contributed to 759M vaccine doses at Pfizer ·
+                  Achieved 75% downtime reduction · Improved efficiency by 50% across automation projects
+                </p>
+              </div>
+
               <p className="text-circuit-silver leading-relaxed mb-4">
                 Based in Lafayette, LA, I specialize in creating AI-powered applications, RAG systems, and full-stack solutions. My mechanical engineering background gives me a unique perspective on building robust, optimized systems that solve real-world problems.
               </p>
