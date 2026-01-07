@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Github,
@@ -22,6 +23,7 @@ interface Project {
     forks?: number;
   };
   featured?: boolean;
+  category: 'AI/ML' | 'Full-Stack' | 'Mechanical' | 'Hybrid';
 }
 
 const projects: Project[] = [
@@ -32,6 +34,7 @@ const projects: Project[] = [
     githubUrl: 'https://github.com/connordmcneely96/inner-animals-ai-dashboard',
     liveUrl: '/dashboard',
     featured: true,
+    category: 'Hybrid',
   },
   {
     title: 'Leadership Legacy',
@@ -39,6 +42,7 @@ const projects: Project[] = [
     tags: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Three.js', 'SSR'],
     githubUrl: 'https://github.com/connordmcneely96/LeadershipLegacy',
     liveUrl: 'https://leadership-legacy.vercel.app',
+    category: 'Full-Stack',
   },
   {
     title: 'Southern Pets Animal Rescue',
@@ -46,6 +50,7 @@ const projects: Project[] = [
     tags: ['React', 'Node.js', 'MongoDB', 'Express', 'JWT Auth', 'REST API'],
     githubUrl: 'https://github.com/connordmcneely96/Southern-Pets-Animal-Rescue-client-project',
     liveUrl: 'https://southern-pets-animal-rescue-client.vercel.app/',
+    category: 'Full-Stack',
   },
   {
     title: 'AI-Powered Health & Fitness Coach',
@@ -53,6 +58,7 @@ const projects: Project[] = [
     tags: ['React', 'OpenAI GPT-4', 'Python', 'FastAPI', 'PostgreSQL', 'ML'],
     githubUrl: 'https://github.com/connordmcneely96/AI_Powered_Health_-_Fitness_Coach',
     liveUrl: 'https://ai-powered-health-fitness-coach.vercel.app/',
+    category: 'AI/ML',
   },
   {
     title: 'RAG Q&A for Mechanical Engineers',
@@ -61,6 +67,7 @@ const projects: Project[] = [
     githubUrl: 'https://github.com/connordmcneely96/RAG-Q-A-for-Mechanical-Engineers',
     liveUrl: 'https://rag-q-a-for-mechanical-engineers.vercel.app/',
     featured: true,
+    category: 'AI/ML',
   },
   {
     title: 'CAD Autonomous Engine',
@@ -68,6 +75,7 @@ const projects: Project[] = [
     tags: ['Python', 'PyTorch', 'CAD API', 'FastAPI', 'React', 'ML Optimization'],
     githubUrl: 'https://github.com/connordmcneely96/CAD_Autonomous_Engine',
     liveUrl: 'https://cad-autonomous-engine-backend.vercel.app/',
+    category: 'Hybrid',
   },
   {
     title: 'iAutodidact',
@@ -75,6 +83,7 @@ const projects: Project[] = [
     tags: ['Rust', 'WebAssembly', 'React', 'PostgreSQL', 'WASM', 'Performance'],
     githubUrl: 'https://github.com/connordmcneely96/I-autodidact',
     liveUrl: 'https://i-autodidact-rust.vercel.app/',
+    category: 'Full-Stack',
   },
   {
     title: 'Inner Animal Media',
@@ -82,10 +91,24 @@ const projects: Project[] = [
     tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Cloudinary CDN', 'CMS', 'SEO'],
     githubUrl: 'https://github.com/connordmcneely96/InnerAnimalMedia',
     liveUrl: 'https://inner-animal-media-psi.vercel.app/',
+    category: 'Full-Stack',
   },
 ];
 
 export default function GitHubProjects() {
+  const [filter, setFilter] = useState<'all' | 'AI/ML' | 'Full-Stack' | 'Mechanical' | 'Hybrid'>('all');
+
+  const filteredProjects = filter === 'all'
+    ? projects
+    : projects.filter(p => p.category === filter);
+
+  const categoryStyles = {
+    'AI/ML': 'bg-success/10 text-success border-success/30',
+    'Full-Stack': 'bg-brand-cyan/10 text-brand-cyan border-brand-cyan/30',
+    'Mechanical': 'bg-warning/10 text-warning border-warning/30',
+    'Hybrid': 'bg-brand-blue-electric/10 text-brand-blue-electric border-brand-blue-electric/30',
+  };
+
   return (
     <div className="mb-16">
       <motion.div
@@ -101,13 +124,57 @@ export default function GitHubProjects() {
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
           Software Projects
         </h2>
-        <p className="text-xl text-circuit-silver max-w-3xl mx-auto">
+        <p className="text-xl text-circuit-silver max-w-3xl mx-auto mb-8">
           Building modern web applications with cutting-edge technologies
         </p>
+
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mb-8">
+          <button
+            onClick={() => setFilter('all')}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+              filter === 'all'
+                ? 'bg-brand-cyan text-white shadow-glow-cyan'
+                : 'bg-neural-slate/60 text-circuit-silver border border-circuit-silver/20 hover:border-brand-cyan/50'
+            }`}
+          >
+            All Projects
+          </button>
+          <button
+            onClick={() => setFilter('AI/ML')}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+              filter === 'AI/ML'
+                ? 'bg-success text-white'
+                : 'bg-neural-slate/60 text-circuit-silver border border-circuit-silver/20 hover:border-success/50'
+            }`}
+          >
+            AI/ML
+          </button>
+          <button
+            onClick={() => setFilter('Full-Stack')}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+              filter === 'Full-Stack'
+                ? 'bg-brand-cyan text-white shadow-glow-cyan'
+                : 'bg-neural-slate/60 text-circuit-silver border border-circuit-silver/20 hover:border-brand-cyan/50'
+            }`}
+          >
+            Full-Stack
+          </button>
+          <button
+            onClick={() => setFilter('Hybrid')}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+              filter === 'Hybrid'
+                ? 'bg-brand-blue-electric text-white'
+                : 'bg-neural-slate/60 text-circuit-silver border border-circuit-silver/20 hover:border-brand-blue-electric/50'
+            }`}
+          >
+            Hybrid (AI + Engineering)
+          </button>
+        </div>
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {projects.map((project, index) => (
+        {filteredProjects.map((project, index) => (
           <motion.div
             key={project.title}
             initial={{ opacity: 0, y: 20 }}
@@ -130,15 +197,20 @@ export default function GitHubProjects() {
                       <Rocket className="w-6 h-6 text-white" />
                     </div>
                     <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className={`px-2 py-0.5 text-xs font-bold rounded border ${categoryStyles[project.category]}`}>
+                          {project.category}
+                        </span>
+                        {project.featured && (
+                          <span className="inline-flex items-center gap-1 text-xs font-semibold text-warning">
+                            <Star className="w-3 h-3 fill-warning" />
+                            Featured
+                          </span>
+                        )}
+                      </div>
                       <h3 className="text-2xl font-bold text-white group-hover:text-brand-cyan transition-colors">
                         {project.title}
                       </h3>
-                      {project.featured && (
-                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-warning">
-                          <Star className="w-3 h-3 fill-warning" />
-                          Featured Project
-                        </span>
-                      )}
                     </div>
                   </div>
                 </div>
