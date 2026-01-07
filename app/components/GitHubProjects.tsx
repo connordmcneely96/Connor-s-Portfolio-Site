@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Github,
@@ -10,6 +10,8 @@ import {
   Star,
   GitFork
 } from 'lucide-react';
+import { useAudienceMode } from './AudienceModeProvider';
+import { trackProjectClick } from '../utils/analytics';
 
 interface Project {
   title: string;
@@ -96,7 +98,19 @@ const projects: Project[] = [
 ];
 
 export default function GitHubProjects() {
+  const { mode } = useAudienceMode();
   const [filter, setFilter] = useState<'all' | 'AI/ML' | 'Full-Stack' | 'Mechanical' | 'Hybrid'>('all');
+
+  // Auto-adjust filter based on audience mode
+  useEffect(() => {
+    if (mode === 'ai-developer') {
+      setFilter('AI/ML');
+    } else if (mode === 'mechanical-engineer') {
+      setFilter('Hybrid');
+    } else {
+      setFilter('all');
+    }
+  }, [mode]);
 
   const filteredProjects = filter === 'all'
     ? projects
@@ -257,6 +271,7 @@ export default function GitHubProjects() {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackProjectClick(project.title, project.category, 'github')}
                   className="group/btn inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-circuit-silver/10 border border-circuit-silver/20 text-white font-medium hover:bg-circuit-silver/20 hover:border-circuit-silver/40 transition-all duration-200"
                 >
                   <Github className="w-4 h-4" />
@@ -267,6 +282,7 @@ export default function GitHubProjects() {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackProjectClick(project.title, project.category, 'live')}
                   className="group/btn inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-blue-electric text-white font-medium hover:shadow-glow-cyan transition-all duration-200"
                 >
                   <Rocket className="w-4 h-4" />

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Navigation from './components/Navigation'
+import { AudienceModeProvider } from './components/AudienceModeProvider'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -15,10 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="theme-light">
-        <Navigation />
-        <main>
-          {children}
-        </main>
+        <AudienceModeProvider>
+          <Navigation />
+          <main>
+            {children}
+          </main>
         <footer>
           <div className="footer-container">
             <div className="footer-content">
@@ -49,6 +51,7 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+        </AudienceModeProvider>
       </body>
     </html>
   )

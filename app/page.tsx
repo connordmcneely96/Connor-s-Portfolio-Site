@@ -24,6 +24,8 @@ import {
   Download,
   Linkedin
 } from 'lucide-react';
+import AudienceModeToggle from './components/AudienceModeToggle';
+import { trackResumeDownload } from './utils/analytics';
 
 export default function Home() {
   const features = [
@@ -211,6 +213,7 @@ export default function Home() {
               <a
                 href="/resumes/Mechanical_DrafterModeler_Automation%20Resume.docx.pdf"
                 download="Mechanical_DrafterModeler_Automation Resume"
+                onClick={() => trackResumeDownload('mechanical')}
                 className="text-circuit-silver hover:text-warning transition-colors flex items-center gap-1.5"
               >
                 <Download className="w-4 h-4" />
@@ -220,6 +223,7 @@ export default function Home() {
               <a
                 href="/resumes/AI%20Developer_Fullstack%20Developer_AIML_Engineer%20Resume.docx.pdf"
                 download="AI Developer_Fullstack Developer_AIML_Engineer Resume"
+                onClick={() => trackResumeDownload('ai-dev')}
                 className="text-circuit-silver hover:text-brand-cyan transition-colors flex items-center gap-1.5"
               >
                 <Download className="w-4 h-4" />
@@ -247,6 +251,8 @@ export default function Home() {
                 <span className="text-sm">LinkedIn</span>
               </a>
             </div>
+
+            <AudienceModeToggle />
           </motion.div>
         </div>
       </motion.div>
@@ -275,6 +281,38 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
+
+        {/* Trusted By Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="text-center py-12 mb-20 border-y border-circuit-silver/10"
+        >
+          <p className="text-circuit-silver/60 text-sm uppercase tracking-wider mb-6">Experience At</p>
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="text-circuit-silver hover:text-white transition-colors"
+            >
+              <span className="text-2xl md:text-3xl font-bold">Pfizer</span>
+            </motion.div>
+            <span className="text-circuit-silver/30 text-2xl">·</span>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="text-circuit-silver hover:text-white transition-colors"
+            >
+              <span className="text-2xl md:text-3xl font-bold">John Deere</span>
+            </motion.div>
+            <span className="text-circuit-silver/30 text-2xl">·</span>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="text-circuit-silver hover:text-white transition-colors"
+            >
+              <span className="text-2xl md:text-3xl font-bold">Louisiana Tech</span>
+            </motion.div>
+          </div>
+        </motion.div>
 
         {/* Features Section */}
         <motion.div
@@ -615,6 +653,7 @@ export default function Home() {
         <a
           href="/resumes/Mechanical_DrafterModeler_Automation%20Resume.docx.pdf"
           download="Mechanical_DrafterModeler_Automation Resume"
+          onClick={() => trackResumeDownload('mechanical')}
           className="flex-1 px-3 py-2 rounded-lg bg-warning/10 border border-warning/30 text-warning text-sm font-medium flex items-center justify-center gap-1"
         >
           <Download className="w-3.5 h-3.5" />
@@ -623,6 +662,7 @@ export default function Home() {
         <a
           href="/resumes/AI%20Developer_Fullstack%20Developer_AIML_Engineer%20Resume.docx.pdf"
           download="AI Developer_Fullstack Developer_AIML_Engineer Resume"
+          onClick={() => trackResumeDownload('ai-dev')}
           className="flex-1 px-3 py-2 rounded-lg bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan text-sm font-medium flex items-center justify-center gap-1"
         >
           <Download className="w-3.5 h-3.5" />
