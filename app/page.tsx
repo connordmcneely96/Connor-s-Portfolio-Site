@@ -21,7 +21,8 @@ import {
   Github,
   ExternalLink,
   Brain,
-  Download
+  Download,
+  Linkedin
 } from 'lucide-react';
 
 export default function Home() {
@@ -53,10 +54,10 @@ export default function Home() {
   ];
 
   const stats = [
-    { value: '75%', label: 'Downtime Reduction', icon: TrendingUp },
-    { value: '50%', label: 'Efficiency Gains', icon: Zap },
-    { value: '20%', label: 'Cost Savings', icon: Award },
-    { value: '759M', label: 'Units Produced', icon: Factory },
+    { value: '75%', label: 'Downtime Reduction', context: 'John Deere automation', icon: TrendingUp },
+    { value: '50%', label: 'Efficiency Gains', context: 'Pfizer process optimization', icon: Zap },
+    { value: '20%', label: 'Cost Savings', context: 'Pump design innovations', icon: Award },
+    { value: '759M', label: 'Units Produced', context: 'Pfizer vaccine production', icon: Factory },
   ];
 
   const skillCategories = [
@@ -225,6 +226,27 @@ export default function Home() {
                 AI/Dev Resume
               </a>
             </div>
+
+            <div className="flex items-center justify-center gap-6 mt-6 text-circuit-silver">
+              <a
+                href="https://github.com/connordmcneely96"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-brand-cyan transition-colors"
+              >
+                <Github className="w-5 h-5" />
+                <span className="text-sm">GitHub</span>
+              </a>
+              <a
+                href="https://linkedin.com/in/connordmcneely"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-brand-cyan transition-colors"
+              >
+                <Linkedin className="w-5 h-5" />
+                <span className="text-sm">LinkedIn</span>
+              </a>
+            </div>
           </motion.div>
         </div>
       </motion.div>
@@ -248,6 +270,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-1">{stat.value}</h3>
                 <p className="text-circuit-silver text-sm">{stat.label}</p>
+                <p className="text-circuit-silver/60 text-xs mt-1">{stat.context}</p>
               </div>
             </motion.div>
           ))}
@@ -297,130 +320,6 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Technical Projects Showcase */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
-          className="mb-20"
-        >
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Featured Projects
-            </h2>
-            <p className="text-xl text-circuit-silver">
-              AI-powered applications and full-stack solutions
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: 'Inner Animals AI Dashboard',
-                description: 'Enterprise-grade AI platform with RAG, ML training, NLP analytics, and computer vision capabilities.',
-                tags: ['Next.js', 'FastAPI', 'PyTorch', 'LangChain'],
-                icon: Sparkles,
-                gradient: 'from-brand-cyan to-brand-cyan-dark',
-                link: '/dashboard',
-              },
-              {
-                title: 'RAG Q&A for Engineers',
-                description: 'Retrieval-Augmented Generation system for technical documentation and engineering standards.',
-                tags: ['Python', 'LangChain', 'OpenAI', 'Pinecone'],
-                icon: Sparkles,
-                gradient: 'from-brand-blue-electric to-brand-cyan',
-                link: 'https://rag-q-a-for-mechanical-engineers.vercel.app/',
-              },
-              {
-                title: 'CAD Autonomous Engine',
-                description: 'AI-powered CAD design engine that generates and optimizes mechanical designs automatically.',
-                tags: ['Python', 'AI/ML', 'FastAPI', 'React'],
-                icon: Settings,
-                gradient: 'from-success to-brand-cyan',
-                link: 'https://cad-autonomous-engine-backend.vercel.app/',
-              },
-              {
-                title: 'AI Health & Fitness Coach',
-                description: 'Intelligent coaching application with personalized workout plans and nutrition guidance.',
-                tags: ['React', 'OpenAI API', 'FastAPI'],
-                icon: Zap,
-                gradient: 'from-warning to-brand-blue-electric',
-                link: 'https://ai-powered-health-fitness-coach.vercel.app/',
-              },
-              {
-                title: 'Southern Pets Rescue',
-                description: 'Full-stack animal rescue platform connecting shelters with potential adopters.',
-                tags: ['React', 'Node.js', 'MongoDB'],
-                icon: Award,
-                gradient: 'from-brand-cyan to-brand-blue-electric',
-                link: 'https://southern-pets-animal-rescue-client.vercel.app/',
-              },
-              {
-                title: 'iAutodidact',
-                description: 'High-performance self-directed learning platform built with Rust and WebAssembly.',
-                tags: ['Rust', 'WebAssembly', 'React', 'PostgreSQL'],
-                icon: Sparkles,
-                gradient: 'from-brand-cyan-dark to-brand-cyan',
-                link: 'https://i-autodidact-rust.vercel.app/',
-              },
-            ].map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1.3 + index * 0.1 }}
-                whileHover={{ y: -8 }}
-                className="group relative bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
-              >
-                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-all duration-300`} />
-                
-                <div className="relative">
-                  <div className={`w-12 h-12 mb-4 rounded-xl bg-gradient-to-br ${project.gradient} flex items-center justify-center shadow-glow-cyan`}>
-                    <project.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-brand-cyan transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-circuit-silver text-sm mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-1 text-xs font-medium rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <Link href={project.link}>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="w-full px-4 py-2 rounded-lg bg-gradient-to-r from-brand-cyan to-brand-blue-electric text-white font-semibold text-sm hover:shadow-glow-cyan transition-all flex items-center justify-center gap-2 group"
-                    >
-                      View Project
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </motion.button>
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link href="/portfolio">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-xl border-2 border-brand-cyan/30 text-brand-cyan font-semibold hover:bg-brand-cyan/10 hover:border-brand-cyan transition-all duration-300"
-              >
-                View All Projects
-              </motion.button>
-            </Link>
-          </div>
-        </motion.div>
         {/* Technical Skills Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -709,6 +608,26 @@ export default function Home() {
             </Link>
           </div>
         </motion.div>
+      </div>
+
+      {/* Mobile Sticky Resume Footer */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-neural-slate/95 backdrop-blur-xl border-t border-circuit-silver/20 p-3 flex gap-2 z-50">
+        <a
+          href="/resumes/Mechanical_DrafterModeler_Automation%20Resume.docx.pdf"
+          download="Mechanical_DrafterModeler_Automation Resume"
+          className="flex-1 px-3 py-2 rounded-lg bg-warning/10 border border-warning/30 text-warning text-sm font-medium flex items-center justify-center gap-1"
+        >
+          <Download className="w-3.5 h-3.5" />
+          ME Resume
+        </a>
+        <a
+          href="/resumes/AI%20Developer_Fullstack%20Developer_AIML_Engineer%20Resume.docx.pdf"
+          download="AI Developer_Fullstack Developer_AIML_Engineer Resume"
+          className="flex-1 px-3 py-2 rounded-lg bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan text-sm font-medium flex items-center justify-center gap-1"
+        >
+          <Download className="w-3.5 h-3.5" />
+          AI Resume
+        </a>
       </div>
     </div>
   );
