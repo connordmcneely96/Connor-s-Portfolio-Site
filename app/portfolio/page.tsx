@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import {
@@ -12,11 +13,18 @@ import {
   Zap,
   Award,
   GraduationCap,
-  Settings
+  Settings,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 import GitHubProjects from '../components/GitHubProjects';
 
 export default function Portfolio() {
+  const [expandedProject, setExpandedProject] = useState<number | null>(null);
+
+  const toggleExpand = (index: number) => {
+    setExpandedProject(expandedProject === index ? null : index);
+  };
   const projects = [
     {
       title: 'Lead Mechanical Design Engineer',
@@ -217,21 +225,8 @@ export default function Portfolio() {
                   <p className="text-brand-cyan text-sm font-medium mb-4">{project.company}</p>
                   <p className="text-circuit-silver mb-6">{project.description}</p>
 
-                  {/* Results */}
-                  <div className="mb-6">
-                    <h4 className="text-white font-semibold text-sm mb-3">Key Achievements:</h4>
-                    <ul className="space-y-2">
-                      {project.results.map((result, i) => (
-                        <li key={i} className="flex items-start gap-2 text-circuit-silver text-sm">
-                          <div className="w-1.5 h-1.5 rounded-full bg-brand-cyan mt-1.5 flex-shrink-0" />
-                          <span>{result}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-6">
                     {project.tags.map((tag, i) => (
                       <span
                         key={i}
@@ -241,6 +236,47 @@ export default function Portfolio() {
                       </span>
                     ))}
                   </div>
+
+                  {/* Expandable Details Button */}
+                  <button
+                    onClick={() => toggleExpand(index)}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan font-medium hover:bg-brand-cyan/20 transition-all duration-200 mb-4"
+                  >
+                    {expandedProject === index ? (
+                      <>
+                        <ChevronUp className="w-4 h-4" />
+                        <span>Hide Details</span>
+                      </>
+                    ) : (
+                      <>
+                        <ChevronDown className="w-4 h-4" />
+                        <span>Show Details</span>
+                      </>
+                    )}
+                  </button>
+
+                  {/* Expandable Results */}
+                  <motion.div
+                    initial={false}
+                    animate={{
+                      height: expandedProject === index ? 'auto' : 0,
+                      opacity: expandedProject === index ? 1 : 0
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="pt-4 border-t border-circuit-silver/20">
+                      <h4 className="text-white font-semibold text-sm mb-3">Key Achievements:</h4>
+                      <ul className="space-y-2">
+                        {project.results.map((result, i) => (
+                          <li key={i} className="flex items-start gap-2 text-circuit-silver text-sm">
+                            <div className="w-1.5 h-1.5 rounded-full bg-brand-cyan mt-1.5 flex-shrink-0" />
+                            <span>{result}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
