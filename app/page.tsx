@@ -1,242 +1,206 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import {
-  Settings,
-  Factory,
-  TrendingUp,
-  Cog,
   ArrowRight,
   Sparkles,
-  Zap,
+  Settings,
+  Brain,
+  Code2,
+  Download,
+  Github,
+  Linkedin,
   Award,
-  Code,
+  Factory,
   Layers,
   Database,
   Cloud,
   Terminal,
   Cpu,
-  Server,
-  Github,
-  ExternalLink,
-  Brain,
-  Download,
-  Linkedin
 } from 'lucide-react';
-import AudienceModeToggle from './components/AudienceModeToggle';
+import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
+import { Badge } from '@/components/ui/Badge';
+import ProjectCard from '@/components/projects/ProjectCard';
+import { getFeaturedProjects } from '@/data/projects';
 import { trackResumeDownload } from './utils/analytics';
 
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 },
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
 export default function Home() {
-  const features = [
-    {
-      icon: Settings,
-      title: 'Mechanical Design Excellence',
-      description: 'Full-cycle pump design from conception to manufacturing using SolidWorks, FEA/CFD analysis, and DFMA principles',
-      gradient: 'from-brand-cyan to-brand-cyan-dark',
-    },
-    {
-      icon: Zap,
-      title: 'Automation & Controls',
-      description: 'PLC programming, SCADA systems, machine vision, and IoT integration for process optimization',
-      gradient: 'from-brand-blue-electric to-brand-cyan',
-    },
-    {
-      icon: Factory,
-      title: 'Process Optimization',
-      description: 'Lean Six Sigma methodologies delivering quantifiable improvements in efficiency, cost, and quality',
-      gradient: 'from-success to-brand-cyan',
-    },
-    {
-      icon: Code,
-      title: 'AI/ML Integration',
-      description: 'Python, TensorFlow, and data-driven decision making to solve complex engineering challenges',
-      gradient: 'from-warning to-brand-blue-electric',
-    },
-  ];
+  const featuredProjects = getFeaturedProjects().slice(0, 6);
 
   const stats = [
-    { value: '75%', label: 'Downtime Reduction', context: 'John Deere automation', icon: TrendingUp },
-    { value: '50%', label: 'Efficiency Gains', context: 'Pfizer process optimization', icon: Zap },
-    { value: '20%', label: 'Cost Savings', context: 'Pump design innovations', icon: Award },
-    { value: '759M', label: 'Units Produced', context: 'Pfizer vaccine production', icon: Factory },
+    { value: '15+', label: 'Years Experience', icon: Award },
+    { value: '50+', label: 'Pumps Designed', icon: Settings },
+    { value: '10+', label: 'AI Projects', icon: Brain },
+    { value: '759M', label: 'Units Produced', icon: Factory },
   ];
 
-  const skillCategories = [
+  const valueProps = [
     {
-      title: 'Frontend',
-      skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS'],
-      icon: Code,
-      gradient: 'from-brand-cyan/30 via-brand-cyan/10 to-brand-blue-electric/20',
-      tagClass: 'bg-brand-cyan/10 text-brand-cyan border-brand-cyan/30',
+      icon: Settings,
+      title: 'Mechanical Engineering',
+      description:
+        'API 610/682 compliant pump design, rotating equipment, FEA/CFD analysis, and production-ready engineering documentation.',
+      gradient: 'from-secondary-500 to-secondary-600',
+      tags: ['SolidWorks', 'API 610', 'FEA/CFD', 'DFMA'],
     },
     {
-      title: 'Backend',
-      skills: ['Node.js', 'Express', 'FastAPI', 'Python', 'REST APIs'],
-      icon: Server,
-      gradient: 'from-brand-blue-electric/25 via-brand-cyan/15 to-brand-cyan-dark/20',
-      tagClass: 'bg-brand-blue-electric/10 text-brand-blue-electric border-brand-blue-electric/30',
+      icon: Brain,
+      title: 'AI Development',
+      description:
+        'LangChain, CrewAI, RAG systems, and multi-agent architectures. Building AI tools that transform how engineers work.',
+      gradient: 'from-accent-500 to-accent-600',
+      tags: ['LangChain', 'RAG', 'GPT-4', 'Python'],
     },
     {
-      title: 'AI/ML',
-      skills: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'LangChain', 'OpenAI API', 'RAG'],
-      icon: Sparkles,
-      gradient: 'from-success/25 via-brand-cyan/15 to-brand-cyan/10',
-      tagClass: 'bg-success/10 text-success border-success/30',
+      icon: Code2,
+      title: 'Full-Stack Development',
+      description:
+        'Next.js, React, TypeScript applications with cloud deployment. End-to-end delivery from concept to production.',
+      gradient: 'from-primary-500 to-primary-600',
+      tags: ['Next.js', 'React', 'TypeScript', 'AWS'],
+    },
+  ];
+
+  const techStack = [
+    {
+      category: 'Frontend',
+      icon: Layers,
+      skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     },
     {
-      title: 'Databases',
-      skills: ['MongoDB', 'PostgreSQL', 'Pinecone', 'Chroma', 'FAISS'],
+      category: 'Backend',
+      icon: Terminal,
+      skills: ['Node.js', 'Python', 'FastAPI', 'Express', 'REST APIs'],
+    },
+    {
+      category: 'AI/ML',
+      icon: Brain,
+      skills: ['LangChain', 'OpenAI', 'RAG', 'TensorFlow', 'Vector DBs'],
+    },
+    {
+      category: 'Databases',
       icon: Database,
-      gradient: 'from-warning/25 via-brand-blue-electric/10 to-brand-cyan/10',
-      tagClass: 'bg-warning/10 text-warning border-warning/30',
+      skills: ['PostgreSQL', 'MongoDB', 'Pinecone', 'Redis'],
     },
     {
-      title: 'Cloud & DevOps',
-      skills: ['AWS', 'Vercel', 'Git', 'GitHub'],
+      category: 'Cloud',
       icon: Cloud,
-      gradient: 'from-brand-cyan-dark/25 via-brand-blue-electric/15 to-brand-cyan/10',
-      tagClass: 'bg-brand-cyan/10 text-brand-cyan border-brand-cyan/30',
-    },
-  ];
-
-  const featuredProjects = [
-    {
-      title: 'Inner Animals AI Dashboard',
-      description: 'AI/ML platform with RAG builder and ML studio',
-      tags: ['Next.js', 'FastAPI', 'LangChain', 'RAG'],
-      githubUrl: 'https://github.com/connordmcneely96/inner-animals-ai-dashboard',
-      liveUrl: '/dashboard',
+      skills: ['AWS', 'Vercel', 'Cloudflare', 'Docker'],
     },
     {
-      title: 'RAG Q&A System',
-      description: 'Retrieval-Augmented Generation for technical docs',
-      tags: ['Python', 'LangChain', 'OpenAI', 'Pinecone'],
-      githubUrl: 'https://github.com/connordmcneely96/RAG-Q-A-for-Mechanical-Engineers',
-      liveUrl: 'https://rag-q-a-for-mechanical-engineers.vercel.app/',
-    },
-    {
-      title: 'Southern Pets',
-      description: 'Full-stack MERN animal rescue platform',
-      tags: ['React', 'Node.js', 'MongoDB', 'Express'],
-      githubUrl: 'https://github.com/connordmcneely96/Southern-Pets-Animal-Rescue-client-project',
-      liveUrl: 'https://southern-pets-animal-rescue-client.vercel.app/',
-    },
-    {
-      title: 'AI Health Coach',
-      description: 'LLM-powered fitness coaching application',
-      tags: ['React', 'OpenAI API', 'FastAPI', 'Vercel'],
-      githubUrl: 'https://github.com/connordmcneely96/AI_Powered_Health_-_Fitness_Coach',
-      liveUrl: 'https://ai-powered-health-fitness-coach.vercel.app/',
+      category: 'Engineering',
+      icon: Cpu,
+      skills: ['SolidWorks', 'FEA/CFD', 'PLC', 'AutoCAD'],
     },
   ];
 
   return (
-    <div className="min-h-screen bg-neural-dark">
+    <div className="relative">
       {/* Hero Section */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="relative overflow-hidden bg-gradient-to-br from-neural-dark via-neural-slate to-neural-dark pt-32 pb-40"
-      >
-        {/* Animated Background Grid */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `linear-gradient(to right, #00B8E6 1px, transparent 1px),
-                            linear-gradient(to bottom, #00B8E6 1px, transparent 1px)`,
-            backgroundSize: '50px 50px'
-          }} />
-        </div>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        {/* Blueprint Grid Background */}
+        <div className="absolute inset-0 bg-blueprint-grid bg-grid-50 opacity-30" />
 
-        {/* Glowing Orbs */}
-        <div className="absolute top-20 -left-40 w-96 h-96 bg-brand-cyan opacity-20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 -right-40 w-96 h-96 bg-brand-blue-electric opacity-20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-success opacity-10 rounded-full blur-3xl animate-pulse" />
+        {/* Animated Gradient Orbs */}
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-accent-500/10 to-transparent rounded-full" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
           <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
+            {/* Badge */}
             <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 mb-6"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-500/10 border border-accent-500/20 mb-8"
             >
-              <Sparkles className="w-4 h-4 text-brand-cyan animate-pulse" />
-              <span className="text-sm font-medium text-brand-cyan">
-                Mechanical Engineering × AI/ML × Full-Stack Development
+              <Sparkles className="w-4 h-4 text-accent-400 animate-pulse" />
+              <span className="text-sm font-medium text-accent-400">
+                Mechanical Engineering × AI Development
               </span>
             </motion.div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              Connor McNeely
-              <span className="block mt-2 bg-gradient-to-r from-brand-cyan via-glow-cyan to-brand-blue-electric bg-clip-text text-transparent">
-                Mechanical Engineer → AI/ML Developer
+            {/* Main Headline */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight">
+              Mechanical Engineer
+              <span className="block mt-2 bg-gradient-to-r from-accent-400 via-accent-300 to-primary-400 bg-clip-text text-transparent">
+                × AI Developer
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-white font-semibold max-w-3xl mx-auto mb-4">
-              Full-Stack Development | AI/ML Engineering | Mechanical Design
+            {/* Subheadline */}
+            <p className="text-xl md:text-2xl text-steel-300 max-w-3xl mx-auto mb-4 font-medium">
+              15 years building industrial systems at Tesla.
+            </p>
+            <p className="text-lg md:text-xl text-steel-400 max-w-2xl mx-auto mb-12">
+              Now building the AI tools that transform engineering.
             </p>
 
-            <p className="text-lg md:text-xl text-circuit-silver max-w-3xl mx-auto mb-12">
-              Bridging physical and digital engineering • 5+ years at Pfizer, John Deere, and leading manufacturers
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
               <Link href="/portfolio">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-blue-electric text-white font-semibold shadow-glow-cyan-lg hover:shadow-glow-cyan-lg transition-all duration-300 flex items-center gap-2 group"
-                >
+                <Button size="lg" rightIcon={<ArrowRight className="w-5 h-5" />}>
                   View Portfolio
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </motion.button>
+                </Button>
               </Link>
               <Link href="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 rounded-xl border-2 border-brand-cyan/30 text-brand-cyan font-semibold hover:bg-brand-cyan/10 hover:border-brand-cyan transition-all duration-300"
-                >
-                  Get in Touch
-                </motion.button>
+                <Button variant="outline" size="lg">
+                  Work With Me
+                </Button>
               </Link>
             </div>
 
-            <div className="flex items-center justify-center gap-4 mt-6 text-sm">
+            {/* Resume Downloads */}
+            <div className="flex items-center justify-center gap-4 text-sm mb-8">
               <a
                 href="/resumes/Mechanical_DrafterModeler_Automation%20Resume.docx.pdf"
-                download="Mechanical_DrafterModeler_Automation Resume"
+                download
                 onClick={() => trackResumeDownload('mechanical')}
-                className="text-circuit-silver hover:text-warning transition-colors flex items-center gap-1.5"
+                className="flex items-center gap-2 text-steel-400 hover:text-secondary-400 transition-colors"
               >
                 <Download className="w-4 h-4" />
-                ME Resume
+                <span>ME Resume</span>
               </a>
-              <span className="text-circuit-silver/30">|</span>
+              <span className="text-steel-600">|</span>
               <a
                 href="/resumes/AI%20Developer_Fullstack%20Developer_AIML_Engineer%20Resume.docx.pdf"
-                download="AI Developer_Fullstack Developer_AIML_Engineer Resume"
+                download
                 onClick={() => trackResumeDownload('ai-dev')}
-                className="text-circuit-silver hover:text-brand-cyan transition-colors flex items-center gap-1.5"
+                className="flex items-center gap-2 text-steel-400 hover:text-accent-400 transition-colors"
               >
                 <Download className="w-4 h-4" />
-                AI/Dev Resume
+                <span>AI/Dev Resume</span>
               </a>
             </div>
 
-            <div className="flex items-center justify-center gap-6 mt-6 text-circuit-silver">
+            {/* Social Links */}
+            <div className="flex items-center justify-center gap-6">
               <a
                 href="https://github.com/connordmcneely96"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-brand-cyan transition-colors"
+                className="flex items-center gap-2 text-steel-400 hover:text-white transition-colors"
               >
                 <Github className="w-5 h-5" />
                 <span className="text-sm">GitHub</span>
@@ -245,430 +209,272 @@ export default function Home() {
                 href="https://linkedin.com/in/connordmcneely"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-brand-cyan transition-colors"
+                className="flex items-center gap-2 text-steel-400 hover:text-white transition-colors"
               >
                 <Linkedin className="w-5 h-5" />
                 <span className="text-sm">LinkedIn</span>
               </a>
             </div>
-
-            <AudienceModeToggle />
           </motion.div>
         </div>
-      </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        >
+          <div className="w-6 h-10 rounded-full border-2 border-steel-600 flex items-start justify-center p-1">
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="w-1.5 h-3 rounded-full bg-accent-400"
+            />
+          </div>
+        </motion.div>
+      </section>
 
       {/* Stats Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-              whileHover={{ y: -8 }}
-              className="group bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 text-center hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
-            >
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-cyan/0 to-brand-cyan/0 group-hover:from-brand-cyan/10 group-hover:to-transparent transition-all duration-300" />
-              <div className="relative">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-brand-cyan/20 flex items-center justify-center group-hover:bg-brand-cyan/30 transition-colors">
-                  <stat.icon className="w-6 h-6 text-brand-cyan" />
-                </div>
-                <h3 className="text-3xl font-bold text-white mb-1">{stat.value}</h3>
-                <p className="text-circuit-silver text-sm">{stat.label}</p>
-                <p className="text-circuit-silver/60 text-xs mt-1">{stat.context}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Trusted By Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-center py-12 mb-20 border-y border-circuit-silver/10"
-        >
-          <p className="text-circuit-silver/60 text-sm uppercase tracking-wider mb-6">Experience At</p>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="text-circuit-silver hover:text-white transition-colors"
-            >
-              <span className="text-2xl md:text-3xl font-bold">Pfizer</span>
-            </motion.div>
-            <span className="text-circuit-silver/30 text-2xl">·</span>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="text-circuit-silver hover:text-white transition-colors"
-            >
-              <span className="text-2xl md:text-3xl font-bold">John Deere</span>
-            </motion.div>
-            <span className="text-circuit-silver/30 text-2xl">·</span>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="text-circuit-silver hover:text-white transition-colors"
-            >
-              <span className="text-2xl md:text-3xl font-bold">Louisiana Tech</span>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Features Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mb-20"
-        >
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Core Capabilities
-            </h2>
-            <p className="text-xl text-circuit-silver">
-              Delivering engineering excellence across multiple disciplines
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1.0 + index * 0.1 }}
-                whileHover={{ y: -8 }}
-                className="group relative bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-8 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
-              >
-                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 transition-all duration-300`} />
-
-                <div className="relative">
-                  <div className={`w-16 h-16 mb-6 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center shadow-glow-cyan`}>
-                    <feature.icon className="w-8 h-8 text-white" />
+      <section className="relative -mt-20 z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4"
+          >
+            {stats.map((stat) => (
+              <motion.div key={stat.label} variants={fadeInUp}>
+                <Card hover glow="cyan" className="text-center">
+                  <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-accent-500/20 flex items-center justify-center">
+                    <stat.icon className="w-7 h-7 text-accent-400" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors">
-                    {feature.title}
-                  </h3>
-                  <p className="text-circuit-silver leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
+                  <h3 className="text-3xl font-bold text-white mb-1">{stat.value}</h3>
+                  <p className="text-steel-400 text-sm">{stat.label}</p>
+                </Card>
               </motion.div>
             ))}
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
+      </section>
 
-        {/* Technical Skills Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.4 }}
-          className="mb-20"
-        >
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+      {/* Experience Bar */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center py-8 border-y border-steel-800/50"
+          >
+            <p className="text-steel-500 text-sm uppercase tracking-wider mb-6">
+              Experience At
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
+              {['Pfizer', 'John Deere', 'Louisiana Tech'].map((company) => (
+                <motion.span
+                  key={company}
+                  whileHover={{ scale: 1.05 }}
+                  className="text-2xl md:text-3xl font-bold text-steel-400 hover:text-white transition-colors"
+                >
+                  {company}
+                </motion.span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Value Proposition Section */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
+              Core Capabilities
+            </h2>
+            <p className="text-xl text-steel-400 max-w-2xl mx-auto">
+              A rare intersection of deep engineering expertise and modern software development
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
+            {valueProps.map((prop) => (
+              <motion.div key={prop.title} variants={fadeInUp}>
+                <Card hover glow="cyan" className="h-full">
+                  <div
+                    className={`w-16 h-16 mb-6 rounded-xl bg-gradient-to-br ${prop.gradient} flex items-center justify-center shadow-lg`}
+                  >
+                    <prop.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-3">{prop.title}</h3>
+                  <p className="text-steel-400 leading-relaxed mb-6">{prop.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {prop.tags.map((tag) => (
+                      <Badge key={tag} variant="accent" size="sm">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Technical Stack Section */}
+      <section className="py-24 bg-primary-800/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
               Technical Stack
             </h2>
-            <p className="text-xl text-circuit-silver">
-              Modern technologies powering engineering and software solutions
+            <p className="text-xl text-steel-400 max-w-2xl mx-auto">
+              Modern technologies powering engineering and AI solutions
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Frontend */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.5 }}
-              whileHover={{ y: -8 }}
-              className="group bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
-            >
-              <div className="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-brand-cyan to-brand-cyan-dark flex items-center justify-center shadow-glow-cyan">
-                <Layers className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors">
-                Frontend Development
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'].map((tech) => (
-                  <span key={tech} className="px-3 py-1 text-xs font-medium rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Backend */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.6 }}
-              whileHover={{ y: -8 }}
-              className="group bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
-            >
-              <div className="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-brand-blue-electric to-brand-cyan flex items-center justify-center shadow-glow-cyan">
-                <Terminal className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors">
-                Backend & APIs
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {['Node.js', 'Express', 'FastAPI', 'Python', 'Rust'].map((tech) => (
-                  <span key={tech} className="px-3 py-1 text-xs font-medium rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* AI/ML */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.7 }}
-              whileHover={{ y: -8 }}
-              className="group bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
-            >
-              <div className="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-success to-brand-cyan flex items-center justify-center shadow-glow-cyan">
-                <Brain className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors">
-                AI & Machine Learning
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {['TensorFlow', 'PyTorch', 'LangChain', 'OpenAI API', 'RAG', 'Vector DBs'].map((tech) => (
-                  <span key={tech} className="px-3 py-1 text-xs font-medium rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Databases */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.8 }}
-              whileHover={{ y: -8 }}
-              className="group bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
-            >
-              <div className="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-warning to-brand-blue-electric flex items-center justify-center shadow-glow-cyan">
-                <Database className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors">
-                Databases & Storage
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {['MongoDB', 'PostgreSQL', 'Pinecone', 'Redis', 'SQL'].map((tech) => (
-                  <span key={tech} className="px-3 py-1 text-xs font-medium rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Cloud & DevOps */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.9 }}
-              whileHover={{ y: -8 }}
-              className="group bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
-            >
-              <div className="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-brand-cyan to-brand-blue-electric flex items-center justify-center shadow-glow-cyan">
-                <Cloud className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors">
-                Cloud & DevOps
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {['AWS', 'Vercel', 'Docker', 'Git', 'CI/CD'].map((tech) => (
-                  <span key={tech} className="px-3 py-1 text-xs font-medium rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Engineering Tools */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 2.0 }}
-              whileHover={{ y: -8 }}
-              className="group bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
-            >
-              <div className="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-error to-brand-cyan flex items-center justify-center shadow-glow-cyan">
-                <Cpu className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors">
-                Engineering Tools
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {['SolidWorks', 'FEA/CFD', 'PLC', 'SCADA', 'AutoCAD'].map((tech) => (
-                  <span key={tech} className="px-3 py-1 text-xs font-medium rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 2.1 }}
-          className="relative bg-gradient-to-br from-brand-cyan to-brand-blue-electric rounded-2xl p-12 overflow-hidden text-center mb-20"
-        >
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `radial-gradient(circle, white 1px, transparent 1px)`,
-              backgroundSize: '30px 30px'
-            }} />
-          </div>
-
-          <div className="relative">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Cog className="w-8 h-8 text-white animate-pulse" />
-              <h2 className="text-4xl font-bold text-white">Let's Build Something Amazing</h2>
-            </div>
-            <p className="text-white/80 text-xl mb-8">
-              Ready to bring engineering excellence to your team
-            </p>
-            <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-xl bg-white text-brand-cyan font-bold shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-2"
-              >
-                Get in Touch
-                <ArrowRight className="w-5 h-5" />
-              </motion.button>
-            </Link>
-          </div>
-        </motion.div>
-
-        {/* Featured Projects Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-24"
-        >
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 mb-6">
-              <Sparkles className="w-4 h-4 text-brand-cyan" />
-              <span className="text-sm font-medium text-brand-cyan">
-                Technical Projects
-              </span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Technical Projects
-            </h2>
-            <p className="text-xl text-circuit-silver">
-              Featured work across AI, full-stack, and product engineering
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-            {featuredProjects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.4, delay: 0.1 + index * 0.05 }}
-                whileHover={{ y: -8 }}
-                className="group relative bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300"
-              >
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-cyan/0 via-brand-cyan/0 to-brand-blue-electric/0 group-hover:from-brand-cyan/10 group-hover:to-brand-blue-electric/10 transition-all duration-300" />
-
-                <div className="relative flex flex-col h-full">
-                  <div className="mb-4">
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-brand-cyan transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-circuit-silver text-sm leading-relaxed">
-                      {project.description}
-                    </p>
+          <motion.div
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {techStack.map((category) => (
+              <motion.div key={category.category} variants={fadeInUp}>
+                <Card hover glow="cyan">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-accent-500/20 flex items-center justify-center">
+                      <category.icon className="w-6 h-6 text-accent-400" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white">{category.category}</h3>
                   </div>
-
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag) => (
+                  <div className="flex flex-wrap gap-2">
+                    {category.skills.map((skill) => (
                       <span
-                        key={tag}
-                        className="px-3 py-1 text-xs font-medium rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20"
+                        key={skill}
+                        className="px-3 py-1.5 text-sm rounded-lg bg-steel-800/50 text-steel-300 border border-steel-700/50"
                       >
-                        {tag}
+                        {skill}
                       </span>
                     ))}
                   </div>
-
-                  <div className="mt-auto flex gap-3 pt-2">
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/btn flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-circuit-silver/10 border border-circuit-silver/20 text-white font-medium hover:text-brand-cyan hover:border-brand-cyan/40 transition-all duration-200"
-                    >
-                      <Github className="w-4 h-4" />
-                      Code
-                      <ExternalLink className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover/btn:opacity-100 group-hover/btn:translate-x-0 transition-all" />
-                    </a>
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/btn flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-brand-cyan to-brand-blue-electric text-white font-semibold hover:shadow-glow-cyan transition-all duration-200"
-                    >
-                      Live
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </a>
-                  </div>
-                </div>
+                </Card>
               </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Featured Projects Section */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <Badge variant="accent" className="mb-4">
+              <Sparkles className="w-3 h-3 mr-1" />
+              Featured Work
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
+              Selected Projects
+            </h2>
+            <p className="text-xl text-steel-400 max-w-2xl mx-auto">
+              A selection of work across mechanical engineering, AI/ML, and full-stack development
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {featuredProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center">
             <Link href="/portfolio">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-xl border-2 border-brand-cyan/30 text-brand-cyan font-semibold hover:bg-brand-cyan/10 hover:border-brand-cyan transition-all duration-300"
-              >
+              <Button variant="outline" size="lg" rightIcon={<ArrowRight className="w-5 h-5" />}>
                 View All Projects
-              </motion.button>
+              </Button>
             </Link>
           </div>
-        </motion.div>
-      </div>
+        </div>
+      </section>
 
-      {/* Mobile Sticky Resume Footer */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-neural-slate/95 backdrop-blur-xl border-t border-circuit-silver/20 p-3 flex gap-2 z-50">
-        <a
-          href="/resumes/Mechanical_DrafterModeler_Automation%20Resume.docx.pdf"
-          download="Mechanical_DrafterModeler_Automation Resume"
-          onClick={() => trackResumeDownload('mechanical')}
-          className="flex-1 px-3 py-2 rounded-lg bg-warning/10 border border-warning/30 text-warning text-sm font-medium flex items-center justify-center gap-1"
-        >
-          <Download className="w-3.5 h-3.5" />
-          ME Resume
-        </a>
-        <a
-          href="/resumes/AI%20Developer_Fullstack%20Developer_AIML_Engineer%20Resume.docx.pdf"
-          download="AI Developer_Fullstack Developer_AIML_Engineer Resume"
-          onClick={() => trackResumeDownload('ai-dev')}
-          className="flex-1 px-3 py-2 rounded-lg bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan text-sm font-medium flex items-center justify-center gap-1"
-        >
-          <Download className="w-3.5 h-3.5" />
-          AI Resume
-        </a>
-      </div>
+      {/* CTA Section */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative bg-gradient-to-br from-accent-500 to-primary-600 rounded-3xl p-12 md:p-16 overflow-hidden text-center"
+          >
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `radial-gradient(circle, white 1px, transparent 1px)`,
+                  backgroundSize: '30px 30px',
+                }}
+              />
+            </div>
+
+            <div className="relative">
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
+                Let's Build Something Together
+              </h2>
+              <p className="text-xl text-white/80 max-w-2xl mx-auto mb-8">
+                Whether you need AI development, engineering consultation, or a full-stack solution,
+                I'm ready to help bring your vision to life.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link href="/contact">
+                  <Button
+                    variant="ghost"
+                    size="lg"
+                    className="bg-white text-primary-600 hover:bg-white/90"
+                    rightIcon={<ArrowRight className="w-5 h-5" />}
+                  >
+                    Get in Touch
+                  </Button>
+                </Link>
+                <Link href="/services">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-white/30 text-white hover:bg-white/10"
+                  >
+                    View Services
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 }

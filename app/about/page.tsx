@@ -3,384 +3,426 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import {
-  Target,
-  Users,
-  TrendingUp,
-  Award,
-  GraduationCap,
-  Star,
-  Trophy,
-  Heart,
-  Zap,
-  Shield,
-  Sparkles,
   ArrowRight,
-  Cog,
-  Settings,
-  Factory,
+  Briefcase,
+  GraduationCap,
   Code,
+  Cog,
+  Brain,
+  Wrench,
+  Zap,
+  Award,
+  MapPin,
+  Calendar,
 } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
+import { Badge } from '@/components/ui/Badge';
 
 export default function About() {
-  const timeline = [
+  const experience = [
     {
-      year: '2020',
-      title: 'Machine Design Engineer',
-      description: 'Designed complete centrifugal pump system at Louisiana Tech',
+      company: 'Revamped Pumps',
+      role: 'Lead Design Engineer',
+      period: '2023 - Present',
+      location: 'Remote',
+      description: 'Sole mechanical design engineer for high-efficiency centrifugal pump systems.',
+      highlights: [
+        'Designed 50+ API 610 compliant pump systems',
+        'Achieved 15% efficiency improvements over industry standard',
+        'Implemented parametric CAD automation reducing design time by 60%',
+      ],
+      tech: ['SolidWorks', 'API 610', 'FEA', 'CFD', 'Python'],
     },
     {
-      year: '2021',
-      title: 'Joined Pfizer',
-      description: 'Contributed to 759M vaccine doses production',
+      company: 'John Deere Turf Care',
+      role: 'Automation Engineer',
+      period: '2023',
+      location: 'Fuquay-Varina, NC',
+      description: 'Led automation and process improvement initiatives for manufacturing operations.',
+      highlights: [
+        '75% reduction in machine downtime through predictive maintenance',
+        'Implemented PLC-based automation systems',
+        '50% efficiency improvement in production workflows',
+      ],
+      tech: ['PLC Programming', 'SCADA', 'Python', 'Lean Six Sigma'],
     },
     {
-      year: '2022',
-      title: 'Process Excellence',
-      description: 'Enhanced efficiency to #1 PatientView ranking',
+      company: 'Pfizer',
+      role: 'Manufacturing Technician III',
+      period: '2021 - 2023',
+      location: 'McPherson, KS',
+      description: 'Supported COVID-19 vaccine production achieving record manufacturing output.',
+      highlights: [
+        'Contributed to 759M vaccine doses production',
+        'Achieved #1 PatientView ranking through process excellence',
+        'Maintained cGMP compliance in critical production environment',
+      ],
+      tech: ['cGMP', 'Process Engineering', 'Quality Systems', 'SAP'],
     },
     {
-      year: '2023',
-      title: 'Automation Leadership',
-      description: 'Led automation initiatives at John Deere Turf Care',
-    },
-    {
-      year: '2023',
-      title: 'Lead Design Engineer',
-      description: 'Sole engineer for high-efficiency pump systems',
-    },
-    {
-      year: '2024',
-      title: 'Full-Stack Development',
-      description: 'Building AI-powered applications and intelligent systems',
-    },
-  ];
-
-  const values = [
-    {
-      icon: Code,
-      title: 'Clean Code',
-      description: 'Maintainable, scalable solutions',
-    },
-    {
-      icon: TrendingUp,
-      title: 'Innovation',
-      description: 'Cutting-edge AI/ML integration',
-    },
-    {
-      icon: Star,
-      title: 'Performance',
-      description: 'Optimized for speed and efficiency',
-    },
-    {
-      icon: Heart,
-      title: 'User-Focused',
-      description: 'Building intuitive experiences',
-    },
-    {
-      icon: Users,
-      title: 'Impact',
-      description: 'Solving real-world problems',
+      company: 'Louisiana Tech University',
+      role: 'Senior Design Project',
+      period: '2020',
+      location: 'Ruston, LA',
+      description: 'Designed and built complete centrifugal pump system from concept to prototype.',
+      highlights: [
+        'Full pump design including impeller, volute, and housing',
+        'CFD analysis and performance optimization',
+        'Manufactured functional prototype',
+      ],
+      tech: ['SolidWorks', 'ANSYS', 'CFD', 'CNC Machining'],
     },
   ];
 
-  const expertise = [
-    { icon: Code, label: 'Full-Stack Development', gradient: 'from-brand-cyan to-brand-cyan-dark' },
-    { icon: Sparkles, label: 'AI/ML Engineering', gradient: 'from-brand-blue-electric to-brand-cyan' },
-    { icon: Settings, label: 'Mechanical Design', gradient: 'from-success to-brand-cyan' },
-    { icon: Zap, label: 'Automation & IoT', gradient: 'from-warning to-brand-blue-electric' },
-    { icon: Trophy, label: 'System Architecture', gradient: 'from-error to-brand-cyan' },
-  ];
+  const skills = {
+    'AI & Machine Learning': [
+      { name: 'LangChain', level: 90 },
+      { name: 'RAG Systems', level: 95 },
+      { name: 'OpenAI API', level: 90 },
+      { name: 'PyTorch', level: 75 },
+      { name: 'Vector Databases', level: 85 },
+      { name: 'Prompt Engineering', level: 95 },
+    ],
+    'Full-Stack Development': [
+      { name: 'React / Next.js', level: 90 },
+      { name: 'TypeScript', level: 85 },
+      { name: 'Node.js', level: 80 },
+      { name: 'Python', level: 90 },
+      { name: 'PostgreSQL', level: 80 },
+      { name: 'Tailwind CSS', level: 95 },
+    ],
+    'Mechanical Engineering': [
+      { name: 'SolidWorks', level: 95 },
+      { name: 'API 610 Design', level: 90 },
+      { name: 'FEA / CFD', level: 85 },
+      { name: 'GD&T', level: 90 },
+      { name: 'Pump Design', level: 95 },
+      { name: 'Process Engineering', level: 85 },
+    ],
+    'Tools & Platforms': [
+      { name: 'Git / GitHub', level: 90 },
+      { name: 'Docker', level: 75 },
+      { name: 'AWS / Cloudflare', level: 80 },
+      { name: 'Linux', level: 85 },
+      { name: 'VS Code / Cursor', level: 95 },
+      { name: 'PLC Programming', level: 80 },
+    ],
+  };
 
-  const credentials = [
-    {
-      icon: GraduationCap,
-      title: 'Education',
-      description: 'B.S. Mechanical Engineering from Louisiana Tech University. Self-taught full-stack developer with extensive AI/ML training.',
-    },
-    {
-      icon: Star,
-      title: 'Experience',
-      description:
-        'Multi-disciplinary engineering and full-stack development across mechanical design, AI/ML systems, and modern web applications',
-    },
-    {
-      icon: Trophy,
-      title: 'Skills & Tech',
-      description:
-        'Full-stack development (React, Next.js, TypeScript), AI/ML (PyTorch, LangChain, RAG), SolidWorks, Lean Six Sigma, PLC Programming',
-    },
+  const certifications = [
+    { name: 'B.S. Mechanical Engineering', issuer: 'Louisiana Tech University', year: '2020' },
+    { name: 'Full-Stack Development', issuer: 'Self-taught + Online Courses', year: '2023' },
+    { name: 'AI/ML Engineering', issuer: 'DeepLearning.AI', year: '2024' },
+    { name: 'Lean Six Sigma', issuer: 'John Deere', year: '2023' },
   ];
 
   return (
-    <div className="min-h-screen bg-neural-dark">
+    <div className="min-h-screen pt-20">
       {/* Hero Section */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className="relative overflow-hidden bg-gradient-to-br from-neural-dark via-neural-slate to-neural-dark pt-32 pb-20"
-      >
-        <div className="absolute inset-0 opacity-20">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `linear-gradient(to right, #00B8E6 1px, transparent 1px),
-                              linear-gradient(to bottom, #00B8E6 1px, transparent 1px)`,
-              backgroundSize: '50px 50px',
-            }}
-          />
-        </div>
-
-        <div className="absolute top-20 -left-40 w-80 h-80 bg-brand-cyan opacity-20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-10 -right-40 w-80 h-80 bg-brand-blue-electric opacity-20 rounded-full blur-3xl animate-pulse" />
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-blueprint-grid bg-grid-50 opacity-10" />
+        <div className="absolute top-20 -left-40 w-80 h-80 bg-accent-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 -right-40 w-80 h-80 bg-primary-600/20 rounded-full blur-3xl" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 mb-6"
-            >
-              <Sparkles className="w-4 h-4 text-brand-cyan" />
-              <span className="text-sm font-medium text-brand-cyan">
-                Mechanical Engineering × AI/ML × Full-Stack Development
-              </span>
-            </motion.div>
-
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+            <Badge variant="accent" className="mb-6">
+              Mechanical Engineer × AI Developer
+            </Badge>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6">
               About Connor McNeely
             </h1>
-            <p className="text-xl md:text-2xl text-circuit-silver max-w-3xl mx-auto">
-              Building intelligent systems with modern web technologies, AI/ML, and mechanical engineering expertise
+            <p className="text-xl text-steel-300 max-w-3xl mx-auto">
+              15+ years of hands-on engineering experience. Now building AI tools
+              that transform how engineers work.
             </p>
           </motion.div>
         </div>
-      </motion.div>
+      </section>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10 pb-20">
-        {/* Story Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16"
-        >
-          <div className="lg:col-span-2">
-            <div className="bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-8 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300">
-              <h2 className="text-3xl font-bold text-white mb-4">My Story</h2>
-              <p className="text-circuit-silver leading-relaxed mb-4">
-                I'm a mechanical engineer who evolved into AI/ML and full-stack development—bridging physical and digital engineering. From designing high-efficiency pumps at Pfizer and John Deere to building RAG-powered AI systems and production web applications, I solve complex problems across domains that rarely intersect.
-              </p>
-
-              <div className="my-6 p-4 rounded-xl bg-brand-cyan/5 border border-brand-cyan/20">
-                <p className="text-sm text-circuit-silver">
-                  <strong className="text-brand-cyan">Impact:</strong> Contributed to 759M vaccine doses at Pfizer ·
-                  Achieved 75% downtime reduction · Improved efficiency by 50% across automation projects
+      {/* Story Section */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <h2 className="text-3xl font-bold text-white mb-6">My Story</h2>
+              <div className="space-y-4 text-steel-300">
+                <p>
+                  I started taking things apart before I could read. By high school,
+                  I was rebuilding engines and designing custom parts. That curiosity
+                  led me to mechanical engineering at Louisiana Tech, where I designed
+                  my first centrifugal pump from scratch.
+                </p>
+                <p>
+                  After graduation, I joined Pfizer during the COVID-19 pandemic,
+                  contributing to the production of 759 million vaccine doses. The
+                  experience of working on something that mattered at that scale
+                  changed how I think about engineering impact.
+                </p>
+                <p>
+                  At John Deere, I discovered the power of automation and data-driven
+                  decision making. Reducing machine downtime by 75% showed me that
+                  software could multiply the impact of mechanical systems.
+                </p>
+                <p>
+                  Today, I combine deep mechanical engineering expertise with AI and
+                  full-stack development. I build tools that help engineers work
+                  smarter—from RAG-powered documentation systems to parametric CAD
+                  automation.
                 </p>
               </div>
+            </motion.div>
 
-              <p className="text-circuit-silver leading-relaxed mb-4">
-                Based in Lafayette, LA, I specialize in creating AI-powered applications, RAG systems, and full-stack solutions. My mechanical engineering background gives me a unique perspective on building robust, optimized systems that solve real-world problems.
-              </p>
-
-              <h3 className="text-2xl font-bold text-white mt-8 mb-3">Development Philosophy</h3>
-              <p className="text-circuit-silver leading-relaxed mb-4">
-                Great engineering—whether software or mechanical—is about understanding systems holistically and creating solutions that deliver real-world value. I combine rigorous analysis with practical innovation, building applications that are performant, maintainable, and user-focused. From AI-powered document processing to CAD automation, I focus on creating tools that solve meaningful problems.
-              </p>
-
-              <h3 className="text-2xl font-bold text-white mt-8 mb-3">Technical Approach</h3>
-              <p className="text-circuit-silver leading-relaxed">
-                My approach integrates mechanical design expertise with modern software development, AI/ML engineering, and automation. From SolidWorks and FEA/CFD analysis to React, Next.js, and PyTorch, I leverage both traditional engineering tools and cutting-edge web technologies to deliver innovative solutions. Whether designing precision machinery, building intelligent web applications, or deploying machine learning models, I focus on scalable, maintainable solutions that deliver measurable impact.
-              </p>
-            </div>
-          </div>
-
-          <div className="space-y-6">
-            <div className="bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300">
-              <h4 className="text-xl font-bold text-white mb-4">Core Values</h4>
-              <ul className="space-y-2">
-                {values.map((value, index) => (
-                  <motion.li
-                    key={value.title}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
-                    className="flex items-center gap-2 text-circuit-silver"
-                  >
-                    <value.icon className="w-5 h-5 text-brand-cyan" />
-                    {value.description}
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300">
-              <h4 className="text-xl font-bold text-white mb-4">Expertise Areas</h4>
-              <div className="space-y-3">
-                {expertise.map((item, index) => (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
-                    className="flex items-center gap-3"
-                  >
-                    <div className={`p-2 rounded-lg bg-gradient-to-br ${item.gradient}`}>
-                      <item.icon className="w-4 h-4 text-white" />
-                    </div>
-                    <span className="text-circuit-silver text-sm">{item.label}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Testimonial */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          className="mb-16"
-        >
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-brand-cyan/5 to-brand-blue-electric/5 border-l-4 border-brand-cyan rounded-xl p-8">
-              <p className="text-circuit-silver text-lg italic leading-relaxed mb-4">
-                "Connor's ability to bridge mechanical engineering and software development is exceptional.
-                His automation solutions delivered measurable improvements in efficiency while maintaining
-                the highest quality standards. He brings a unique perspective that combines rigorous engineering
-                discipline with innovative problem-solving."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-cyan to-brand-blue-electric flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">JD</span>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <Card variant="gradient" padding="lg">
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="text-center p-4">
+                    <div className="text-4xl font-bold text-accent-400 mb-2">15+</div>
+                    <div className="text-sm text-steel-400">Years Building</div>
+                  </div>
+                  <div className="text-center p-4">
+                    <div className="text-4xl font-bold text-accent-400 mb-2">50+</div>
+                    <div className="text-sm text-steel-400">Pumps Designed</div>
+                  </div>
+                  <div className="text-center p-4">
+                    <div className="text-4xl font-bold text-accent-400 mb-2">759M</div>
+                    <div className="text-sm text-steel-400">Vaccine Doses</div>
+                  </div>
+                  <div className="text-center p-4">
+                    <div className="text-4xl font-bold text-accent-400 mb-2">75%</div>
+                    <div className="text-sm text-steel-400">Downtime Reduced</div>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-white font-semibold">Engineering Manager</p>
-                  <p className="text-circuit-silver/60 text-sm">John Deere Turf Care</p>
-                </div>
-              </div>
-            </div>
+              </Card>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
+      </section>
 
-        {/* Timeline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mb-16"
-        >
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">Professional Journey</h2>
+      {/* Experience Timeline */}
+      <section className="py-16 bg-primary-800/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl font-bold text-white mb-4">Professional Experience</h2>
+            <p className="text-steel-400 max-w-2xl mx-auto">
+              From vaccine manufacturing to pump design to AI development—each role
+              has shaped my approach to engineering.
+            </p>
+          </motion.div>
+
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-brand-cyan via-brand-blue-electric to-brand-cyan opacity-30" />
+            <div className="absolute left-8 lg:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent-500 via-primary-600 to-accent-500 opacity-30" />
 
             <div className="space-y-12">
-              {timeline.map((item, index) => (
+              {experience.map((job, index) => (
                 <motion.div
-                  key={item.year}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                  className={`flex items-center gap-8 ${
-                    index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
+                  key={job.company}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                  className={`relative flex flex-col lg:flex-row gap-8 ${
+                    index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
                   }`}
                 >
-                  <div className={`flex-1 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
-                    <div className="bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-6 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300 inline-block">
-                      <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                      <p className="text-circuit-silver text-sm">{item.description}</p>
-                    </div>
+                  {/* Timeline dot */}
+                  <div className="absolute left-8 lg:left-1/2 w-4 h-4 -ml-2 rounded-full bg-accent-500 border-4 border-primary-900 z-10" />
+
+                  {/* Content */}
+                  <div className={`flex-1 ml-16 lg:ml-0 ${index % 2 === 0 ? 'lg:pr-16 lg:text-right' : 'lg:pl-16'}`}>
+                    <Card padding="lg" className="hover:border-accent-500/50 transition-colors">
+                      <div className={`flex items-start gap-4 mb-4 ${index % 2 === 0 ? 'lg:flex-row-reverse' : ''}`}>
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-500/20 to-primary-600/20 flex items-center justify-center flex-shrink-0">
+                          <Briefcase className="w-6 h-6 text-accent-400" />
+                        </div>
+                        <div className={index % 2 === 0 ? 'lg:text-right' : ''}>
+                          <h3 className="text-xl font-bold text-white">{job.role}</h3>
+                          <p className="text-accent-400 font-medium">{job.company}</p>
+                          <div className="flex items-center gap-4 mt-1 text-sm text-steel-500">
+                            <span className="flex items-center gap-1">
+                              <Calendar className="w-3 h-3" />
+                              {job.period}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <MapPin className="w-3 h-3" />
+                              {job.location}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="text-steel-300 mb-4">{job.description}</p>
+                      <ul className="space-y-2 mb-4">
+                        {job.highlights.map((highlight, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm text-steel-400">
+                            <Zap className="w-4 h-4 text-accent-500 flex-shrink-0 mt-0.5" />
+                            {highlight}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="flex flex-wrap gap-2">
+                        {job.tech.map((tech) => (
+                          <Badge key={tech} variant="default" size="sm">
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+                    </Card>
                   </div>
 
-                  <div className="relative z-10 w-16 h-16 rounded-full bg-gradient-to-br from-brand-cyan to-brand-blue-electric flex items-center justify-center shadow-glow-cyan">
-                    <span className="text-white font-bold text-sm">{item.year}</span>
-                  </div>
-
-                  <div className="flex-1" />
+                  {/* Spacer for alternating layout */}
+                  <div className="hidden lg:block flex-1" />
                 </motion.div>
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
+      </section>
 
-        {/* Credentials */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mb-16"
-        >
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">
-            Qualifications & Experience
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {credentials.map((credential, index) => (
+      {/* Skills Matrix */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl font-bold text-white mb-4">Skills & Expertise</h2>
+            <p className="text-steel-400 max-w-2xl mx-auto">
+              A unique combination of mechanical engineering, AI/ML, and full-stack development.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {Object.entries(skills).map(([category, categorySkills], categoryIndex) => (
               <motion.div
-                key={credential.title}
+                key={category}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="group relative bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-8 hover:border-brand-cyan/50 hover:shadow-glow-cyan transition-all duration-300 text-center"
+                transition={{ duration: 0.5, delay: 0.2 + categoryIndex * 0.1 }}
               >
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-cyan/0 to-brand-cyan/0 group-hover:from-brand-cyan/10 group-hover:to-transparent transition-all duration-300" />
-
-                <div className="relative">
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-brand-cyan to-brand-blue-electric flex items-center justify-center shadow-glow-cyan">
-                    <credential.icon className="w-10 h-10 text-white" />
+                <Card padding="lg">
+                  <div className="flex items-center gap-3 mb-6">
+                    {category === 'AI & Machine Learning' && <Brain className="w-6 h-6 text-accent-400" />}
+                    {category === 'Full-Stack Development' && <Code className="w-6 h-6 text-accent-400" />}
+                    {category === 'Mechanical Engineering' && <Cog className="w-6 h-6 text-accent-400" />}
+                    {category === 'Tools & Platforms' && <Wrench className="w-6 h-6 text-accent-400" />}
+                    <h3 className="text-xl font-bold text-white">{category}</h3>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3">{credential.title}</h3>
-                  <p className="text-circuit-silver leading-relaxed">{credential.description}</p>
-                </div>
+                  <div className="space-y-4">
+                    {categorySkills.map((skill) => (
+                      <div key={skill.name}>
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm text-steel-300">{skill.name}</span>
+                          <span className="text-sm text-steel-500">{skill.level}%</span>
+                        </div>
+                        <div className="h-2 bg-steel-800 rounded-full overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: `${skill.level}%` }}
+                            transition={{ duration: 1, delay: 0.5 + categoryIndex * 0.1 }}
+                            className="h-full bg-gradient-to-r from-accent-500 to-primary-500 rounded-full"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </Card>
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </div>
+      </section>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="relative bg-gradient-to-br from-brand-cyan to-brand-blue-electric rounded-2xl p-12 overflow-hidden text-center"
-        >
-          <div className="absolute inset-0 opacity-10">
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `radial-gradient(circle, white 1px, transparent 1px)`,
-                backgroundSize: '30px 30px',
-              }}
-            />
-          </div>
+      {/* Certifications */}
+      <section className="py-16 bg-primary-800/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl font-bold text-white mb-4">Education & Certifications</h2>
+          </motion.div>
 
-          <div className="relative">
-            <h2 className="text-4xl font-bold text-white mb-4">Let's Build Something Amazing</h2>
-            <p className="text-white/80 text-xl mb-8">
-              Ready to bring engineering excellence to your team
-            </p>
-            <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-xl bg-white text-brand-cyan font-bold shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-2"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {certifications.map((cert, index) => (
+              <motion.div
+                key={cert.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
               >
-                Get in Touch
-                <ArrowRight className="w-5 h-5" />
-              </motion.button>
-            </Link>
+                <Card padding="lg" className="text-center h-full">
+                  <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-gradient-to-br from-accent-500/20 to-primary-600/20 flex items-center justify-center">
+                    {index === 0 ? (
+                      <GraduationCap className="w-7 h-7 text-accent-400" />
+                    ) : (
+                      <Award className="w-7 h-7 text-accent-400" />
+                    )}
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-1">{cert.name}</h3>
+                  <p className="text-sm text-steel-400 mb-2">{cert.issuer}</p>
+                  <Badge variant="accent" size="sm">{cert.year}</Badge>
+                </Card>
+              </motion.div>
+            ))}
           </div>
-        </motion.div>
-      </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Card variant="gradient" padding="lg" className="text-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Let's Build Something Together
+              </h2>
+              <p className="text-steel-300 text-lg mb-8 max-w-2xl mx-auto">
+                Whether you need AI-powered tools, mechanical engineering expertise,
+                or full-stack development—I'm ready to help bring your vision to life.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/contact">
+                  <Button size="lg" rightIcon={<ArrowRight className="w-5 h-5" />}>
+                    Get in Touch
+                  </Button>
+                </Link>
+                <Link href="/portfolio">
+                  <Button variant="outline" size="lg">
+                    View My Work
+                  </Button>
+                </Link>
+              </div>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 }

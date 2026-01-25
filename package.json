@@ -18,6 +18,8 @@
     "cf:pages:tail": "wrangler pages deployment tail --project-name=leadership-legacy"
   },
   "dependencies": {
+    "@google/model-viewer": "^4.1.0",
+    "clsx": "^2.1.1",
     "framer-motion": "^11.0.0",
     "lucide-react": "^0.553.0",
     "next": "15.5.2",
