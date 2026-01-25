@@ -12,8 +12,7 @@ import {
   MessageCircle,
   Github,
   MapPin,
-  Loader2,
-  AlertCircle,
+  ExternalLink,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -27,41 +26,30 @@ export default function Contact() {
     phone: '',
     subject: '',
     message: '',
-    honeypot: '', // Bot trap
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-    setErrorMessage('');
 
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+    // Construct mailto URL with form data
+    const emailBody = `
+Name: ${formData.name}
+Email: ${formData.email}
+${formData.phone ? `Phone: ${formData.phone}\n` : ''}
+Topic: ${formData.subject}
 
-      const data = await response.json();
+Message:
+${formData.message}
+    `.trim();
 
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message');
-      }
+    const mailtoUrl = `mailto:connordmcneely@gmail.com?subject=${encodeURIComponent(`Portfolio Contact: ${formData.subject}`)}&body=${encodeURIComponent(emailBody)}`;
 
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '', honeypot: '' });
-    } catch (error) {
-      setSubmitStatus('error');
-      setErrorMessage(error instanceof Error ? error.message : 'Something went wrong');
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Open email client
+    window.location.href = mailtoUrl;
+
+    // Show success message
+    setSubmitted(true);
   };
 
   const contactMethods = [
@@ -171,8 +159,8 @@ export default function Contact() {
                     <motion.a
                       key={method.title}
                       href={method.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      target={method.title !== 'Email' ? '_blank' : undefined}
+                      rel={method.title !== 'Email' ? 'noopener noreferrer' : undefined}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
@@ -181,10 +169,13 @@ export default function Contact() {
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-500/20 to-primary-600/20 flex items-center justify-center group-hover:from-accent-500/30 group-hover:to-primary-600/30 transition-colors">
                         <method.icon className="w-6 h-6 text-accent-400" />
                       </div>
-                      <div>
+                      <div className="flex-1">
                         <h3 className="text-white font-semibold">{method.title}</h3>
                         <p className="text-sm text-steel-400">{method.description}</p>
                       </div>
+                      {method.title !== 'Email' && (
+                        <ExternalLink className="w-4 h-4 text-steel-500 group-hover:text-accent-400 transition-colors" />
+                      )}
                     </motion.a>
                   ))}
                 </div>
@@ -218,9 +209,12 @@ export default function Contact() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <Card padding="lg">
-                <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
+                <h3 className="text-2xl font-bold text-white mb-2">Send a Message</h3>
+                <p className="text-steel-400 text-sm mb-6">
+                  Fill out the form below and your email client will open with the message ready to send.
+                </p>
 
-                {submitStatus === 'success' ? (
+                {submitted ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -229,30 +223,19 @@ export default function Contact() {
                     <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-500/20 flex items-center justify-center">
                       <CheckCircle2 className="w-8 h-8 text-green-400" />
                     </div>
-                    <h4 className="text-xl font-bold text-white mb-2">Message Sent!</h4>
+                    <h4 className="text-xl font-bold text-white mb-2">Email Client Opened!</h4>
                     <p className="text-steel-400 mb-6">
-                      Thank you for reaching out. I'll get back to you within 24-48 hours.
+                      Please send the email from your mail application. I'll respond within 24-48 hours.
                     </p>
                     <Button
                       variant="outline"
-                      onClick={() => setSubmitStatus('idle')}
+                      onClick={() => setSubmitted(false)}
                     >
-                      Send Another Message
+                      Fill Out Again
                     </Button>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Honeypot field - hidden from users */}
-                    <input
-                      type="text"
-                      name="honeypot"
-                      value={formData.honeypot}
-                      onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
-                      className="hidden"
-                      tabIndex={-1}
-                      autoComplete="off"
-                    />
-
                     <Input
                       label="Full Name"
                       type="text"
@@ -296,32 +279,21 @@ export default function Contact() {
                       placeholder="Tell me about your project or opportunity..."
                     />
 
-                    {submitStatus === 'error' && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-2 p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400"
-                      >
-                        <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                        <span>{errorMessage || 'Something went wrong. Please try again.'}</span>
-                      </motion.div>
-                    )}
-
                     <Button
                       type="submit"
                       fullWidth
                       size="lg"
-                      disabled={isSubmitting}
-                      leftIcon={
-                        isSubmitting ? (
-                          <Loader2 className="w-5 h-5 animate-spin" />
-                        ) : (
-                          <Send className="w-5 h-5" />
-                        )
-                      }
+                      leftIcon={<Send className="w-5 h-5" />}
                     >
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                      Open Email Client
                     </Button>
+
+                    <p className="text-xs text-steel-500 text-center">
+                      Or email me directly at{' '}
+                      <a href="mailto:connordmcneely@gmail.com" className="text-accent-400 hover:underline">
+                        connordmcneely@gmail.com
+                      </a>
+                    </p>
                   </form>
                 )}
               </Card>
