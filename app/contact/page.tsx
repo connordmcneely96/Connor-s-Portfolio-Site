@@ -4,42 +4,64 @@ import { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import {
   Mail,
-  Phone,
   Linkedin,
   Send,
   CheckCircle2,
   Clock,
   UserCheck,
   MessageCircle,
-  Sparkles,
-  Github
+  Github,
+  MapPin,
+  Loader2,
+  AlertCircle,
 } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
+import { Badge } from '@/components/ui/Badge';
+import { Input, Textarea, Select } from '@/components/ui/Input';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    interest: '',
-    message: ''
+    subject: '',
+    message: '',
+    honeypot: '', // Bot trap
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
 
-    if (!formData.name || !formData.email || !formData.interest || !formData.message) {
-      alert('Please fill in all required fields.');
-      return;
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '', honeypot: '' });
+    } catch (error) {
+      setSubmitStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'Something went wrong');
+    } finally {
+      setIsSubmitting(false);
     }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      alert('Please enter a valid email address.');
-      return;
-    }
-
-    alert('Thank you for your message! We will get back to you within 24-48 hours.');
-    setFormData({ name: '', email: '', phone: '', interest: '', message: '' });
   };
 
   const contactMethods = [
@@ -48,21 +70,18 @@ export default function Contact() {
       title: 'Email',
       description: 'connordmcneely@gmail.com',
       link: 'mailto:connordmcneely@gmail.com',
-      gradient: 'from-brand-cyan to-brand-cyan-dark',
     },
     {
       icon: Linkedin,
       title: 'LinkedIn',
       description: 'linkedin.com/in/connordmcneely',
       link: 'https://linkedin.com/in/connordmcneely',
-      gradient: 'from-brand-blue-electric to-brand-cyan',
     },
     {
       icon: Github,
       title: 'GitHub',
       description: 'github.com/connordmcneely96',
       link: 'https://github.com/connordmcneely96',
-      gradient: 'from-success to-brand-cyan',
     },
   ];
 
@@ -85,218 +104,231 @@ export default function Contact() {
     },
   ];
 
+  const subjectOptions = [
+    { value: '', label: 'Select a topic' },
+    { value: 'AI Development Project', label: 'AI Development Project' },
+    { value: 'Mechanical Engineering Consulting', label: 'Mechanical Engineering Consulting' },
+    { value: 'Full-Stack Development', label: 'Full-Stack Development' },
+    { value: 'Full-Time Opportunity', label: 'Full-Time Opportunity' },
+    { value: 'Technical Consulting', label: 'Technical Consulting' },
+    { value: 'General Inquiry', label: 'General Inquiry' },
+  ];
+
   return (
-    <div className="min-h-screen bg-neural-dark">
-      {/* Hero */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="relative overflow-hidden bg-gradient-to-br from-neural-dark via-neural-slate to-neural-dark pt-32 pb-20"
-      >
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `linear-gradient(to right, #00B8E6 1px, transparent 1px), linear-gradient(to bottom, #00B8E6 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
-          }} />
-        </div>
-        <div className="absolute top-20 -left-40 w-80 h-80 bg-brand-cyan opacity-20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-10 -right-40 w-80 h-80 bg-brand-blue-electric opacity-20 rounded-full blur-3xl animate-pulse" />
+    <div className="min-h-screen pt-20">
+      {/* Hero Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-blueprint-grid bg-grid-50 opacity-10" />
+        <div className="absolute top-20 -left-40 w-80 h-80 bg-accent-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 -right-40 w-80 h-80 bg-primary-600/20 rounded-full blur-3xl" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.2 }} className="text-center">
-            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.5, delay: 0.4 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 mb-6">
-              <Sparkles className="w-4 h-4 text-brand-cyan" />
-              <span className="text-sm font-medium text-brand-cyan">Let's Connect</span>
-            </motion.div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">Let's Work Together</h1>
-            <p className="text-xl md:text-2xl text-circuit-silver max-w-3xl mx-auto">Building innovative solutions with AI/ML and full-stack development</p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <Badge variant="accent" className="mb-6">
+              Let's Connect
+            </Badge>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6">
+              Get in Touch
+            </h1>
+            <p className="text-xl text-steel-300 max-w-3xl mx-auto">
+              Have a project in mind or want to discuss an opportunity?
+              I'd love to hear from you.
+            </p>
           </motion.div>
         </div>
-      </motion.div>
+      </section>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-8 mb-8">
-              <h2 className="text-3xl font-bold text-white mb-4">Let's Connect</h2>
-              <p className="text-circuit-silver text-lg mb-8">
-                Based in Lafayette, LA. Available for freelance projects, full-time opportunities, and technical consulting.
-              </p>
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Info */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="space-y-8"
+            >
+              <Card padding="lg">
+                <h2 className="text-2xl font-bold text-white mb-2">Let's Connect</h2>
+                <div className="flex items-center gap-2 text-steel-400 mb-6">
+                  <MapPin className="w-4 h-4" />
+                  <span>Based in Lafayette, LA</span>
+                </div>
+                <p className="text-steel-300 mb-8">
+                  Available for freelance projects, full-time opportunities,
+                  and technical consulting. Whether you need AI-powered tools,
+                  mechanical engineering expertise, or full-stack development—let's talk.
+                </p>
 
-              <div className="space-y-4">
-                {contactMethods.map((method, index) => (
-                  <motion.div
-                    key={method.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                    whileHover={{ x: 8 }}
-                    className="group flex items-start gap-4 p-4 rounded-xl bg-neural-dark/40 border border-circuit-silver/10 hover:border-brand-cyan/50 hover:bg-neural-dark/60 transition-all duration-300"
-                  >
-                    <a
+                <div className="space-y-4">
+                  {contactMethods.map((method, index) => (
+                    <motion.a
+                      key={method.title}
                       href={method.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-start gap-4 w-full"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+                      className="flex items-center gap-4 p-4 rounded-xl bg-steel-800/30 border border-steel-700/50 hover:border-accent-500/50 hover:bg-steel-800/50 transition-all group"
                     >
-                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${method.gradient} flex items-center justify-center shadow-glow-cyan flex-shrink-0`}>
-                        <method.icon className="w-6 h-6 text-white" />
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-500/20 to-primary-600/20 flex items-center justify-center group-hover:from-accent-500/30 group-hover:to-primary-600/30 transition-colors">
+                        <method.icon className="w-6 h-6 text-accent-400" />
                       </div>
                       <div>
-                        <h3 className="text-white font-semibold mb-1">{method.title}</h3>
-                        <p className="text-circuit-silver text-sm">{method.description}</p>
+                        <h3 className="text-white font-semibold">{method.title}</h3>
+                        <p className="text-sm text-steel-400">{method.description}</p>
                       </div>
-                    </a>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+                    </motion.a>
+                  ))}
+                </div>
+              </Card>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="bg-gradient-to-br from-brand-cyan to-brand-blue-electric rounded-2xl p-8 overflow-hidden"
-            >
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute inset-0" style={{
-                  backgroundImage: `radial-gradient(circle, white 1px, transparent 1px)`,
-                  backgroundSize: '30px 30px',
-                }} />
-              </div>
-              <div className="relative">
-                <h3 className="text-2xl font-bold text-white mb-6">What to Expect</h3>
+              <Card variant="gradient" padding="lg">
+                <h3 className="text-xl font-bold text-white mb-6">What to Expect</h3>
                 <ul className="space-y-4">
                   {expectations.map((item, index) => (
                     <motion.li
                       key={index}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                      className="flex items-center gap-3 text-white"
+                      transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
+                      className="flex items-center gap-3 text-steel-200"
                     >
-                      <item.icon className="w-5 h-5 flex-shrink-0" />
+                      <div className="w-8 h-8 rounded-lg bg-accent-500/20 flex items-center justify-center flex-shrink-0">
+                        <item.icon className="w-4 h-4 text-accent-400" />
+                      </div>
                       <span>{item.text}</span>
                     </motion.li>
                   ))}
                 </ul>
-              </div>
+              </Card>
             </motion.div>
-          </motion.div>
 
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-neural-slate/60 backdrop-blur-xl border border-circuit-silver/20 rounded-2xl p-8"
-          >
-            <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-circuit-silver text-sm font-medium mb-2">
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  className="w-full px-4 py-3 rounded-xl bg-neural-dark border border-circuit-silver/20 text-white placeholder-circuit-silver/50 focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 transition-all"
-                  placeholder="Your full name"
-                />
-              </div>
+            {/* Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <Card padding="lg">
+                <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
 
-              <div>
-                <label htmlFor="email" className="block text-circuit-silver text-sm font-medium mb-2">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  className="w-full px-4 py-3 rounded-xl bg-neural-dark border border-circuit-silver/20 text-white placeholder-circuit-silver/50 focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 transition-all"
-                  placeholder="your.email@example.com"
-                />
-              </div>
+                {submitStatus === 'success' ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-center py-12"
+                  >
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-500/20 flex items-center justify-center">
+                      <CheckCircle2 className="w-8 h-8 text-green-400" />
+                    </div>
+                    <h4 className="text-xl font-bold text-white mb-2">Message Sent!</h4>
+                    <p className="text-steel-400 mb-6">
+                      Thank you for reaching out. I'll get back to you within 24-48 hours.
+                    </p>
+                    <Button
+                      variant="outline"
+                      onClick={() => setSubmitStatus('idle')}
+                    >
+                      Send Another Message
+                    </Button>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Honeypot field - hidden from users */}
+                    <input
+                      type="text"
+                      name="honeypot"
+                      value={formData.honeypot}
+                      onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
+                      className="hidden"
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
 
-              <div>
-                <label htmlFor="phone" className="block text-circuit-silver text-sm font-medium mb-2">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  className="w-full px-4 py-3 rounded-xl bg-neural-dark border border-circuit-silver/20 text-white placeholder-circuit-silver/50 focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 transition-all"
-                  placeholder="(Optional)"
-                />
-              </div>
+                    <Input
+                      label="Full Name"
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="Your full name"
+                    />
 
-              <div>
-                <label htmlFor="interest" className="block text-circuit-silver text-sm font-medium mb-2">
-                  I'm Interested In *
-                </label>
-                <select
-                  id="interest"
-                  name="interest"
-                  required
-                  value={formData.interest}
-                  onChange={(e) => setFormData({...formData, interest: e.target.value})}
-                  className="w-full px-4 py-3 rounded-xl bg-neural-dark border border-circuit-silver/20 text-white focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 transition-all"
-                >
-                  <option value="">Select an option</option>
-                  <option value="Freelance Project">Freelance Project</option>
-                  <option value="Full-Time Position">Full-Time Position</option>
-                  <option value="Technical Consulting">Technical Consulting</option>
-                  <option value="AI/ML Development">AI/ML Development</option>
-                  <option value="Collaboration">Collaboration</option>
-                  <option value="General Inquiry">General Inquiry</option>
-                </select>
-              </div>
+                    <Input
+                      label="Email Address"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="your.email@example.com"
+                    />
 
-              <div>
-                <label htmlFor="message" className="block text-circuit-silver text-sm font-medium mb-2">
-                  Your Message *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  className="w-full px-4 py-3 rounded-xl bg-neural-dark border border-circuit-silver/20 text-white placeholder-circuit-silver/50 focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 transition-all resize-none"
-                  placeholder="Tell me about your project or opportunity..."
-                ></textarea>
-              </div>
+                    <Input
+                      label="Phone Number"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      placeholder="(Optional)"
+                    />
 
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-blue-electric text-white font-semibold shadow-glow-cyan hover:shadow-glow-cyan-lg transition-all duration-300 flex items-center justify-center gap-2"
-              >
-                <Send className="w-5 h-5" />
-                Send Message
-              </motion.button>
-            </form>
-          </motion.div>
+                    <Select
+                      label="I'm Interested In"
+                      required
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      options={subjectOptions}
+                    />
+
+                    <Textarea
+                      label="Your Message"
+                      required
+                      rows={5}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Tell me about your project or opportunity..."
+                    />
+
+                    {submitStatus === 'error' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex items-center gap-2 p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400"
+                      >
+                        <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                        <span>{errorMessage || 'Something went wrong. Please try again.'}</span>
+                      </motion.div>
+                    )}
+
+                    <Button
+                      type="submit"
+                      fullWidth
+                      size="lg"
+                      disabled={isSubmitting}
+                      leftIcon={
+                        isSubmitting ? (
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                        ) : (
+                          <Send className="w-5 h-5" />
+                        )
+                      }
+                    >
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                    </Button>
+                  </form>
+                )}
+              </Card>
+            </motion.div>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

@@ -1,8 +1,7 @@
-# Wrangler configuration for Leadership Legacy Worker
+# Wrangler configuration for Connor McNeely Portfolio
 # Documentation: https://developers.cloudflare.com/workers/wrangler/configuration/
 
-name = "leadership-legacy-worker"
-main = "worker.js"
+name = "connor-mcneely-portfolio"
 compatibility_date = "2024-11-14"
 compatibility_flags = ["nodejs_compat"]
 
@@ -11,31 +10,34 @@ account_id = "ede6590ac0d2fb7daf155b35653457b2"
 
 # Worker configuration
 workers_dev = true
-# Uncomment and configure custom route when domain is ready:
-# route = { pattern = "api.leadershiplegacy.com/*", zone_id = "0bab48636c1bea4be4ea61c0c7787c3e" }
 
-# D1 Database binding
-# Update database_id after creating: wrangler d1 create leadership-legacy-db
+# Pages project configuration
+# For Cloudflare Pages, deploy via dashboard or CLI:
+# npx wrangler pages deploy .next --project-name=connor-mcneely-portfolio
+
+# D1 Database binding (for contact form submissions)
+# Create with: wrangler d1 create portfolio-db
 [[d1_databases]]
-binding = "LEADERSHIP_DB"
-database_name = "leadership-legacy-db"
+binding = "DB"
+database_name = "portfolio-db"
 database_id = "UPDATE_AFTER_CREATION"
 
-# R2 Bucket binding
-# Create with: wrangler r2 bucket create leadership-legacy-assets
+# R2 Bucket binding (for 3D models and assets)
+# Create with: wrangler r2 bucket create portfolio-assets
 [[r2_buckets]]
-binding = "LEADERSHIP_ASSETS"
-bucket_name = "leadership-legacy-assets"
+binding = "ASSETS"
+bucket_name = "portfolio-assets"
 
+# KV Namespace (for caching and configuration)
+# Create with: wrangler kv:namespace create CACHE
 [[kv_namespaces]]
-binding = "LEADERSHIP_CONFIG"
+binding = "CACHE"
 id = "UPDATE_AFTER_CREATION"
-
-
 
 # Environment variables (non-sensitive)
 [vars]
 ENVIRONMENT = "production"
+SITE_URL = "https://connormcneely.com"
 API_VERSION = "1.0.0"
 
 # Observability
