@@ -290,3 +290,241 @@ model-viewer::part(default-progress-bar) {
     container-type: inline-size;
   }
 }
+
+/* ========================================
+   Advanced Glassmorphism
+   ======================================== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+.shadow-glass {
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+.shadow-glass-hover {
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.15),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================
+   Animated Gradient Border
+   ======================================== */
+.gradient-border {
+  position: relative;
+  background: var(--steel-900);
+  border-radius: 24px;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-500),
+    var(--accent-500),
+    var(--secondary-500),
+    var(--primary-500)
+  );
+  background-size: 300% 300%;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.gradient-border-animated::before {
+  animation: gradient-rotate 8s ease infinite;
+}
+
+@keyframes gradient-rotate {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ========================================
+   Noise & Grain Texture
+   ======================================== */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ========================================
+   Advanced Animations
+   ======================================== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(10px, 10px); }
+  50% { transform: translate(5px, -5px); }
+  75% { transform: translate(-5px, 5px); }
+}
+
+@keyframes drift-reverse {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-10px, -10px); }
+  50% { transform: translate(-5px, 5px); }
+  75% { transform: translate(5px, -5px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.05); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: drift 20s ease-in-out infinite;
+}
+
+.animate-drift-reverse {
+  animation: drift-reverse 25s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+/* ========================================
+   Depth Layers
+   ======================================== */
+.layer-1 { z-index: 10; }
+.layer-2 { z-index: 20; }
+.layer-3 { z-index: 30; }
+
+/* ========================================
+   Text Glow Effects
+   ======================================== */
+.text-glow-cyan {
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.5),
+               0 0 40px rgba(6, 182, 212, 0.3);
+}
+
+.text-glow-primary {
+  text-shadow: 0 0 20px rgba(59, 130, 246, 0.5),
+               0 0 40px rgba(59, 130, 246, 0.3);
+}
+
+/* ========================================
+   Enhanced Glow Shadows
+   ======================================== */
+.shadow-glow-cyan {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3),
+              0 0 40px rgba(6, 182, 212, 0.1);
+}
+
+.shadow-glow-cyan-lg {
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.4),
+              0 0 60px rgba(6, 182, 212, 0.2);
+}
+
+.shadow-glow-primary {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3),
+              0 0 40px rgba(59, 130, 246, 0.1);
+}
+
+/* ========================================
+   Interactive Hover States
+   ======================================== */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* ========================================
+   Blueprint Grid Patterns
+   ======================================== */
+.bg-blueprint-grid {
+  background-image:
+    linear-gradient(to right, rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+}
+
+.bg-grid-50 {
+  background-size: 50px 50px;
+}
+
+.bg-grid-25 {
+  background-size: 25px 25px;
+}
+
+.bg-grid-100 {
+  background-size: 100px 100px;
+}
+
+/* ========================================
+   Utility Classes for Bento Layout
+   ======================================== */
+.bento-span-1x1 { grid-column: span 1; grid-row: span 1; }
+.bento-span-2x1 { grid-column: span 2; grid-row: span 1; }
+.bento-span-1x2 { grid-column: span 1; grid-row: span 2; }
+.bento-span-2x2 { grid-column: span 2; grid-row: span 2; }
+
+@media (max-width: 768px) {
+  .bento-span-2x1, .bento-span-2x2 {
+    grid-column: span 2;
+  }
+}
+
+/* ========================================
+   Marquee Animation for Logos
+   ======================================== */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ========================================
+   Perspective Utilities
+   ======================================== */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
