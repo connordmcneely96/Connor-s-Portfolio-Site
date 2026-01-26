@@ -48,7 +48,7 @@ const services = [
     title: 'Engineering Consultation',
     subtitle: 'Expert guidance on mechanical systems',
     description:
-      'Drawing on 15+ years of industrial experience, I provide expert consultation on pump design, rotating equipment, and manufacturing optimization.',
+      '5+ years of production engineering experience, available when you need it. Expert consultation on pump design, rotating equipment, and manufacturing optimization.',
     features: [
       'Pump design review (API 610/682)',
       'Rotating equipment troubleshooting',

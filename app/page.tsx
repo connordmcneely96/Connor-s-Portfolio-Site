@@ -56,7 +56,7 @@ export default function Home() {
       description:
         'API 610/682 certified pump design, rotating equipment, shaft analysis per ASME standards.',
       benefit: 'Production-ready designs that pass quality gates the first time.',
-      proof: '50+ pumps in Tesla\'s manufacturing fleet',
+      proof: '50+ pumps designed for automotive production',
       gradient: 'from-secondary-500 to-secondary-600',
       tags: ['SolidWorks', 'API 610', 'FEA/CFD', 'GD&T'],
     },
@@ -178,7 +178,7 @@ export default function Home() {
               transition={{ delay: 1 }}
             >
               <p className="text-xl md:text-2xl text-steel-300 max-w-3xl mx-auto mb-2 font-medium">
-                15 years designing production systems at Tesla.
+                5+ years designing production systems in automotive manufacturing.
               </p>
               <p className="text-lg md:text-xl text-steel-400 max-w-2xl mx-auto mb-12">
                 Now building AI tools that transform how engineering gets done.
@@ -194,12 +194,12 @@ export default function Home() {
             >
               <Link href="/portfolio">
                 <Button size="lg" rightIcon={<ArrowRight className="w-5 h-5" />}>
-                  View My Work
+                  See What I've Built
                 </Button>
               </Link>
               <Link href="/contact">
                 <Button variant="outline" size="lg">
-                  Let's Talk
+                  Start a Conversation
                 </Button>
               </Link>
             </motion.div>
@@ -257,7 +257,7 @@ export default function Home() {
             <BentoCard span="1x1" glow delay={0}>
               <div className="h-full flex flex-col items-center justify-center text-center">
                 <Award className="w-8 h-8 text-accent-400 mb-2" />
-                <StatCounter value={15} suffix="+" label="Years Experience" className="!text-3xl md:!text-4xl" />
+                <StatCounter value={5} suffix="+" label="Years Experience" className="!text-3xl md:!text-4xl" />
               </div>
             </BentoCard>
             <BentoCard span="1x1" glow delay={0.1}>
@@ -269,13 +269,13 @@ export default function Home() {
             <BentoCard span="1x1" glow delay={0.2}>
               <div className="h-full flex flex-col items-center justify-center text-center">
                 <Brain className="w-8 h-8 text-primary-400 mb-2" />
-                <StatCounter value={12} label="AI Projects" className="!text-3xl md:!text-4xl" />
+                <StatCounter value={10} suffix="+" label="AI Projects" className="!text-3xl md:!text-4xl" />
               </div>
             </BentoCard>
             <BentoCard span="1x1" glow delay={0.3}>
               <div className="h-full flex flex-col items-center justify-center text-center">
                 <Factory className="w-8 h-8 text-accent-400 mb-2" />
-                <StatCounter value={759} suffix="M" label="Units Produced" className="!text-3xl md:!text-4xl" />
+                <StatCounter value={2} suffix="M+" label="Units Produced" className="!text-3xl md:!text-4xl" />
               </div>
             </BentoCard>
           </BentoGrid>
@@ -468,20 +468,20 @@ export default function Home() {
             <div>
               <Badge variant="accent" className="mb-4">About Me</Badge>
               <h2 className="text-4xl font-display font-bold text-white mb-6">
-                15 years at Tesla taught me that precision matters.
+                Production engineering taught me that details matter.
               </h2>
               <p className="text-lg text-steel-300 mb-6">
-                I've designed pumps that handle 500 GPM at 200ft head. I've built AI systems that
-                process engineering documents in seconds. The common thread? A relentless focus on
-                getting the details right.
+                When you design pumps that move 500 gallons per minute, there's no room
+                for "close enough." That same precision now drives everything I build—
+                whether it's a rotating assembly or an AI agent.
               </p>
-              <p className="text-steel-400 mb-8">
-                Now I'm building tools that give engineers back their time—so they can focus
-                on solving hard problems, not paperwork.
+              <p className="text-steel-400 mb-8 p-3 rounded-lg bg-accent-500/10 border border-accent-500/20">
+                I'm not a developer who took an engineering class, or an engineer who
+                watched a coding tutorial. I've done both—deeply.
               </p>
               <Link href="/about">
                 <Button variant="outline" rightIcon={<ArrowRight className="w-4 h-4" />}>
-                  Read My Story
+                  The Full Story →
                 </Button>
               </Link>
             </div>
