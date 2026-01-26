@@ -11,9 +11,6 @@ node_modules/
 /out/
 next-env.d.ts
 
-# Contentlayer
-.contentlayer/
-
 # Production
 /build
 
