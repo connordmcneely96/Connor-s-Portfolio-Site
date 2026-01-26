@@ -1,88 +1,27 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* ========================================
-   Tailwind v4 Theme Configuration
-   ======================================== */
-@theme {
-  /* Color Palette */
-  --color-primary-900: #0a1628;
-  --color-primary-800: #152238;
-  --color-primary-700: #1e3a5f;
-  --color-primary-600: #2563eb;
-  --color-primary-500: #3b82f6;
-  --color-primary-400: #60a5fa;
-
-  --color-accent-600: #0891b2;
-  --color-accent-500: #06b6d4;
-  --color-accent-400: #22d3ee;
-  --color-accent-300: #67e8f9;
-
-  --color-secondary-600: #d97706;
-  --color-secondary-500: #f59e0b;
-  --color-secondary-400: #fbbf24;
-  --color-secondary-300: #fcd34d;
-
-  --color-steel-950: #030712;
-  --color-steel-900: #111827;
-  --color-steel-800: #1f2937;
-  --color-steel-700: #374151;
-  --color-steel-600: #4b5563;
-  --color-steel-500: #6b7280;
-  --color-steel-400: #9ca3af;
-  --color-steel-300: #d1d5db;
-  --color-steel-200: #e5e7eb;
-  --color-steel-100: #f3f4f6;
-  --color-steel-50: #f9fafb;
-
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
-  --color-info: #3b82f6;
-
-  /* Font Families */
-  --font-display: 'Outfit', 'Space Grotesk', 'Inter', system-ui, sans-serif;
-  --font-body: 'Inter', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
-
-  /* Animations */
-  --animate-shimmer: shimmer 2s infinite;
-  --animate-glow: glow 2s ease-in-out infinite;
-  --animate-float: float 3s ease-in-out infinite;
-  --animate-fade-in: fade-in 0.5s ease-out;
-  --animate-slide-up: slide-up 0.5s ease-out;
-  --animate-slide-down: slide-down 0.5s ease-out;
-  --animate-scale-in: scale-in 0.3s ease-out;
-
-  /* Box Shadows */
-  --shadow-glow-cyan: 0 0 20px rgba(6, 182, 212, 0.3);
-  --shadow-glow-cyan-lg: 0 0 40px rgba(6, 182, 212, 0.5);
-  --shadow-glow-blue: 0 0 20px rgba(37, 99, 235, 0.3);
-  --shadow-glow-blue-lg: 0 0 40px rgba(37, 99, 235, 0.5);
-  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  --shadow-card-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-
-  /* Spacing */
-  --spacing-18: 4.5rem;
-  --spacing-88: 22rem;
-  --spacing-128: 32rem;
-
-  /* Border Radius */
-  --radius-4xl: 2rem;
-}
-
-/* ========================================
-   CSS Custom Properties (Legacy Support)
+   CSS Custom Properties
    ======================================== */
 :root {
+  /* Primary: Deep Navy (Engineering Authority) */
   --primary-900: #0a1628;
   --primary-800: #152238;
   --primary-700: #1e3a5f;
   --primary-600: #2563eb;
   --primary-500: #3b82f6;
+
+  /* Accent: Electric Teal (Innovation) */
   --accent-500: #06b6d4;
   --accent-400: #22d3ee;
+
+  /* Secondary: Amber (Engineering Caution/Highlight) */
   --secondary-500: #f59e0b;
   --secondary-400: #fbbf24;
+
+  /* Neutrals: Steel Grays */
   --steel-900: #111827;
   --steel-800: #1f2937;
   --steel-700: #374151;
@@ -90,28 +29,6 @@
   --steel-400: #9ca3af;
   --steel-200: #e5e7eb;
   --steel-50: #f9fafb;
-
-  /* shadcn/ui CSS Variables */
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
-  --card: 222.2 84% 4.9%;
-  --card-foreground: 210 40% 98%;
-  --popover: 222.2 84% 4.9%;
-  --popover-foreground: 210 40% 98%;
-  --primary: 210 40% 98%;
-  --primary-foreground: 222.2 47.4% 11.2%;
-  --secondary: 217.2 32.6% 17.5%;
-  --secondary-foreground: 210 40% 98%;
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
-  --accent: 217.2 32.6% 17.5%;
-  --accent-foreground: 210 40% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-  --ring: 212.7 26.8% 83.9%;
-  --radius: 0.5rem;
 }
 
 /* ========================================
@@ -128,7 +45,7 @@ html {
 }
 
 body {
-  font-family: var(--font-body);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
   background-color: var(--primary-900);
@@ -139,101 +56,18 @@ body {
    Typography
    ======================================== */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
   line-height: 1.2;
   font-weight: 700;
 }
 
 .font-display {
-  font-family: var(--font-display);
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
 }
 
 .font-mono {
-  font-family: var(--font-mono);
+  font-family: 'JetBrains Mono', Consolas, monospace;
 }
-
-/* ========================================
-   Keyframe Animations
-   ======================================== */
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-@keyframes glow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes fade-in {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes slide-up {
-  0% { transform: translateY(20px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes slide-down {
-  0% { transform: translateY(-20px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes scale-in {
-  0% { transform: scale(0.95); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes drift {
-  0%, 100% { transform: translate(0, 0); }
-  25% { transform: translate(10px, 10px); }
-  50% { transform: translate(5px, -5px); }
-  75% { transform: translate(-5px, 5px); }
-}
-
-@keyframes drift-reverse {
-  0%, 100% { transform: translate(0, 0); }
-  25% { transform: translate(-10px, -10px); }
-  50% { transform: translate(-5px, 5px); }
-  75% { transform: translate(5px, -5px); }
-}
-
-@keyframes pulse-slow {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.05); }
-}
-
-@keyframes blueprint-pan {
-  0% { background-position: 0 0; }
-  100% { background-position: 50px 50px; }
-}
-
-@keyframes gradient-rotate {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* ========================================
-   Animation Utilities
-   ======================================== */
-.animate-float { animation: float 6s ease-in-out infinite; }
-.animate-drift { animation: drift 20s ease-in-out infinite; }
-.animate-drift-reverse { animation: drift-reverse 25s ease-in-out infinite; }
-.animate-pulse-slow { animation: pulse-slow 8s ease-in-out infinite; }
-.animate-blueprint-pan { animation: blueprint-pan 20s linear infinite; }
-.animate-marquee { animation: marquee 30s linear infinite; }
-.animate-marquee:hover { animation-play-state: paused; }
 
 /* ========================================
    Scrollbar Styling
@@ -256,39 +90,73 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--steel-600);
 }
 
+/* Firefox */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--steel-700) var(--primary-900);
 }
 
 /* ========================================
-   Selection & Focus
+   Selection Styling
    ======================================== */
 ::selection {
   background-color: var(--accent-500);
   color: white;
 }
 
+/* ========================================
+   Focus Styles
+   ======================================== */
 :focus-visible {
   outline: 2px solid var(--accent-500);
   outline-offset: 2px;
 }
 
 /* ========================================
-   Links & Images
+   Link Styles
    ======================================== */
 a {
   color: inherit;
   text-decoration: none;
 }
 
+/* ========================================
+   Image Styles
+   ======================================== */
 img {
   max-width: 100%;
   height: auto;
 }
 
 /* ========================================
-   Glassmorphism
+   Blueprint Grid Animation
+   ======================================== */
+@keyframes blueprint-pan {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+.animate-blueprint-pan {
+  animation: blueprint-pan 20s linear infinite;
+}
+
+/* ========================================
+   Glow Effects
+   ======================================== */
+.glow-text {
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+}
+
+.glow-box {
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.3);
+}
+
+/* ========================================
+   Glass Morphism
    ======================================== */
 .glass {
   background: rgba(21, 34, 56, 0.6);
@@ -297,6 +165,135 @@ img {
   border: 1px solid rgba(55, 65, 81, 0.3);
 }
 
+/* ========================================
+   Gradient Text
+   ======================================== */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-400), var(--primary-500));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========================================
+   Line Clamp Utilities
+   ======================================== */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* ========================================
+   Hide Scrollbar but Keep Functionality
+   ======================================== */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ========================================
+   Reduced Motion
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* ========================================
+   Loading States
+   ======================================== */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--steel-800);
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ========================================
+   Model Viewer Custom Styles
+   ======================================== */
+model-viewer {
+  --poster-color: transparent;
+}
+
+model-viewer::part(default-progress-bar) {
+  background-color: var(--accent-500);
+}
+
+/* ========================================
+   Container Queries Support
+   ======================================== */
+@supports (container-type: inline-size) {
+  .container-query {
+    container-type: inline-size;
+  }
+}
+
+/* ========================================
+   Advanced Glassmorphism
+   ======================================== */
 .glass-card {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
@@ -324,15 +321,8 @@ img {
 }
 
 /* ========================================
-   Gradients
+   Animated Gradient Border
    ======================================== */
-.gradient-text {
-  background: linear-gradient(135deg, var(--accent-400), var(--primary-500));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 .gradient-border {
   position: relative;
   background: var(--steel-900);
@@ -345,9 +335,17 @@ img {
   inset: 0;
   border-radius: 24px;
   padding: 1px;
-  background: linear-gradient(135deg, var(--primary-500), var(--accent-500), var(--secondary-500), var(--primary-500));
+  background: linear-gradient(
+    135deg,
+    var(--primary-500),
+    var(--accent-500),
+    var(--secondary-500),
+    var(--primary-500)
+  );
   background-size: 300% 300%;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 }
@@ -356,39 +354,121 @@ img {
   animation: gradient-rotate 8s ease infinite;
 }
 
+@keyframes gradient-rotate {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
 /* ========================================
-   Glow Effects
+   Noise & Grain Texture
    ======================================== */
-.glow-text {
-  text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
-.glow-box {
-  box-shadow: 0 0 30px rgba(6, 182, 212, 0.3);
+/* ========================================
+   Advanced Animations
+   ======================================== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(10px, 10px); }
+  50% { transform: translate(5px, -5px); }
+  75% { transform: translate(-5px, 5px); }
+}
+
+@keyframes drift-reverse {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-10px, -10px); }
+  50% { transform: translate(-5px, 5px); }
+  75% { transform: translate(5px, -5px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.05); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: drift 20s ease-in-out infinite;
+}
+
+.animate-drift-reverse {
+  animation: drift-reverse 25s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+/* ========================================
+   Depth Layers
+   ======================================== */
+.layer-1 { z-index: 10; }
+.layer-2 { z-index: 20; }
+.layer-3 { z-index: 30; }
+
+/* ========================================
+   Text Glow Effects
+   ======================================== */
 .text-glow-cyan {
-  text-shadow: 0 0 20px rgba(6, 182, 212, 0.5), 0 0 40px rgba(6, 182, 212, 0.3);
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.5),
+               0 0 40px rgba(6, 182, 212, 0.3);
 }
 
 .text-glow-primary {
-  text-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.3);
-}
-
-.shadow-glow-cyan {
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3), 0 0 40px rgba(6, 182, 212, 0.1);
-}
-
-.shadow-glow-cyan-lg {
-  box-shadow: 0 0 30px rgba(6, 182, 212, 0.4), 0 0 60px rgba(6, 182, 212, 0.2);
-}
-
-.shadow-glow-primary {
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.1);
+  text-shadow: 0 0 20px rgba(59, 130, 246, 0.5),
+               0 0 40px rgba(59, 130, 246, 0.3);
 }
 
 /* ========================================
-   Blueprint Grid
+   Enhanced Glow Shadows
+   ======================================== */
+.shadow-glow-cyan {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3),
+              0 0 40px rgba(6, 182, 212, 0.1);
+}
+
+.shadow-glow-cyan-lg {
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.4),
+              0 0 60px rgba(6, 182, 212, 0.2);
+}
+
+.shadow-glow-primary {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3),
+              0 0 40px rgba(59, 130, 246, 0.1);
+}
+
+/* ========================================
+   Interactive Hover States
+   ======================================== */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* ========================================
+   Blueprint Grid Patterns
    ======================================== */
 .bg-blueprint-grid {
   background-image:
@@ -396,106 +476,55 @@ img {
     linear-gradient(to bottom, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
 }
 
-.bg-grid-50 { background-size: 50px 50px; }
-.bg-grid-25 { background-size: 25px 25px; }
-.bg-grid-100 { background-size: 100px 100px; }
+.bg-grid-50 {
+  background-size: 50px 50px;
+}
 
-/* ========================================
-   Noise Texture
-   ======================================== */
-.bg-noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+.bg-grid-25 {
+  background-size: 25px 25px;
+}
+
+.bg-grid-100 {
+  background-size: 100px 100px;
 }
 
 /* ========================================
-   Utility Classes
+   Utility Classes for Bento Layout
    ======================================== */
-.line-clamp-1 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; }
-.line-clamp-2 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
-.line-clamp-3 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
-
-.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-.hide-scrollbar::-webkit-scrollbar { display: none; }
-
-.hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.hover-lift:hover { transform: translateY(-4px); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); }
-
-.hover-scale { transition: transform 0.3s ease; }
-.hover-scale:hover { transform: scale(1.02); }
-
-.perspective-1000 { perspective: 1000px; }
-.preserve-3d { transform-style: preserve-3d; }
-
-/* Bento Grid */
 .bento-span-1x1 { grid-column: span 1; grid-row: span 1; }
 .bento-span-2x1 { grid-column: span 2; grid-row: span 1; }
 .bento-span-1x2 { grid-column: span 1; grid-row: span 2; }
 .bento-span-2x2 { grid-column: span 2; grid-row: span 2; }
 
 @media (max-width: 768px) {
-  .bento-span-2x1, .bento-span-2x2 { grid-column: span 2; }
-}
-
-/* Layers */
-.layer-1 { z-index: 10; }
-.layer-2 { z-index: 20; }
-.layer-3 { z-index: 30; }
-
-/* ========================================
-   Loading States
-   ======================================== */
-.skeleton {
-  position: relative;
-  overflow: hidden;
-  background: var(--steel-800);
-}
-
-.skeleton::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transform: translateX(-100%);
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-  animation: shimmer 2s infinite;
-}
-
-/* ========================================
-   Model Viewer
-   ======================================== */
-model-viewer {
-  --poster-color: transparent;
-}
-
-model-viewer::part(default-progress-bar) {
-  background-color: var(--accent-500);
-}
-
-/* ========================================
-   Reduced Motion
-   ======================================== */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .bento-span-2x1, .bento-span-2x2 {
+    grid-column: span 2;
   }
 }
 
 /* ========================================
-   Print Styles
+   Marquee Animation for Logos
    ======================================== */
-@media print {
-  body { background: white; color: black; }
-  .no-print { display: none !important; }
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 /* ========================================
-   Container Queries
+   Perspective Utilities
    ======================================== */
-@supports (container-type: inline-size) {
-  .container-query { container-type: inline-size; }
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
 }

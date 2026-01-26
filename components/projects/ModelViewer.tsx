@@ -99,7 +99,6 @@ export default function ModelViewer({
       )}
 
       {/* Model Viewer */}
-      {/* @ts-expect-error - model-viewer is a custom element */}
       <model-viewer
         ref={modelRef as any}
         src={src}
@@ -148,4 +147,27 @@ export default function ModelViewer({
       </div>
     </div>
   );
+}
+
+// Declare the custom element type for TypeScript
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'model-viewer': React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement> & {
+          src?: string;
+          alt?: string;
+          poster?: string;
+          'camera-controls'?: boolean;
+          'auto-rotate'?: boolean;
+          'shadow-intensity'?: number;
+          exposure?: string;
+          'environment-image'?: string;
+          onLoad?: () => void;
+          onError?: () => void;
+        },
+        HTMLElement
+      >;
+    }
+  }
 }
