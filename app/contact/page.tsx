@@ -76,7 +76,7 @@ ${formData.message}
   const expectations = [
     {
       icon: Clock,
-      text: 'Response within 24-48 hours',
+      text: 'Response within 24 hours on business days',
     },
     {
       icon: MessageCircle,
@@ -121,11 +121,11 @@ ${formData.message}
               Let's Connect
             </Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6">
-              Get in Touch
+              Let's Build Something
             </h1>
             <p className="text-xl text-steel-300 max-w-3xl mx-auto">
-              Have a project in mind or want to discuss an opportunity?
-              I'd love to hear from you.
+              Whether you have a specific project in mind or just want to explore possibilities,
+              I'm happy to talk. No sales pitch—just a conversation about what you're trying to accomplish.
             </p>
           </motion.div>
         </div>
@@ -146,7 +146,7 @@ ${formData.message}
                 <h2 className="text-2xl font-bold text-white mb-2">Let's Connect</h2>
                 <div className="flex items-center gap-2 text-steel-400 mb-6">
                   <MapPin className="w-4 h-4" />
-                  <span>Based in Lafayette, LA</span>
+                  <span>Based in El Dorado, Arkansas (CST)</span>
                 </div>
                 <p className="text-steel-300 mb-8">
                   Available for freelance projects, full-time opportunities,
@@ -223,9 +223,9 @@ ${formData.message}
                     <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-500/20 flex items-center justify-center">
                       <CheckCircle2 className="w-8 h-8 text-green-400" />
                     </div>
-                    <h4 className="text-xl font-bold text-white mb-2">Email Client Opened!</h4>
+                    <h4 className="text-xl font-bold text-white mb-2">Message sent!</h4>
                     <p className="text-steel-400 mb-6">
-                      Please send the email from your mail application. I'll respond within 24-48 hours.
+                      I'll get back to you within 24 hours. Talk soon.
                     </p>
                     <Button
                       variant="outline"
@@ -285,7 +285,7 @@ ${formData.message}
                       size="lg"
                       leftIcon={<Send className="w-5 h-5" />}
                     >
-                      Open Email Client
+                      Send It →
                     </Button>
 
                     <p className="text-xs text-steel-500 text-center">

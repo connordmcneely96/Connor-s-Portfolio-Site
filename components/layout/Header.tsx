@@ -16,7 +16,7 @@ import { trackResumeDownload } from '@/app/utils/analytics';
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/portfolio', label: 'Work' },
   { href: '/services', label: 'Services' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },

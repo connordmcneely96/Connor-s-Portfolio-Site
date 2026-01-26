@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: '%s | Connor McNeely',
   },
   description:
-    '15+ years building industrial systems. Now building AI tools that transform engineering. Mechanical engineering expertise meets cutting-edge AI development.',
+    '5+ years designing production systems. Now building AI tools that transform engineering. Pump design, RAG systems, full-stack development.',
   keywords: [
     'Mechanical Engineer',
     'AI Developer',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     siteName: 'Connor McNeely Portfolio',
     title: 'Connor McNeely | Mechanical Engineer × AI Developer',
     description:
-      '15+ years building industrial systems. Now building AI tools that transform engineering.',
+      'Engineering precision meets AI intelligence. Production-ready mechanical design and custom AI development.',
     images: [
       {
         url: '/og-image.png',
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Connor McNeely | Mechanical Engineer × AI Developer',
     description:
-      '15+ years building industrial systems. Now building AI tools that transform engineering.',
+      'Engineering precision meets AI intelligence. Production-ready mechanical design and custom AI development.',
     images: ['/og-image.png'],
   },
   robots: {
@@ -98,7 +98,7 @@ const jsonLd = {
     name: 'Leadership Legacy LLC',
   },
   description:
-    'Mechanical engineer with 15+ years experience transitioning to AI development. Building intelligent tools that transform engineering workflows.',
+    'Mechanical engineer with 5+ years experience building AI tools that transform engineering workflows. Pump design, RAG systems, multi-agent AI.',
   knowsAbout: [
     'Mechanical Engineering',
     'Pump Design',

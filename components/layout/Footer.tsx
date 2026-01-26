@@ -6,7 +6,7 @@ import { Github, Linkedin, Mail, MapPin, ArrowUpRight } from 'lucide-react';
 const footerLinks = {
   navigation: [
     { href: '/', label: 'Home' },
-    { href: '/portfolio', label: 'Portfolio' },
+    { href: '/portfolio', label: 'Work' },
     { href: '/services', label: 'Services' },
     { href: '/about', label: 'About' },
     { href: '/contact', label: 'Contact' },
@@ -61,8 +61,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-steel-400 leading-relaxed mb-6 max-w-sm">
-              Bridging mechanical engineering expertise with AI innovation.
-              Building intelligent systems that transform how engineers work.
+              Engineering precision meets AI intelligence.
             </p>
             <div className="flex items-center gap-2 text-steel-500 text-sm">
               <MapPin className="w-4 h-4" />
