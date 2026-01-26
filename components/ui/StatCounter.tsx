@@ -28,23 +28,23 @@ export function StatCounter({
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   useEffect(() => {
-    if (!isInView) return;
+    if (isInView) {
+      const steps = 60;
+      const increment = value / steps;
+      let current = 0;
 
-    const steps = 60;
-    const increment = value / steps;
-    let current = 0;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= value) {
+          setCount(value);
+          clearInterval(timer);
+        } else {
+          setCount(Math.floor(current));
+        }
+      }, duration / steps);
 
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= value) {
-        setCount(value);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
-    }, duration / steps);
-
-    return () => clearInterval(timer);
+      return () => clearInterval(timer);
+    }
   }, [isInView, value, duration]);
 
   return (

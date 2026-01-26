@@ -1,9 +1,8 @@
 import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
 
-// Class name merger with tailwind-merge for proper class deduplication
+// Simple class name merger (without tailwind-merge for bundle size)
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+  return clsx(inputs);
 }
 
 // Format date for display

@@ -7,6 +7,7 @@ import GitHubActivitySection from '../components/GitHubActivitySection';
 import {
   Brain,
   Database,
+  Eye,
   MessageSquare,
   Activity,
   TrendingUp,
