@@ -1,5 +1,7 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from 'next';
+import { withContentlayer } from 'next-contentlayer2';
+
+const nextConfig: NextConfig = {
   // Output configuration for Cloudflare Pages static export
   output: process.env.CF_PAGES ? 'export' : undefined,
 
@@ -27,8 +29,17 @@ const nextConfig = {
   // Experimental features for Next.js 15
   experimental: {
     // Enable optimized package imports
-    optimizePackageImports: ['lucide-react', 'framer-motion'],
+    optimizePackageImports: ['lucide-react', 'framer-motion', 'gsap'],
   },
-}
 
-module.exports = nextConfig
+  // Webpack configuration for GSAP
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      gsap: 'gsap',
+    };
+    return config;
+  },
+};
+
+export default withContentlayer(nextConfig);
