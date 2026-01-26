@@ -54,11 +54,10 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
           ? 'bg-primary-900/95 backdrop-blur-xl shadow-lg border-b border-steel-800/50'
           : 'bg-transparent'
-      }`}
+        }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -79,11 +78,10 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
-                  pathname === link.href
+                className={`relative px-4 py-2 rounded-lg font-medium transition-all duration-200 ${pathname === link.href
                     ? 'text-accent-400'
                     : 'text-steel-300 hover:text-white hover:bg-steel-800/50'
-                }`}
+                  }`}
               >
                 {link.label}
                 {pathname === link.href && (
@@ -108,7 +106,7 @@ export default function Header() {
               <div className="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 <div className="bg-primary-800 border border-steel-700/50 rounded-xl shadow-xl p-2 min-w-[200px]">
                   <a
-                    href="/resumes/Connor-McNeely-Mechanical-Engineer-Resume.pdf"
+                    href="/resumes/Mechanical_DrafterModeler_Automation%20Resume.docx%20(2).pdf"
                     download
                     onClick={() => trackResumeDownload('mechanical')}
                     className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-steel-800/50 transition-colors"
@@ -122,7 +120,7 @@ export default function Header() {
                     </div>
                   </a>
                   <a
-                    href="/resumes/Connor-McNeely-AI-Developer-Resume.pdf"
+                    href="/resumes/AI%20Developer_Fullstack%20Developer_AIML_Engineer%20Resume.docx%20(1).pdf"
                     download
                     onClick={() => trackResumeDownload('ai-dev')}
                     className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-steel-800/50 transition-colors"
@@ -201,11 +199,10 @@ export default function Header() {
                 >
                   <Link
                     href={link.href}
-                    className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all ${
-                      pathname === link.href
+                    className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all ${pathname === link.href
                         ? 'bg-accent-500/10 text-accent-400'
                         : 'text-steel-300 hover:bg-steel-800/50 hover:text-white'
-                    }`}
+                      }`}
                   >
                     <span className="font-medium">{link.label}</span>
                     <ChevronRight className="w-4 h-4" />
@@ -217,7 +214,7 @@ export default function Header() {
               <div className="pt-4 border-t border-steel-800/50 space-y-2">
                 <p className="px-4 text-xs font-medium text-steel-500 uppercase tracking-wider">Download Resume</p>
                 <a
-                  href="/resumes/Connor-McNeely-Mechanical-Engineer-Resume.pdf"
+                  href="/resumes/Mechanical_DrafterModeler_Automation%20Resume.docx%20(2).pdf"
                   download
                   onClick={() => trackResumeDownload('mechanical')}
                   className="flex items-center gap-3 px-4 py-3 rounded-xl bg-secondary-500/10 text-secondary-400 hover:bg-secondary-500/20 transition-all"
@@ -226,7 +223,7 @@ export default function Header() {
                   <span className="font-medium">Mechanical Engineering Resume</span>
                 </a>
                 <a
-                  href="/resumes/Connor-McNeely-AI-Developer-Resume.pdf"
+                  href="/resumes/AI%20Developer_Fullstack%20Developer_AIML_Engineer%20Resume.docx%20(1).pdf"
                   download
                   onClick={() => trackResumeDownload('ai-dev')}
                   className="flex items-center gap-3 px-4 py-3 rounded-xl bg-accent-500/10 text-accent-400 hover:bg-accent-500/20 transition-all"

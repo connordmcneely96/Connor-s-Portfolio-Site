@@ -574,7 +574,7 @@ export default function Home() {
               {/* Resume Downloads */}
               <div className="flex items-center justify-center gap-4 mt-8 text-sm">
                 <a
-                  href="/resumes/Mechanical_DrafterModeler_Automation%20Resume.docx.pdf"
+                  href="/resumes/Mechanical_DrafterModeler_Automation%20Resume.docx%20(2).pdf"
                   download
                   className="flex items-center gap-2 text-white/70 hover:text-white transition-colors"
                 >
@@ -583,7 +583,7 @@ export default function Home() {
                 </a>
                 <span className="text-white/40">|</span>
                 <a
-                  href="/resumes/AI%20Developer_Fullstack%20Developer_AIML_Engineer%20Resume.docx.pdf"
+                  href="/resumes/AI%20Developer_Fullstack%20Developer_AIML_Engineer%20Resume.docx%20(1).pdf"
                   download
                   className="flex items-center gap-2 text-white/70 hover:text-white transition-colors"
                 >
