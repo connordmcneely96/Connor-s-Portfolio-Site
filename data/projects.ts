@@ -86,7 +86,7 @@ export const projects: Project[] = [
       'Automated tool change system',
       'Full GD&T documentation'
     ],
-    featured: false,
+    featured: true,
     order: 3
   },
   {
@@ -213,7 +213,7 @@ export const projects: Project[] = [
       live: 'https://rag-q-a-for-mechanical-engineers.vercel.app/',
       github: 'https://github.com/connordmcneely96/RAG-Q-A-for-Mechanical-Engineers'
     },
-    featured: false,
+    featured: true,
     order: 5
   },
 

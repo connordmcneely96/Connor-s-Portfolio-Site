@@ -12,7 +12,6 @@ import {
   Github,
   Linkedin,
   Award,
-  Factory,
   Layers,
   Database,
   Cloud,
@@ -56,7 +55,7 @@ export default function Home() {
       description:
         'API 610/682 certified pump design, rotating equipment, shaft analysis per ASME standards.',
       benefit: 'Production-ready designs that pass quality gates the first time.',
-      proof: '50+ pumps designed for automotive production',
+      proof: '30+ mechanical engineering projects completed',
       gradient: 'from-secondary-500 to-secondary-600',
       tags: ['SolidWorks', 'API 610', 'FEA/CFD', 'GD&T'],
     },
@@ -96,7 +95,7 @@ export default function Home() {
     {
       category: 'AI/ML',
       icon: Brain,
-      skills: ['LangChain', 'OpenAI', 'RAG', 'CrewAI', 'Vector DBs'],
+      skills: ['LangChain', 'OpenAI', 'RAG', 'CrewAI', 'Vector DBs', 'TensorFlow', 'PyTorch', 'NLP', 'Computer Vision'],
     },
     {
       category: 'Databases',
@@ -111,7 +110,7 @@ export default function Home() {
     {
       category: 'Engineering',
       icon: Cpu,
-      skills: ['SolidWorks', 'FEA/CFD', 'PLC', 'AutoCAD'],
+      skills: ['SolidWorks', 'FEA/CFD', 'AutoCAD', 'CATIA', 'GD&T', 'ANSYS', 'DFM/DFA', '3D Printing'],
     },
   ];
 
@@ -138,7 +137,7 @@ export default function Home() {
               transition={{ delay: 0.2 }}
               className="text-steel-400 text-lg mb-6 max-w-xl mx-auto"
             >
-              What if your next engineer could design industrial pumps AND build the AI to optimize them?
+              What if your next engineer could design production-ready CAD assemblies AND build the AI to optimize them?
             </motion.p>
 
             {/* Badge */}
@@ -178,7 +177,7 @@ export default function Home() {
               transition={{ delay: 1 }}
             >
               <p className="text-xl md:text-2xl text-steel-300 max-w-3xl mx-auto mb-2 font-medium">
-                5+ years designing production systems in automotive manufacturing.
+                5+ years in mechanical engineering specializing in CAD and product design.
               </p>
               <p className="text-lg md:text-xl text-steel-400 max-w-2xl mx-auto mb-12">
                 Now building AI tools that transform how engineering gets done.
@@ -263,7 +262,7 @@ export default function Home() {
             <BentoCard span="1x1" glow delay={0.1}>
               <div className="h-full flex flex-col items-center justify-center text-center">
                 <Settings className="w-8 h-8 text-secondary-400 mb-2" />
-                <StatCounter value={50} suffix="+" label="Pumps Designed" className="!text-3xl md:!text-4xl" />
+                <StatCounter value={30} suffix="+" label="ME Projects" className="!text-3xl md:!text-4xl" />
               </div>
             </BentoCard>
             <BentoCard span="1x1" glow delay={0.2}>
@@ -274,8 +273,8 @@ export default function Home() {
             </BentoCard>
             <BentoCard span="1x1" glow delay={0.3}>
               <div className="h-full flex flex-col items-center justify-center text-center">
-                <Factory className="w-8 h-8 text-accent-400 mb-2" />
-                <StatCounter value={2} suffix="M+" label="Units Produced" className="!text-3xl md:!text-4xl" />
+                <Layers className="w-8 h-8 text-accent-400 mb-2" />
+                <StatCounter value={500} suffix="+" label="CAD Models" className="!text-3xl md:!text-4xl" />
               </div>
             </BentoCard>
           </BentoGrid>
