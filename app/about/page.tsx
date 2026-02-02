@@ -28,17 +28,30 @@ import { GlassCard } from '@/components/ui/GlassCard';
 export default function About() {
   const experience = [
     {
+      company: 'Leadership Legacy LLC',
+      role: 'Founder & AI Engineer',
+      period: '2024 - Present',
+      location: 'Remote',
+      description: 'Building AI-powered tools for engineers and businesses—from intelligent design assistants to full-stack automation platforms.',
+      highlights: [
+        'Developing EngineerCAD: AI-assisted CAD and design intelligence platform',
+        'Delivering custom AI agents, RAG systems, and automation workflows for clients',
+        'Bridging mechanical engineering domain expertise with production AI systems',
+      ],
+      tech: ['Next.js', 'LangChain', 'Python', 'CrewAI', 'AWS', 'OpenAI'],
+    },
+    {
       company: 'Revamped Pumps',
       role: 'Lead Design Engineer',
-      period: '2023 - Present',
+      period: '2023 - 2024',
       location: 'Remote',
-      description: 'Sole mechanical design engineer for high-efficiency centrifugal pump systems.',
+      description: 'Sole mechanical design engineer responsible for full product design lifecycle—from concept sketches to production-ready CAD deliverables.',
       highlights: [
-        'Designed 50+ API 610 compliant pump systems',
-        'Achieved 15% efficiency improvements over industry standard',
-        'Implemented parametric CAD automation reducing design time by 60%',
+        'Designed 30+ production-ready mechanical assemblies with full GD&T documentation',
+        'Built parametric CAD automation that cut design iteration time by 60%',
+        'Delivered complete engineering packages: 3D models, drawings, BOMs, and FEA reports',
       ],
-      tech: ['SolidWorks', 'API 610', 'FEA', 'CFD', 'Python'],
+      tech: ['SolidWorks', 'FEA', 'CFD', 'GD&T', 'Python'],
     },
     {
       company: 'John Deere Turf Care',
@@ -71,13 +84,13 @@ export default function About() {
       role: 'Senior Design Project',
       period: '2020',
       location: 'Ruston, LA',
-      description: 'Designed and built complete centrifugal pump system from concept to prototype.',
+      description: 'Capstone engineering project: designed and built a complete CNC gang drill system from concept to functional prototype.',
       highlights: [
-        'Full pump design including impeller, volute, and housing',
-        'CFD analysis and performance optimization',
-        'Manufactured functional prototype',
+        'Full mechanical design with multi-spindle synchronization',
+        'FEA-validated structural and vibration analysis',
+        'Manufactured functional prototype with GD&T documentation',
       ],
-      tech: ['SolidWorks', 'ANSYS', 'CFD', 'CNC Machining'],
+      tech: ['SolidWorks', 'ANSYS', 'FEA', 'CNC Machining', 'GD&T'],
     },
   ];
 
@@ -100,11 +113,11 @@ export default function About() {
     ],
     'Mechanical Engineering': [
       { name: 'SolidWorks', level: 95 },
-      { name: 'API 610 Design', level: 90 },
-      { name: 'FEA / CFD', level: 85 },
+      { name: 'AutoCAD / CATIA', level: 85 },
+      { name: 'FEA / CFD (ANSYS)', level: 85 },
       { name: 'GD&T', level: 90 },
-      { name: 'Pump Design', level: 95 },
-      { name: 'Process Engineering', level: 85 },
+      { name: 'DFM / DFA', level: 90 },
+      { name: '3D Printing / Prototyping', level: 80 },
     ],
     'Tools & Platforms': [
       { name: 'Git / GitHub', level: 90 },
@@ -112,7 +125,7 @@ export default function About() {
       { name: 'AWS / Cloudflare', level: 80 },
       { name: 'Linux', level: 85 },
       { name: 'VS Code / Cursor', level: 95 },
-      { name: 'PLC Programming', level: 80 },
+      { name: 'Vercel / CI/CD', level: 85 },
     ],
   };
 
@@ -130,7 +143,7 @@ export default function About() {
     {
       icon: Cog,
       title: 'Engineering Discipline in Everything',
-      description: 'Whether designing a pump or an AI workflow—understand requirements, follow standards, document, test.',
+      description: 'Whether designing a mechanical assembly or an AI workflow—understand requirements, follow standards, document, test.',
     },
     {
       icon: Shield,
@@ -143,8 +156,8 @@ export default function About() {
     { label: 'Experience', value: '5+ years in mechanical engineering, 3+ years in software/AI development' },
     { label: 'Education', value: 'B.S. Mechanical Engineering, Louisiana Tech University' },
     { label: 'Location', value: 'El Dorado, Arkansas' },
-    { label: 'Current Focus', value: 'AI-powered engineering tools, Leadership Legacy LLC' },
-    { label: 'Specialties', value: 'Pump design (API 610/682), rotating equipment, RAG systems, multi-agent AI' },
+    { label: 'Current Focus', value: 'AI-powered design tools, EngineerCAD, Leadership Legacy LLC' },
+    { label: 'Specialties', value: 'CAD & product design, FEA/CFD analysis, RAG systems, multi-agent AI' },
   ];
 
   const beyondWork = [
@@ -178,10 +191,11 @@ export default function About() {
           >
             <Badge variant="accent" className="mb-6">About</Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6">
-              I bridge the gap between physical systems and artificial intelligence.
+              Mechanical engineer by trade. AI developer by obsession.
             </h1>
             <p className="text-xl text-steel-300 max-w-3xl mx-auto">
-              Most engineers know one world. I've built a career at the intersection of two.
+              I design production-ready CAD assemblies and build the AI tools that make engineers faster.
+              Most people pick one lane—I built a career at the intersection.
             </p>
           </motion.div>
         </div>
@@ -198,10 +212,11 @@ export default function About() {
             <GlassCard padding="lg" glow>
               <h2 className="text-2xl font-bold text-white mb-4">The Short Version</h2>
               <p className="text-lg text-steel-300 leading-relaxed">
-                I'm a mechanical engineer who got tired of doing the same calculations by hand.
-                So I taught myself to code. Then I discovered AI.
+                I'm a mechanical engineer who spent years in SolidWorks designing production parts—and got
+                tired of the repetitive work that ate into actual engineering. So I taught myself to code.
+                Then I discovered AI.
                 <span className="block mt-4 text-accent-400 font-medium">
-                  Now I build tools that do in seconds what used to take days.
+                  Now I build the tools that give engineers their time back.
                 </span>
               </p>
             </GlassCard>
@@ -236,13 +251,13 @@ export default function About() {
                   I didn't set out to become a software developer. I set out to be a damn good mechanical engineer.
                 </p>
                 <p>
-                  For 5+ years, I've designed pumps, rotating equipment, and production systems in automotive manufacturing.
-                  The kind of engineering where tolerances are measured in thousandths of an inch and a bearing failure
-                  can shut down an entire production line.
+                  For 5+ years, I've been deep in CAD—designing mechanical assemblies, detailing production drawings,
+                  and running FEA simulations where the difference between a good design and a failed one lives in
+                  thousandths of an inch. The kind of work where GD&T callouts matter and every tolerance has a reason.
                 </p>
                 <p>
-                  I learned to be precise. To follow standards religiously—API 610, API 682, ASME codes.
-                  To document everything because someone's safety depends on it.
+                  I learned to be precise. To follow engineering standards religiously. To document everything
+                  because the shop floor, the manufacturer, and the end user all depend on it.
                 </p>
                 <p className="text-white font-medium italic">
                   That discipline never leaves you.
@@ -283,7 +298,8 @@ export default function About() {
               <h3 className="text-xl font-bold text-accent-400 mb-4">Teaching Myself to Code</h3>
               <div className="space-y-4 text-steel-300">
                 <p>
-                  So I started small. Python scripts to automate my own calculations. Excel macros that saved hours per week.
+                  So I started small. Python scripts to automate my own CAD workflows and calculations.
+                  Macros that generated drawing templates and BOMs in minutes instead of hours.
                   Nothing fancy—just tools that solved my problems.
                 </p>
                 <p>
@@ -307,14 +323,17 @@ export default function About() {
               <h3 className="text-xl font-bold text-accent-400 mb-4">Where I Am Now</h3>
               <div className="space-y-4 text-steel-300">
                 <p>
-                  Today I run <span className="text-white font-medium">Leadership Legacy LLC</span>, an agency that brings
-                  AI-powered engineering tools to companies that need them. I build custom AI agents, RAG systems, and
-                  automation workflows—all informed by real engineering experience.
+                  Today I run <span className="text-white font-medium">Leadership Legacy LLC</span>—a
+                  consulting and development company focused on AI-powered solutions, web applications, and
+                  engineering automation. I help businesses leverage AI to streamline operations, build custom
+                  tools, and turn complex workflows into scalable systems.
                 </p>
                 <p>
-                  I'm also developing <span className="text-white font-medium">EngineerCAD</span>, a platform where AI doesn't
-                  replace engineers; it makes them more capable. Imagine CAD software that automatically checks your design
-                  against API standards, generates calculation reports, and flags potential failure modes—while you design.
+                  I'm also building <span className="text-white font-medium">EngineerCAD</span>—a suite of
+                  AI-assisted tools for CAD, design, and engineering workflows. Think intelligent design
+                  validation, automated drawing generation, AI-powered BOM management, and FEA
+                  recommendations—all integrated into the tools engineers already use. AI that doesn't
+                  replace engineers; it makes them dangerous.
                 </p>
                 <p className="text-white font-medium italic">
                   That's the future I'm building.
@@ -384,16 +403,16 @@ export default function About() {
                   <div className="text-sm text-steel-400">Years Building</div>
                 </div>
                 <div className="text-center p-4">
-                  <div className="text-4xl font-bold text-accent-400 mb-2">50+</div>
-                  <div className="text-sm text-steel-400">Pumps Designed</div>
+                  <div className="text-4xl font-bold text-accent-400 mb-2">30+</div>
+                  <div className="text-sm text-steel-400">ME Projects</div>
                 </div>
                 <div className="text-center p-4">
                   <div className="text-4xl font-bold text-accent-400 mb-2">10+</div>
                   <div className="text-sm text-steel-400">AI Projects</div>
                 </div>
                 <div className="text-center p-4">
-                  <div className="text-4xl font-bold text-accent-400 mb-2">2M+</div>
-                  <div className="text-sm text-steel-400">Units Produced</div>
+                  <div className="text-4xl font-bold text-accent-400 mb-2">500+</div>
+                  <div className="text-sm text-steel-400">CAD Models</div>
                 </div>
               </div>
             </Card>
@@ -451,8 +470,8 @@ export default function About() {
           >
             <h2 className="text-3xl font-bold text-white mb-4">Professional Experience</h2>
             <p className="text-steel-400 max-w-2xl mx-auto">
-              From vaccine manufacturing to pump design to AI development—each role
-              has shaped my approach to engineering.
+              From manufacturing floors to CAD workstations to AI development—each role
+              has shaped how I approach engineering problems.
             </p>
           </motion.div>
 
