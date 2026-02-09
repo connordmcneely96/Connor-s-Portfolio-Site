@@ -573,7 +573,7 @@ export default function Home() {
               {/* Resume Downloads */}
               <div className="flex items-center justify-center gap-4 mt-8 text-sm">
                 <a
-                  href="/resumes/Mechanical_DrafterModeler_Automation%20Resume.docx%20(2).pdf"
+                  href="/resumes/ME_Resume_Updated.pdf"
                   download
                   className="flex items-center gap-2 text-white/70 hover:text-white transition-colors"
                 >

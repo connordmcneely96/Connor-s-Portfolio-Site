@@ -37,8 +37,8 @@ export default function Navigation() {
           ))}
           <li className="resume-buttons">
             <a
-              href="/resumes/Mechanical_DrafterModeler_Automation%20Resume.docx.pdf"
-              download="Mechanical_DrafterModeler_Automation Resume"
+              href="/resumes/ME_Resume_Updated.pdf"
+              download="ME_Resume_Updated"
               className="resume-btn resume-btn-me border-2 border-warning/40 hover:border-warning hover:bg-warning/10"
               title="Download Mechanical / Automation Resume (PDF)"
             >

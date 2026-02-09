@@ -113,7 +113,7 @@ buildPdf(
 buildPdf(
   path.join(
     outputDir,
-    'Mechanical_DrafterModeler_Automation Resume.docx.pdf',
+    'ME_Resume_Updated.pdf',
   ),
   'Mechanical Drafter | Modeler | Automation',
   mechanicalLines,
