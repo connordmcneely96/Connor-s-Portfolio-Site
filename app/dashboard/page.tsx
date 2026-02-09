@@ -270,8 +270,8 @@ export default function Dashboard() {
             {/* Resume Download Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <motion.a
-                href="/resumes/Mechanical_DrafterModeler_Automation%20Resume.docx.pdf"
-                download="Mechanical_DrafterModeler_Automation Resume"
+                href="/resumes/ME_Resume_Updated.pdf"
+                download="ME_Resume_Updated"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-blue-electric text-white font-semibold shadow-glow-cyan hover:shadow-glow-cyan-lg transition-all duration-300"
