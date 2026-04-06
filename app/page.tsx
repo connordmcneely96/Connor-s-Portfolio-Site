@@ -29,7 +29,7 @@ import { GradientMesh } from '@/components/ui/GradientMesh';
 import { BentoGrid, BentoCard } from '@/components/ui/BentoGrid';
 import { GlassCard } from '@/components/ui/GlassCard';
 import ProjectCard from '@/components/projects/ProjectCard';
-import { getFeaturedProjects } from '@/data/projects';
+import { getFeaturedProjects, getProjectsByCategory } from '@/data/projects';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -47,6 +47,7 @@ const staggerContainer = {
 
 export default function Home() {
   const featuredProjects = getFeaturedProjects().slice(0, 6);
+  const cadProjects = getProjectsByCategory('mechanical').slice(0, 4);
 
   const valueProps = [
     {
@@ -451,6 +452,34 @@ export default function Home() {
                 View All Projects
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* About Snapshot Section */}
+      <section className="py-24 bg-primary-800/20 border-y border-steel-800/40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <Badge variant="accent" className="mb-4">
+              Mechanical Engineering & CAD Design
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
+              Mechanical Engineering & CAD Design
+            </h2>
+            <p className="text-xl text-steel-400 max-w-3xl mx-auto">
+              15+ years SolidWorks | API 610/682 | Enterprise Clients: Tesla · Pfizer · John Deere
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {cadProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} />
+            ))}
           </div>
         </div>
       </section>

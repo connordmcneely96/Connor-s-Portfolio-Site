@@ -1,9 +1,10 @@
 'use client';
 
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowRight, Github, ExternalLink } from 'lucide-react';
+import { ArrowRight, Github, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { type Project, categoryLabels, statusColors } from '@/data/projects';
 
@@ -13,6 +14,17 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
+  const galleryImages = useMemo(
+    () => (project.images && project.images.length > 0 ? project.images : [project.primaryImage || project.thumbnail]),
+    [project.images, project.primaryImage, project.thumbnail]
+  );
+  const [imageIndex, setImageIndex] = useState(0);
+  const activeImage = galleryImages[imageIndex] || project.thumbnail;
+  const hasMultipleImages = galleryImages.length > 1;
+
+  const showNext = () => setImageIndex((prev) => (prev + 1) % galleryImages.length);
+  const showPrev = () => setImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -23,16 +35,15 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       className="group relative bg-primary-800/60 backdrop-blur-xl border border-steel-700/30 rounded-2xl overflow-hidden hover:border-accent-500/50 hover:shadow-glow-cyan transition-all duration-300"
     >
       {/* Thumbnail */}
-      <div className="relative h-48 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-700 to-primary-900">
-          {/* Placeholder pattern */}
-          <div className="absolute inset-0 bg-blueprint-grid bg-grid-25 opacity-30" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-6xl font-bold text-accent-500/20">
-              {project.title.charAt(0)}
-            </div>
-          </div>
-        </div>
+      <div className="relative h-48 overflow-hidden bg-primary-900">
+        <Image
+          src={activeImage}
+          alt={`${project.title} preview`}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-900/70 via-primary-900/20 to-transparent" />
 
         {/* Category Badge */}
         <div className="absolute top-4 left-4">
@@ -47,6 +58,52 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             {project.status === 'in-progress' ? 'In Progress' : project.status.charAt(0).toUpperCase() + project.status.slice(1)}
           </span>
         </div>
+
+        {/* Carousel Controls */}
+        {hasMultipleImages && (
+          <>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                showPrev();
+              }}
+              className="absolute left-3 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-primary-900/70 text-white hover:bg-primary-800 transition-colors"
+              aria-label={`Previous image for ${project.title}`}
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                showNext();
+              }}
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-primary-900/70 text-white hover:bg-primary-800 transition-colors"
+              aria-label={`Next image for ${project.title}`}
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5">
+              {galleryImages.map((image, dotIndex) => (
+                <button
+                  key={`${project.id}-${image}`}
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setImageIndex(dotIndex);
+                  }}
+                  className={`w-2 h-2 rounded-full transition-colors ${dotIndex === imageIndex ? 'bg-accent-400' : 'bg-white/60'}`}
+                  aria-label={`View image ${dotIndex + 1} for ${project.title}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
 
         {/* Hover Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
@@ -85,6 +142,12 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         <p className="text-steel-400 text-sm leading-relaxed mb-4 line-clamp-2">
           {project.description}
         </p>
+
+        {project.client && (
+          <p className="text-xs text-steel-500 mb-4">
+            Client: <span className="text-steel-300">{project.client}</span>
+          </p>
+        )}
 
         {/* Tech Stack */}
         <div className="flex flex-wrap gap-2 mb-4">
