@@ -18,6 +18,8 @@ export interface Project {
     live?: string;
     demo?: string;
   };
+  client?: string;
+  primaryImage?: string;
   images?: string[];
   modelPath?: string;
   featured: boolean;
@@ -26,6 +28,104 @@ export interface Project {
 
 export const projects: Project[] = [
   // MECHANICAL ENGINEERING
+  {
+    id: 'pump-002',
+    slug: 'api-610-pump-tesla',
+    title: 'API 610 Centrifugal Pump System — Tesla Client',
+    category: 'mechanical',
+    status: 'complete',
+    thumbnail: '/images/cad-projects/pump_isometric.jpg',
+    description: 'Full SolidWorks assembly of an OH2-type API 610 centrifugal pump system including impeller, volute casing, bearing frame, and API 682 seal chamber details for a Tesla industrial application.',
+    longDescription: 'Full SolidWorks assembly of an OH2-type API 610 centrifugal pump system including impeller, volute casing, bearing frame, mechanical seal chamber, and flanged suction/discharge connections. Cross-section view exposes internal seal and impeller geometry. Modeled to API 610 12th Edition and API 682 mechanical seal interface standards. Delivered as part of engineering documentation for a Tesla industrial application.',
+    techStack: ['SolidWorks', 'API 610', 'API 682', 'Centrifugal Pump', 'Tesla', 'Mechanical Seal', 'Industrial Engineering', 'CAD'],
+    highlights: [
+      'OH2 pump architecture modeled for API 610 compliance',
+      'Cross-section shows impeller, seal chamber, and bearing internals',
+      'Mechanical seal interface aligned to API 682 requirements',
+      'Industrial documentation package prepared for Tesla application'
+    ],
+    client: 'Tesla',
+    primaryImage: '/images/cad-projects/pump_isometric.jpg',
+    images: [
+      '/images/cad-projects/pump_exterior.jpg',
+      '/images/cad-projects/pump_cutaway.jpg',
+      '/images/cad-projects/pump_isometric.jpg'
+    ],
+    featured: true,
+    order: 1
+  },
+  {
+    id: 'engine-002',
+    slug: 'v6-engine-assembly-solidworks',
+    title: 'V6 Engine Assembly — SolidWorks',
+    category: 'mechanical',
+    status: 'complete',
+    thumbnail: '/images/cad-projects/v6_engine_01.jpg',
+    description: 'Full parametric V6 engine assembly modeled in SolidWorks with internal cutaway views and motion study-ready mate constraints.',
+    longDescription: 'Full parametric V6 engine assembly modeled in SolidWorks, including multi-body sub-assemblies for the cylinder block, rocker arm mechanisms, valve train, crankshaft, and timing system. Cutaway and section views reveal internal geometry with full mate constraints and motion study compatibility. Built as a portfolio demonstration of complex mechanical assembly design.',
+    techStack: ['SolidWorks', 'Mechanical Design', 'Assembly Modeling', 'CAD'],
+    highlights: [
+      'Multi-body sub-assemblies for block, valvetrain, crankshaft, and timing components',
+      'Cutaway and section views for internal geometry communication',
+      'Assembly built with complete mate constraints for motion studies',
+      'Portfolio-grade demonstration of complex CAD assembly discipline'
+    ],
+    client: 'Portfolio / Internal',
+    primaryImage: '/images/cad-projects/v6_engine_01.jpg',
+    images: [
+      '/images/cad-projects/v6_engine_01.jpg',
+      '/images/cad-projects/v6_engine_02.jpg'
+    ],
+    featured: true,
+    order: 2
+  },
+  {
+    id: 'actuator-001',
+    slug: 'motorized-linear-actuator-assembly',
+    title: 'Motorized Linear Actuator Assembly',
+    category: 'mechanical',
+    status: 'complete',
+    thumbnail: '/images/cad-projects/linear_actuator.jpg',
+    description: 'Custom motorized linear actuator with DC motor, gearbox, couplings, and modular T-slot fixture mounting for precision motion control.',
+    longDescription: 'Custom-designed motorized linear actuator assembly mounted on extruded aluminum T-slot framing. The system integrates a DC motor, helical gearbox, shaft coupling, bearing blocks, and linear slide mechanism. Designed for precision motion control applications with modular T-slot mounting for rapid fixture reconfiguration.',
+    techStack: ['SolidWorks', 'Motion Design', 'Linear Systems', 'Mechanical Assembly', 'CAD'],
+    highlights: [
+      'Integrated drivetrain: DC motor, gearbox, coupling, and guided linear slide',
+      'Modular T-slot base enables rapid fixture reconfiguration',
+      'Designed for repeatable precision motion control applications',
+      'Assembly organized for maintainable sub-component updates'
+    ],
+    client: 'Portfolio / Internal',
+    primaryImage: '/images/cad-projects/linear_actuator.jpg',
+    images: ['/images/cad-projects/linear_actuator.jpg'],
+    featured: true,
+    order: 3
+  },
+  {
+    id: 'fixture-001',
+    slug: 'automated-drilling-fixture-industrial-assembly',
+    title: 'Automated Drilling Fixture — Industrial Assembly',
+    category: 'mechanical',
+    status: 'complete',
+    thumbnail: '/images/cad-projects/drill_fixture_iso.png',
+    description: 'Automated pneumatic drilling fixture with adjustable clamping, linear guide system, and T-slot base for precision manufacturing.',
+    longDescription: 'SolidWorks assembly of an automated pneumatic drilling fixture designed for repeatable precision hole placement in manufacturing environments. Features a pneumatically-actuated drill spindle mounted to a linear rail guide system, adjustable workpiece clamping, and T-slot base for flexible fixturing. Designed to API manufacturing standards with full constraint and tolerance stack-up consideration.',
+    techStack: ['SolidWorks', 'Fixture Design', 'Industrial Automation', 'Manufacturing', 'CAD'],
+    highlights: [
+      'Pneumatic drill spindle with guided motion architecture',
+      'Adjustable clamp scheme supports repeatable workholding',
+      'T-slot base provides flexible factory-floor fixture setups',
+      'Tolerance stack-up accounted for production consistency'
+    ],
+    client: 'Portfolio / Internal',
+    primaryImage: '/images/cad-projects/drill_fixture_iso.png',
+    images: [
+      '/images/cad-projects/drill_fixture_top.png',
+      '/images/cad-projects/drill_fixture_iso.png'
+    ],
+    featured: true,
+    order: 4
+  },
   {
     id: 'pump-001',
     slug: 'centrifugal-pump',
@@ -49,7 +149,7 @@ export const projects: Project[] = [
     ],
     modelPath: '/models/pump-assembly.glb',
     featured: true,
-    order: 1
+    order: 5
   },
   {
     id: 'engine-001',
@@ -68,7 +168,7 @@ export const projects: Project[] = [
       'Thermal stress analysis of cylinder head'
     ],
     featured: true,
-    order: 2
+    order: 6
   },
   {
     id: 'cnc-001',
@@ -87,7 +187,7 @@ export const projects: Project[] = [
       'Full GD&T documentation'
     ],
     featured: true,
-    order: 3
+    order: 7
   },
   {
     id: 'robot-001',
@@ -106,7 +206,7 @@ export const projects: Project[] = [
       'Repeatability error budget per ISO 9283'
     ],
     featured: true,
-    order: 4
+    order: 8
   },
 
   // AI/ML PROJECTS
