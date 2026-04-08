@@ -218,9 +218,9 @@ export const projects: Project[] = [
     ],
     primaryImage: '/images/projects/ai-cad-engine/hero.jpg',
     images: [
-      '/images/projects/ai-cad-engine/hero.jpg',
-      '/images/projects/ai-cad-engine/workflow.jpg',
-      '/images/projects/ai-cad-engine/output.jpg'
+      '/images/projects/ai-cad-engine/hero.png',
+      '/images/projects/ai-cad-engine/workflow.png',
+      '/images/projects/ai-cad-engine/output.png'
     ],
     featured: true,
     order: 3
