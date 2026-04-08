@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -19,11 +19,22 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
     [project.images, project.primaryImage, project.thumbnail]
   );
   const [imageIndex, setImageIndex] = useState(0);
+  const [imageError, setImageError] = useState(false);
   const activeImage = galleryImages[imageIndex] || project.thumbnail;
   const hasMultipleImages = galleryImages.length > 1;
 
   const showNext = () => setImageIndex((prev) => (prev + 1) % galleryImages.length);
   const showPrev = () => setImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+
+  const handleImageError = useCallback(() => {
+    setImageError(true);
+  }, []);
+
+  // Reset error state when image index changes
+  const handleIndexChange = useCallback((newIndex: number) => {
+    setImageError(false);
+    setImageIndex(newIndex);
+  }, []);
 
   return (
     <motion.div
@@ -34,15 +45,26 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       whileHover={{ y: -8 }}
       className="group relative bg-primary-800/60 backdrop-blur-xl border border-steel-700/30 rounded-2xl overflow-hidden hover:border-accent-500/50 hover:shadow-glow-cyan transition-all duration-300"
     >
-      {/* Thumbnail */}
-      <div className="relative h-48 overflow-hidden bg-primary-900">
-        <Image
-          src={activeImage}
-          alt={`${project.title} preview`}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 33vw"
-        />
+      {/* Hero Image / Gallery */}
+      <div className="relative h-[220px] overflow-hidden bg-primary-900">
+        {/* Fallback gradient shown on image error */}
+        {imageError && (
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-700 via-accent-500/20 to-primary-900 flex items-center justify-center">
+            <span className="text-steel-500 text-sm font-medium">{project.title}</span>
+          </div>
+        )}
+
+        {!imageError && (
+          <Image
+            src={activeImage}
+            alt={`${project.title} preview`}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 33vw"
+            onError={handleImageError}
+          />
+        )}
+
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900/70 via-primary-900/20 to-transparent" />
 
         {/* Category Badge */}
@@ -67,6 +89,7 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
+                setImageError(false);
                 showPrev();
               }}
               className="absolute left-3 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-primary-900/70 text-white hover:bg-primary-800 transition-colors"
@@ -79,6 +102,7 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
+                setImageError(false);
                 showNext();
               }}
               className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-primary-900/70 text-white hover:bg-primary-800 transition-colors"
@@ -90,12 +114,12 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5">
               {galleryImages.map((image, dotIndex) => (
                 <button
-                  key={`${project.id}-${image}`}
+                  key={`${project.id}-dot-${dotIndex}`}
                   type="button"
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    setImageIndex(dotIndex);
+                    handleIndexChange(dotIndex);
                   }}
                   className={`w-2 h-2 rounded-full transition-colors ${dotIndex === imageIndex ? 'bg-accent-400' : 'bg-white/60'}`}
                   aria-label={`View image ${dotIndex + 1} for ${project.title}`}
