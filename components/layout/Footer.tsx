@@ -12,9 +12,10 @@ const footerLinks = {
     { href: '/contact', label: 'Contact' },
   ],
   projects: [
+    { href: '/portfolio?category=ai-ml', label: 'AI & Software' },
     { href: '/portfolio?category=mechanical', label: 'Mechanical Engineering' },
-    { href: '/portfolio?category=ai-ml', label: 'AI/ML Projects' },
-    { href: '/portfolio?category=fullstack', label: 'Full-Stack Development' },
+    { href: '/portfolio?category=fullstack', label: 'Full-Stack Web' },
+    { href: '/portfolio?category=client-work', label: 'Client Work' },
   ],
   services: [
     { href: '/services#ai-development', label: 'AI Development' },

@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Filter } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import ProjectFilter from '@/components/projects/ProjectFilter';
 import ProjectGrid from '@/components/projects/ProjectGrid';
@@ -15,7 +15,7 @@ export default function PortfolioPage() {
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === 'all') {
-      return projects.sort((a, b) => a.order - b.order);
+      return [...projects].sort((a, b) => a.order - b.order);
     }
     return projects
       .filter((p) => p.category === activeCategory)
@@ -27,6 +27,7 @@ export default function PortfolioPage() {
     mechanical: projects.filter((p) => p.category === 'mechanical').length,
     'ai-ml': projects.filter((p) => p.category === 'ai-ml').length,
     fullstack: projects.filter((p) => p.category === 'fullstack').length,
+    'client-work': projects.filter((p) => p.category === 'client-work').length,
   }), []);
 
   return (
@@ -128,8 +129,14 @@ export default function PortfolioPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
+              {
+                category: 'ai-ml' as const,
+                title: 'AI & Software',
+                description: 'RAG systems, multi-agent architectures, LangChain applications, and intelligent automation.',
+                color: 'accent',
+              },
               {
                 category: 'mechanical' as const,
                 title: 'Mechanical Engineering',
@@ -137,16 +144,16 @@ export default function PortfolioPage() {
                 color: 'secondary',
               },
               {
-                category: 'ai-ml' as const,
-                title: 'AI/ML Development',
-                description: 'RAG systems, multi-agent architectures, LangChain applications, and intelligent automation.',
-                color: 'accent',
-              },
-              {
                 category: 'fullstack' as const,
-                title: 'Full-Stack Development',
+                title: 'Full-Stack Web',
                 description: 'Modern web applications with Next.js, React, and cloud-native architectures.',
                 color: 'primary',
+              },
+              {
+                category: 'client-work' as const,
+                title: 'Client Work',
+                description: 'Lead generation websites, CRM systems, and business solutions for local service companies.',
+                color: 'secondary',
               },
             ].map((item, index) => (
               <motion.button

@@ -66,7 +66,7 @@ export default function Home() {
       description:
         'RAG systems, multi-agent architectures, LangChain/CrewAI implementations.',
       benefit: 'AI tools that solve real engineering problems, not demos.',
-      proof: 'EngineerGPT, DesignReviewCrew in active development',
+      proof: 'MechAssist AI, AI Autonomous CAD Engine in active development',
       gradient: 'from-accent-500 to-accent-600',
       tags: ['LangChain', 'RAG', 'GPT-4', 'Python'],
     },

@@ -13,9 +13,10 @@ interface ProjectFilterProps {
 export default function ProjectFilter({ activeCategory, onCategoryChange }: ProjectFilterProps) {
   const categories: { value: CategoryFilter; label: string; count: number }[] = [
     { value: 'all', label: 'All Projects', count: projects.length },
-    { value: 'mechanical', label: categoryLabels.mechanical, count: projects.filter(p => p.category === 'mechanical').length },
     { value: 'ai-ml', label: categoryLabels['ai-ml'], count: projects.filter(p => p.category === 'ai-ml').length },
+    { value: 'mechanical', label: categoryLabels.mechanical, count: projects.filter(p => p.category === 'mechanical').length },
     { value: 'fullstack', label: categoryLabels.fullstack, count: projects.filter(p => p.category === 'fullstack').length },
+    { value: 'client-work', label: categoryLabels['client-work'], count: projects.filter(p => p.category === 'client-work').length },
   ];
 
   return (
