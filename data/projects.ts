@@ -147,7 +147,7 @@ export const projects: Project[] = [
     title: 'AI Meal Planner',
     category: 'ai-ml',
     status: 'complete',
-    thumbnail: '/images/projects/ai-meal-planner/hero.jpg',
+    thumbnail: '/images/projects/ai-meal-planner/AI_meal_planner_01.png',
     description: 'AI-powered meal planning application that generates personalized nutrition plans, grocery lists, and recipe suggestions based on dietary goals and preferences.',
     longDescription: 'An AI-powered meal planning and nutrition coaching application that provides personalized weekly meal plans, automated grocery lists, and smart recipe suggestions. Uses LLM-based dietary analysis to adapt recommendations based on fitness goals, dietary restrictions, and taste preferences. Features progress tracking and nutrition analytics dashboard.',
     techStack: ['Next.js', 'OpenAI', 'Vercel', 'TypeScript', 'Tailwind CSS'],
@@ -163,9 +163,8 @@ export const projects: Project[] = [
     },
     primaryImage: '/images/projects/ai-meal-planner/hero.jpg',
     images: [
-      '/images/projects/ai-meal-planner/hero.jpg',
-      '/images/projects/ai-meal-planner/dashboard.jpg',
-      '/images/projects/ai-meal-planner/meal-plan.jpg'
+      '/images/projects/ai-meal-planner/AI_meal_planner_01.png',
+      '/images/projects/ai-meal-planner/AI_meal_planner_02.png'
     ],
     featured: true,
     order: 1
@@ -176,7 +175,7 @@ export const projects: Project[] = [
     title: 'MechAssist AI',
     category: 'ai-ml',
     status: 'in-progress',
-    thumbnail: '/images/projects/mechassist/hero.jpg',
+    thumbnail: '/images/projects/mechassist/MechAssist_01.png',
     description: 'Multi-agent RAG system for mechanical engineers — retrieves and reasons over API, ASME, and ISO standards with source-cited answers and automated design review.',
     longDescription: 'A multi-agent retrieval-augmented generation platform purpose-built for mechanical engineers. Combines intelligent search across API, ASME, and ISO standards with multi-agent design review workflows. Features domain-configurable review agents (requirements compliance, quality assurance, risk assessment) powered by CrewAI/LangGraph. Includes source citation for compliance traceability and custom embedding pipelines for technical documentation.',
     techStack: ['LangChain', 'CrewAI', 'LangGraph', 'Pinecone', 'GPT-4', 'Python', 'RAG', 'AWS Bedrock', 'Streamlit'],
@@ -191,11 +190,14 @@ export const projects: Project[] = [
       live: 'https://rag-q-a-for-mechanical-engineers.vercel.app/',
       github: 'https://github.com/connordmcneely96/RAG-Q-A-for-Mechanical-Engineers'
     },
-    primaryImage: '/images/projects/mechassist/hero.jpg',
+    primaryImage: '/images/projects/mechassist/MechAssist_01.png',
     images: [
-      '/images/projects/mechassist/hero.jpg',
-      '/images/projects/mechassist/rag-interface.jpg',
-      '/images/projects/mechassist/agent-flow.jpg'
+      '/images/projects/mechassist/MechAssist_01.png',
+      '/images/projects/mechassist/MechAssist_02.png',
+      '/images/projects/mechassist/MechAssist_03.png',
+      '/images/projects/mechassist/MechAssist_04.png',
+      '/images/projects/mechassist/MechAssist_05.png',
+      '/images/projects/mechassist/MechAssist_06.png'
     ],
     featured: true,
     order: 2
@@ -232,7 +234,7 @@ export const projects: Project[] = [
     title: 'I-Autodidact',
     category: 'ai-ml',
     status: 'in-progress',
-    thumbnail: '/images/projects/i-autodidact/hero.jpg',
+    thumbnail: '/images/projects/i-autodidact/I-autodidact_01.png',
     description: 'Self-directed learning AI that builds personalized curricula, tracks mastery progression, and adapts learning paths in real-time based on performance and goals.',
     longDescription: 'An AI-powered self-directed learning platform that generates personalized learning curricula based on the user\'s goals, current skill level, and learning style. Uses spaced repetition algorithms and LLM-based content generation to adapt learning paths in real-time. Tracks mastery progression across topics and suggests optimal study sequences for maximum retention.',
     techStack: ['Next.js', 'Python', 'OpenAI', 'LangChain', 'PostgreSQL', 'TypeScript'],
@@ -242,11 +244,13 @@ export const projects: Project[] = [
       'Real-time mastery tracking and progression analytics',
       'Multi-domain support (engineering, software, languages)'
     ],
-    primaryImage: '/images/projects/i-autodidact/hero.jpg',
+    primaryImage: '/images/projects/i-autodidact/I-autodidact_01.png',
     images: [
-      '/images/projects/i-autodidact/hero.jpg',
-      '/images/projects/i-autodidact/curriculum.jpg',
-      '/images/projects/i-autodidact/progress.jpg'
+      '/images/projects/i-autodidact/I-autodidact_01.png',
+      '/images/projects/i-autodidact/I-autodidact_02.png',
+      '/images/projects/i-autodidact/I-autodidact_03.png',
+      '/images/projects/i-autodidact/I-autodidact_04.png',
+      '/images/projects/i-autodidact/I-autodidact_05.png'
     ],
     featured: true,
     order: 4
@@ -326,7 +330,7 @@ export const projects: Project[] = [
     title: 'Evergrow Landscaping',
     category: 'client-work',
     status: 'complete',
-    thumbnail: '/images/projects/evergrow/hero.jpg',
+    thumbnail: '/images/projects/evergrow/evergrow_01.png',
     description: 'Full-stack lead generation website and CRM system for a landscaping business, featuring automated quote requests, job scheduling, and client management.',
     longDescription: 'End-to-end full-stack platform for Evergrow Landscaping combining a high-conversion lead generation website with an internal CRM. Features automated quote request forms, service area mapping, job scheduling, client communication tracking, and invoice management. Built for SEO performance and mobile-first design to capture local search traffic.',
     techStack: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'Vercel', 'SEO'],
@@ -336,11 +340,15 @@ export const projects: Project[] = [
       'Internal CRM with job scheduling and client tracking',
       'SEO-optimized for local search visibility'
     ],
-    primaryImage: '/images/projects/evergrow/hero.jpg',
+    primaryImage: '/images/projects/evergrow/evergrow_01.png',
     images: [
-      '/images/projects/evergrow/hero.jpg',
-      '/images/projects/evergrow/services.jpg',
-      '/images/projects/evergrow/crm.jpg'
+      '/images/projects/evergrow/evergrow_01.png',
+      '/images/projects/evergrow/evergrow_02.png',
+      '/images/projects/evergrow/evergrow_03.png',
+      '/images/projects/evergrow/evergrow_05.png',
+      '/images/projects/evergrow/evergrow_07.png',
+      '/images/projects/evergrow/evergrow_08.png',
+      '/images/projects/evergrow/evergrow_012.png'
     ],
     client: 'Evergrow Landscaping',
     featured: true,
@@ -352,7 +360,7 @@ export const projects: Project[] = [
     title: "Tony's Toolbox",
     category: 'client-work',
     status: 'complete',
-    thumbnail: '/images/projects/tonys-toolbox/hero.jpg',
+    thumbnail: '/images/projects/tonys-toolbox/Tonys_Tool_Box_01.jpg',
     description: "Professional business website for a local handyman service, designed for lead capture, service showcase, and local SEO dominance.",
     longDescription: "A professional, mobile-first business website for Tony's Toolbox, a local handyman and home repair service. Features service catalog with pricing transparency, online booking integration, customer testimonials, and service area mapping. Built with a focus on local SEO to dominate Google Maps and organic search in the service area.",
     techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel', 'SEO', 'Google Maps API'],
@@ -362,11 +370,13 @@ export const projects: Project[] = [
       'Local SEO optimization for Google Maps visibility',
       'Service catalog with transparent pricing'
     ],
-    primaryImage: '/images/projects/tonys-toolbox/hero.jpg',
+    primaryImage: '/images/projects/tonys-toolbox/Tonys_Tool_Box_01.jpg',
     images: [
-      '/images/projects/tonys-toolbox/hero.jpg',
-      '/images/projects/tonys-toolbox/services.jpg',
-      '/images/projects/tonys-toolbox/testimonials.jpg'
+      '/images/projects/tonys-toolbox/Tonys_Tool_Box_01.jpg',
+      '/images/projects/tonys-toolbox/Tonys_Tool_Box_02.jpg',
+      '/images/projects/tonys-toolbox/Tonys_Tool_Box_03.jpg',
+      '/images/projects/tonys-toolbox/Tonys_Tool_Box_04.jpg',
+      '/images/projects/tonys-toolbox/Tonys_Tool_Box_05.jpg'
     ],
     client: "Tony's Toolbox",
     featured: true,
