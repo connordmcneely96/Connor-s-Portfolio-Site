@@ -219,6 +219,7 @@ export const projects: Project[] = [
     primaryImage: '/images/projects/ai-cad-engine/hero.jpg',
     images: [
       '/images/projects/ai-cad-engine/hero.png',
+      '/images/projects/ai-cad-engine/home.png',
       '/images/projects/ai-cad-engine/workflow.png',
       '/images/projects/ai-cad-engine/output.png'
     ],
