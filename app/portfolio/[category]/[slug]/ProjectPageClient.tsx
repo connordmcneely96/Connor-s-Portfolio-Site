@@ -1,6 +1,8 @@
 'use client';
 
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
   ArrowLeft,
@@ -8,6 +10,7 @@ import {
   Github,
   ExternalLink,
   ChevronRight,
+  ChevronLeft,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -26,11 +29,137 @@ interface ProjectPageClientProps {
   nextProject: Project | null;
 }
 
+function ProjectImageGallery({ project }: { project: Project }) {
+  const images = project.images && project.images.length > 0
+    ? project.images
+    : project.primaryImage
+      ? [project.primaryImage]
+      : project.thumbnail
+        ? [project.thumbnail]
+        : [];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [imageError, setImageError] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const hasMultiple = images.length > 1;
+
+  useEffect(() => {
+    if (!hasMultiple) return;
+    intervalRef.current = setInterval(() => {
+      setImageError(false);
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [hasMultiple, images.length]);
+
+  const goNext = useCallback(() => {
+    setImageError(false);
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+    // Reset auto-advance timer
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setImageError(false);
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+  }, [images.length]);
+
+  const goPrev = useCallback(() => {
+    setImageError(false);
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setImageError(false);
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+  }, [images.length]);
+
+  if (images.length === 0) return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+    >
+      <h2 className="text-2xl font-bold text-white mb-4">Project Images</h2>
+      <div className="relative aspect-video rounded-2xl overflow-hidden bg-primary-900 border border-steel-700/30">
+        {imageError ? (
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-700 via-accent-500/20 to-primary-900 flex items-center justify-center">
+            <span className="text-steel-500 text-sm font-medium">{project.title}</span>
+          </div>
+        ) : (
+          <Image
+            key={images[currentIndex]}
+            src={images[currentIndex]}
+            alt={`${project.title} - image ${currentIndex + 1}`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 66vw"
+            onError={() => setImageError(true)}
+          />
+        )}
+
+        {hasMultiple && (
+          <>
+            <button
+              type="button"
+              onClick={goPrev}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-primary-900/70 text-white hover:bg-primary-800 transition-colors"
+              aria-label="Previous image"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              type="button"
+              onClick={goNext}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-primary-900/70 text-white hover:bg-primary-800 transition-colors"
+              aria-label="Next image"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
+            {/* Dot indicators */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
+              {images.map((_img, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => {
+                    setImageError(false);
+                    setCurrentIndex(i);
+                  }}
+                  className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                    i === currentIndex ? 'bg-accent-400' : 'bg-white/50 hover:bg-white/80'
+                  }`}
+                  aria-label={`View image ${i + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* Image counter */}
+        {hasMultiple && (
+          <div className="absolute top-4 right-4 z-10 px-3 py-1 rounded-full bg-primary-900/70 text-white text-xs font-medium">
+            {currentIndex + 1} / {images.length}
+          </div>
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
 export default function ProjectPageClient({
   project,
   prevProject,
   nextProject,
 }: ProjectPageClientProps) {
+  const hasImages = (project.images && project.images.length > 0) ||
+    project.primaryImage ||
+    project.thumbnail;
+
   return (
     <div className="min-h-screen pt-20">
       {/* Breadcrumb */}
@@ -108,6 +237,9 @@ export default function ProjectPageClient({
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-8">
+              {/* Image Gallery */}
+              {hasImages && <ProjectImageGallery project={project} />}
+
               {/* 3D Model Viewer (if available) */}
               {project.modelPath && (
                 <motion.div
@@ -188,6 +320,12 @@ export default function ProjectPageClient({
                       <p className="text-sm text-steel-500 mb-1">Category</p>
                       <p className="text-white font-medium">{categoryLabels[project.category]}</p>
                     </div>
+                    {project.client && (
+                      <div>
+                        <p className="text-sm text-steel-500 mb-1">Client</p>
+                        <p className="text-white font-medium">{project.client}</p>
+                      </div>
+                    )}
                   </div>
                 </Card>
               </motion.div>
@@ -219,7 +357,7 @@ export default function ProjectPageClient({
                 <Card padding="lg" className="bg-gradient-to-br from-accent-500/10 to-primary-600/10 border-accent-500/30">
                   <h3 className="text-lg font-bold text-white mb-2">Interested in Similar Work?</h3>
                   <p className="text-steel-400 text-sm mb-4">
-                    Let's discuss how I can help with your project.
+                    Let&apos;s discuss how I can help with your project.
                   </p>
                   <Link href="/contact">
                     <Button fullWidth rightIcon={<ArrowRight className="w-4 h-4" />}>
