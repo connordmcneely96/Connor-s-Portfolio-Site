@@ -206,7 +206,7 @@ export const projects: Project[] = [
     title: 'AI Autonomous CAD Engine',
     category: 'ai-ml',
     status: 'in-progress',
-    thumbnail: '/images/projects/ai-cad-engine/hero.jpg',
+    thumbnail: '/images/projects/ai-cad-engine/hero.png',
     description: 'Autonomous AI system that generates production-ready CAD assemblies from natural language specifications, bridging the gap between engineering intent and parametric design.',
     longDescription: 'An autonomous AI engine that translates natural language engineering specifications into production-ready CAD assemblies. Leverages LLM reasoning to interpret design requirements, generate parametric geometry, apply GD&T constraints, and validate against engineering standards. Designed to dramatically accelerate the concept-to-CAD pipeline for mechanical engineers.',
     techStack: ['Python', 'OpenAI', 'SolidWorks API', 'LangChain', 'FastAPI', 'TypeScript'],
