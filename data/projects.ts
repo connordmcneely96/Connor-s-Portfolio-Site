@@ -36,7 +36,7 @@ export const projects: Project[] = [
     title: 'API 610 Centrifugal Pump System',
     category: 'mechanical',
     status: 'complete',
-    thumbnail: '/images/projects/pump/pump_isometric.jpg',
+    thumbnail: '/images/cad-projects/pump_isometric.jpg',
     description: 'Full SolidWorks assembly of an OH2-type API 610 centrifugal pump with impeller, volute casing, bearing frame, and API 682 seal chamber. Includes FEA analysis and complete engineering documentation.',
     longDescription: 'Full SolidWorks assembly of an OH2-type API 610 centrifugal pump system including impeller, volute casing, bearing frame, mechanical seal chamber, and flanged suction/discharge connections. Cross-section view exposes internal seal and impeller geometry. Modeled to API 610 12th Edition and API 682 mechanical seal interface standards. Includes shaft analysis per ASME, bearing L10 life calculations, and mechanical seal selection per API 682. Delivered as part of engineering documentation for industrial applications.',
     techStack: ['SolidWorks', 'FEA', 'API 610', 'API 682', 'ASME', 'Centrifugal Pump', 'Mechanical Seal', 'CAD'],
@@ -54,13 +54,11 @@ export const projects: Project[] = [
       { label: 'Standards', value: 'API 610/682' }
     ],
     client: 'Tesla',
-    primaryImage: '/images/projects/pump/pump_isometric.jpg',
+    primaryImage: '/images/cad-projects/pump_isometric.jpg',
     images: [
-      '/images/projects/pump/pump_isometric.jpg',
-      '/images/projects/pump/pump_exterior.jpg',
-      '/images/projects/pump/pump_cutaway.jpg',
-      '/images/projects/pump/pump_cross_section.jpg',
-      '/images/projects/pump/pump_fea.jpg'
+      '/images/cad-projects/pump_isometric.jpg',
+      '/images/cad-projects/pump_exterior.jpg',
+      '/images/cad-projects/pump_cutaway.jpg'
     ],
     modelPath: '/models/pump-assembly.glb',
     featured: true,
@@ -72,7 +70,7 @@ export const projects: Project[] = [
     title: 'V6 Engine Assembly',
     category: 'mechanical',
     status: 'complete',
-    thumbnail: '/images/projects/v6-engine/v6_engine_01.jpg',
+    thumbnail: '/images/cad-projects/v6_engine_01.jpg',
     description: 'Full parametric V6 engine assembly modeled in SolidWorks with internal cutaway views, thermodynamic analysis, and motion study-ready mate constraints.',
     longDescription: 'Full parametric V6 engine assembly modeled in SolidWorks, including multi-body sub-assemblies for the cylinder block, rocker arm mechanisms, valve train, crankshaft, and timing system. Cutaway and section views reveal internal geometry with full mate constraints and motion study compatibility. Includes slider-crank kinematics, gas and inertia force calculations, crankshaft journal sizing, connecting rod design, and thermal stress analysis of the cylinder head.',
     techStack: ['SolidWorks', 'FEA', 'Thermodynamics', 'Kinematics', 'Mechanical Design', 'Assembly Modeling', 'CAD'],
@@ -85,81 +83,40 @@ export const projects: Project[] = [
       'Thermal stress analysis of cylinder head'
     ],
     client: 'Portfolio / Internal',
-    primaryImage: '/images/projects/v6-engine/v6_engine_01.jpg',
+    primaryImage: '/images/cad-projects/v6_engine_01.jpg',
     images: [
-      '/images/projects/v6-engine/v6_engine_01.jpg',
-      '/images/projects/v6-engine/v6_engine_02.jpg',
-      '/images/projects/v6-engine/v6_engine_exploded.jpg',
-      '/images/projects/v6-engine/v6_engine_cutaway.jpg'
+      '/images/cad-projects/v6_engine_01.jpg',
+      '/images/cad-projects/v6_engine_02.jpg'
     ],
     featured: true,
     order: 2
   },
   {
-    id: 'actuator-001',
-    slug: 'motorized-linear-actuator-assembly',
-    title: 'Motorized Linear Actuator Assembly',
-    category: 'mechanical',
-    status: 'complete',
-    thumbnail: '/images/cad-projects/linear_actuator.jpg',
-    description: 'Custom motorized linear actuator with DC motor, gearbox, couplings, and modular T-slot fixture mounting for precision motion control.',
-    longDescription: 'Custom-designed motorized linear actuator assembly mounted on extruded aluminum T-slot framing. The system integrates a DC motor, helical gearbox, shaft coupling, bearing blocks, and linear slide mechanism. Designed for precision motion control applications with modular T-slot mounting for rapid fixture reconfiguration.',
-    techStack: ['SolidWorks', 'Motion Design', 'Linear Systems', 'Mechanical Assembly', 'CAD'],
-    highlights: [
-      'Integrated drivetrain: DC motor, gearbox, coupling, and guided linear slide',
-      'Modular T-slot base enables rapid fixture reconfiguration',
-      'Designed for repeatable precision motion control applications',
-      'Assembly organized for maintainable sub-component updates'
-    ],
-    client: 'Portfolio / Internal',
-    primaryImage: '/images/cad-projects/linear_actuator.jpg',
-    images: ['/images/cad-projects/linear_actuator.jpg'],
-    featured: true,
-    order: 3
-  },
-  {
-    id: 'fixture-001',
-    slug: 'automated-drilling-fixture-industrial-assembly',
-    title: 'Automated Drilling Fixture — Industrial Assembly',
+    id: 'automation-consolidated',
+    slug: 'industrial-automation-fixture-design',
+    title: 'Industrial Automation & Fixture Design',
     category: 'mechanical',
     status: 'complete',
     thumbnail: '/images/cad-projects/drill_fixture_iso.png',
-    description: 'Automated pneumatic drilling fixture with adjustable clamping, linear guide system, and T-slot base for precision manufacturing.',
-    longDescription: 'SolidWorks assembly of an automated pneumatic drilling fixture designed for repeatable precision hole placement in manufacturing environments. Features a pneumatically-actuated drill spindle mounted to a linear rail guide system, adjustable workpiece clamping, and T-slot base for flexible fixturing. Designed to API manufacturing standards with full constraint and tolerance stack-up consideration.',
-    techStack: ['SolidWorks', 'Fixture Design', 'Industrial Automation', 'Manufacturing', 'CAD'],
+    description: 'Collection of manufacturing automation projects: motorized linear actuator, automated pneumatic drilling fixture, and CNC gang drill system for high-volume production.',
+    longDescription: 'A suite of manufacturing and automation projects designed in SolidWorks. Includes a custom motorized linear actuator assembly with DC motor, gearbox, and T-slot fixture mounting for precision motion control; an automated pneumatic drilling fixture with adjustable clamping and linear guide system for repeatable precision hole placement; and a CNC gang drill system (senior capstone project) with multi-spindle synchronization, automated tool change, and 40% cycle time reduction.',
+    techStack: ['SolidWorks', 'CNC', 'Manufacturing', 'GD&T', 'Fixture Design', 'Industrial Automation', 'Motion Design', 'CAD'],
     highlights: [
-      'Pneumatic drill spindle with guided motion architecture',
-      'Adjustable clamp scheme supports repeatable workholding',
-      'T-slot base provides flexible factory-floor fixture setups',
-      'Tolerance stack-up accounted for production consistency'
+      'Motorized linear actuator with integrated DC motor, gearbox, and guided linear slide',
+      'Pneumatic drilling fixture with adjustable clamping and tolerance stack-up analysis',
+      'CNC gang drill system: reduced cycle time by 40% with multi-spindle synchronization',
+      'Modular T-slot base design enables rapid fixture reconfiguration',
+      'Full GD&T documentation across all assemblies'
     ],
     client: 'Portfolio / Internal',
     primaryImage: '/images/cad-projects/drill_fixture_iso.png',
     images: [
-      '/images/cad-projects/drill_fixture_top.png',
-      '/images/cad-projects/drill_fixture_iso.png'
+      '/images/cad-projects/linear_actuator.jpg',
+      '/images/cad-projects/drill_fixture_iso.png',
+      '/images/cad-projects/drill_fixture_top.png'
     ],
     featured: true,
-    order: 4
-  },
-  {
-    id: 'cnc-001',
-    slug: 'cnc-gang-drill',
-    title: 'CNC Gang Drill System',
-    category: 'mechanical',
-    status: 'complete',
-    thumbnail: '/images/projects/cnc-thumb.jpg',
-    description: 'Capstone project: Automated multi-spindle drilling system with vibration control and cycle time optimization.',
-    longDescription: 'Senior capstone project designing a CNC gang drill system for high-volume manufacturing. Focused on spindle alignment, vibration control, and cycle time optimization.',
-    techStack: ['SolidWorks', 'CNC', 'Manufacturing', 'GD&T'],
-    highlights: [
-      'Reduced cycle time by 40%',
-      'Multi-spindle synchronization',
-      'Automated tool change system',
-      'Full GD&T documentation'
-    ],
-    featured: false,
-    order: 5
+    order: 3
   },
   {
     id: 'robot-001',
@@ -178,7 +135,7 @@ export const projects: Project[] = [
       'Repeatability error budget per ISO 9283'
     ],
     featured: false,
-    order: 6
+    order: 4
   },
 
   // =====================
@@ -292,28 +249,6 @@ export const projects: Project[] = [
     ],
     featured: true,
     order: 4
-  },
-  {
-    id: 'ai-004',
-    slug: 'inner-animals-dashboard',
-    title: 'Inner Animals AI Dashboard',
-    category: 'ai-ml',
-    status: 'complete',
-    thumbnail: '/images/projects/inneranimals-thumb.jpg',
-    description: 'AI-powered personality analysis and visualization dashboard with ML studio, NLP analytics, RAG builder, and vision lab.',
-    longDescription: 'Interactive dashboard that uses AI to analyze and visualize personality traits, providing insights through animal archetypes and behavioral patterns. Features ML studio, NLP analytics, RAG builder, and vision lab.',
-    techStack: ['Next.js', 'FastAPI', 'LangChain', 'Python', 'TensorFlow'],
-    highlights: [
-      'AI personality analysis',
-      'Interactive data visualization',
-      'Custom archetype generation',
-      'RAG-powered knowledge base'
-    ],
-    links: {
-      github: 'https://github.com/connordmcneely96/inner-animals-ai-dashboard'
-    },
-    featured: false,
-    order: 5
   },
 
   // =====================
